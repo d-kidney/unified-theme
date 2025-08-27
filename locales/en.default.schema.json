@@ -2031,12 +2031,6 @@
         "quantity_selector": {
           "name": "Quantity selector"
         },
-        "product_star_rating": {
-          "name": "Product Star Rating"
-        },
-        "delivery_text": {
-          "name": "Delivery Details"
-        },
         "variant_picker": {
           "name": "Variant picker",
           "settings": {
@@ -2064,7 +2058,7 @@
             }
           }
         },
-        "in_stock_label": {
+         "in_stock_label": {
           "name": "In Stock Label"
         },
         "buy_buttons": {
@@ -2079,12 +2073,6 @@
               "info": "Allows buyers to send gift cards on a scheduled date along with a personal message. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/add-gift-card-recipient-fields)"
             }
           }
-        },
-        "product_pro_contractor": {
-          "name": "Pro Contractor Sign Up"
-        },
-         "reviews_nugget": {
-          "name": "Reviews Nugget"
         },
         "pickup_availability": {
           "name": "Pickup availability"

@@ -307,7 +307,7 @@
       "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Duties included. VAT, discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
       "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Duties included. VAT, discounts and shipping calculated at checkout.",
       "taxes_at_checkout_shipping_at_checkout_with_policy_html": "VAT, discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
-      "taxes_at_checkout_shipping_at_checkout_without_policy": "Delivery calculated at checkout.",
+      "taxes_at_checkout_shipping_at_checkout_without_policy": "VAT, discounts and shipping calculated at checkout.",
       "headings": {
         "product": "Product",
         "price": "Price",
@@ -591,15 +591,6 @@
     },
     "orders": {
       "buy_again": "Reorder"
-    },
-    "payment_methods": {
-      "store_credit": {
-        "details_modal": {
-          "events": {
-            "tax_finalization": "VAT finalization "
-          }
-        }
-      }
     }
   }
 }
