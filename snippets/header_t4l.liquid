@@ -10,7 +10,7 @@
 {%- endif -%}
 
 {%- if section.settings.menu_type_desktop == 'mega' -%}
-  <link rel="stylesheet" href="{{ 'component-mega-menu_b4l_i4l_i4us_r4us.css' | asset_url }}" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="{{ 'component-mega-menu_t4l.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
 
@@ -98,7 +98,7 @@
   }
 {%- endstyle -%}
 
-<script src="{{ 'cart-notification_i4l_i4us_r4us.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'cart-notification_t4l.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
   for block in section.blocks
@@ -373,8 +373,7 @@
             <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span></form></predictive-search>
       </div>    
                   <!-- END Mobile Search Bar --> 
-    {% if template == 'product' %} {% render 'product-nav' %} {% endif %}    
-                  
+                  {% if template == 'product' %} {% render 'product-nav' %} {% endif %}        
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
 
 {%- if settings.cart_type == "notification" -%}
@@ -416,10 +415,10 @@
    /* setHeaderHeight() {
       document.documentElement.style.setProperty('--header-height', `${this.header.offsetHeight}px`);
     } */
- setHeaderHeight() {
+    setHeaderHeight() {
   const isMobile = window.matchMedia('(max-width: 749px)').matches;
 
-  const headerHeight = isMobile ? '110px' : '140px'; // mobile : desktop
+  const headerHeight = isMobile ? '122px' : '134px'; // mobile : desktop
 
   document.documentElement.style.setProperty('--header-height', headerHeight);
 }
@@ -539,7 +538,3 @@
     }
   </script>
 {%- endif -%}
-
-{% schema %}
-{
-  "name": "t:sections.header.name",

@@ -1,16 +1,16 @@
-<link rel="stylesheet" href="{{ 'component-list-menu.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-search.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-menu-drawer_i4l_i4us_r4us_t4l.css' | asset_url }}" media="print" onload="this.media='all'">
-<link rel="stylesheet" href="{{ 'component-cart-notification.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-list-menu_bso.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-search_bso.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-menu-drawer_bso.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'component-cart-notification_bso.css' | asset_url }}" media="print" onload="this.media='all'">
 
 
 
 {%- if settings.predictive_search_enabled -%}
-  <link rel="stylesheet" href="{{ 'component-price.css' | asset_url }}" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="{{ 'component-price_bso.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
 {%- if section.settings.menu_type_desktop == 'mega' -%}
-  <link rel="stylesheet" href="{{ 'component-mega-menu_t4l.css' | asset_url }}" media="print" onload="this.media='all'">
+  <link rel="stylesheet" href="{{ 'component-mega-menu_bso.css' | asset_url }}" media="print" onload="this.media='all'">
 {%- endif -%}
 
 
@@ -98,7 +98,7 @@
   }
 {%- endstyle -%}
 
-<script src="{{ 'cart-notification_t4l.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'cart-notification_bso.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
   for block in section.blocks
@@ -373,7 +373,7 @@
             <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span></form></predictive-search>
       </div>    
                   <!-- END Mobile Search Bar --> 
-                  {% if template == 'product' %} {% render 'product-nav' %} {% endif %}        
+                  
 </{% if section.settings.sticky_header_type != 'none' %}sticky-header{% else %}div{% endif %}>
 
 {%- if settings.cart_type == "notification" -%}
@@ -416,12 +416,8 @@
       document.documentElement.style.setProperty('--header-height', `${this.header.offsetHeight}px`);
     } */
     setHeaderHeight() {
-  const isMobile = window.matchMedia('(max-width: 749px)').matches;
-
-  const headerHeight = isMobile ? '122px' : '134px'; // mobile : desktop
-
-  document.documentElement.style.setProperty('--header-height', headerHeight);
-}
+      document.documentElement.style.setProperty('--header-height', `125px`);
+    }
 
     disconnectedCallback() {
       this.removeEventListener('preventHeaderReveal', this.hideHeaderOnScrollUp);
@@ -538,8 +534,3 @@
     }
   </script>
 {%- endif -%}
-
-{% schema %}
-{
-  "name": "t:sections.header.name",
-  "class": "section-header",
