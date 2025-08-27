@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
@@ -18,7 +27,7 @@
         "padding_bottom": 20
       }
     },
-    "custom_liquid_tD4H7X": {
+    "custom_liquid_QtFYPg": {
       "type": "custom-liquid",
       "custom_css": [
         ".coming-soon-banner {border: 5px solid #00c271; margin: 25px 0px; padding: 20px 20px; text-align: center; clear: both; float: left; width: 100%;}",
@@ -27,8 +36,8 @@
         ".coming-soon {max-width: 1100px;}"
       ],
       "settings": {
-        "custom_liquid": "{% render 'store-detection' %}\n<div class=\"page-width coming-soon\">\n   <div class=\"coming-soon-banner\">\n      <span class=\"coming-soon-banner-heading\">Coming Soon!</span>\n      {% if store_id == 'i4us' or store_id == 'r4us' %}\n         <p>We appreciate your patience as we continue to grow our online product offering.</p>\n      {% else %}\n         <p>We appreciate your patience as we continue to grow our online product offering. In the meantime, please feel free to browse our related products below. Thank you for shopping with us!</p>\n      {% endif %}\n   </div>\n   {% unless store_id == 'i4us' or store_id == 'r4us' or store_id == 'bso' %}\n      <div id=\"Collection\">\n         <h2>But you might be interested in...</h2>\n         {% if store_id == 'b4l' or store_id == 't4l' %}\n            <span class=\"clerk\" data-template=\"@coming-soon-collection-recommendations\" data-keywords=\"{{ collection.title | escape }} {{ collection.description | escape }}\"></span>\n         {% elsif store_id == 'i4l' %}\n            <span class=\"clerk\" data-template=\"@coming-soon-recommendations\" data-keywords=\"{{ collection.title | escape }} {{ collection.description | escape }}\"></span>\n         {% endif %}\n      </div>\n   {% endunless %}\n</div>",
-        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "custom_liquid": "<div class=\"page-width coming-soon\">\n   <div class=\"coming-soon-banner\">\n      <span class=\"coming-soon-banner-heading\">Coming Soon!</span>\n      <p>We appreciate your patience as we continue to grow our online product offering.<p>{% comment %} In the meantime, please feel free to browse our related products below. Thank you for shopping with us!</p>\n   </div>\n   <div id=\"Collection\">\n      <h2>But you might be interested in...</h2>\n      <span class=\"clerk\" data-template=\"@coming-soon-recommendations\" data-keywords=\"{{ collection.title | escape }} {{ collection.description | escape }}\"></span> \n   </div>{% endcomment %}\n</div></div>",
+        "color_scheme": "",
         "padding_top": 0,
         "padding_bottom": 20
       }
@@ -82,7 +91,7 @@
   "order": [
     "banner",
     "subcategories",
-    "custom_liquid_tD4H7X",
+    "custom_liquid_QtFYPg",
     "product-grid",
     "collection_people_also_searched_for_Ka7tMg",
     "collection_long_description_CcLXEC",
