@@ -1,0 +1,18 @@
+{% comment %} Dispatcher section for page_with_sidebar {% endcomment %}
+{% render 'store-detection' %}
+{% render 'page_with_sidebar' %}
+
+{% schema %}
+{
+  "name": "Page with sidebar",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom CSS class"
+    }
+  ]
+}
+{% endschema %}
