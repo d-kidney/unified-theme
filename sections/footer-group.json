@@ -37,22 +37,26 @@
         "padding_bottom": 48
       }
     },
-    "custom_liquid_MRUVz6": {
+    "custom_liquid_zaGBd3": {
       "type": "custom-liquid",
       "custom_css": [
         "section {background: #f3f3f3;}",
-        ".footer-links div.col-xs-12 {padding-left: 7%; padding-bottom: 34px;}",
-        "div.footer-bottom {text-align: center;}",
-        "ul {margin: 0; padding-bottom: 6px; display: inline;}",
-        "ul li {display: inline; padding-right: 10px; font-size: 1rem;}",
-        "ul li a,div {color: #999999;}",
-        "span.footer-address {font-size: 1rem; display: inline-block;}"
+        ".footer-links div.col-xs-12 {padding-left: 7%;}"
       ],
       "settings": {
-        "custom_liquid": "{% render 'footer-content' %}",
+        "custom_liquid": "<div class=\"footer-links page-width\"><div class=\"col-xs-12 col-md-4\"><h3 class=\"footer-heading\">About Us</h3><ul>{% for link in linklists.about-us.links %}\n  <li><a href=\"{{ link.url }}\">{{ link.title }}</a></li>\n{% endfor %}</ul></div>\n\n\n<div class=\"col-xs-12 col-md-4\"><h3 class=\"footer-heading\">Customer Care</h3><ul>{% for link in linklists.customer-centre.links %}\n  <li><a href=\"{{ link.url }}\">{{ link.title }}</a></li>\n{% endfor %}</ul></div>\n\n\n<div class=\"col-xs-12 col-md-4\"><h3 class=\"footer-heading\">Contact Us</h3><ul>\n  <li>Call us:<br><p><strong>Florida: </strong> <a href=\"tel:786-224-0029\" target=\"_blank\" title=\"tel:786-224-0029\" aria-describedby=\"a11y-new-window-external-message\" rel=\"null noopener\">786-224-0029</a><br><strong>New York: </strong> <a href=\"tel:646-741-2417\" target=\"_blank\" title=\"tel:646-741-2417\" aria-describedby=\"a11y-new-window-external-message\" rel=\"null noopener\">646-741-2417</a><br><strong>Texas:</strong> <a href=\"tel:281-657-1443\" target=\"_blank\" title=\"tel:281-657-1443\" aria-describedby=\"a11y-new-window-external-message\" rel=\"null noopener\"> 281-657-1443</a><br><strong>San Fran: </strong> <a href=\"tel:415-527-0855\" target=\"_blank\" title=\"tel:415-527-0855\" aria-describedby=\"a11y-new-window-external-message\" rel=\"null noopener\">415-527-0855</a><br>or</p>\n<li><a href=\"/pages/contact-us\">✉ Email us</a></li>\n</ul>\n\n\n</div>\n\n</div>",
         "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
         "padding_top": 16,
         "padding_bottom": 32
+      }
+    },
+    "custom_liquid_L6apVm": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div class=\"footer-increases\" style=\"\"><div class=\"page-width\"><div class=\"col-12 col-md-8\"><span>Keep up-to-date on all future manufacturer price increases</span></div>\n<div class=\"col-12 col-md-4\"><a href=\"https://roofing4us.com/pages/price-updates\" class=\"btn\" target=\"_blank\">View price increases</a></div></div></div>",
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "padding_top": 12,
+        "padding_bottom": 80
       }
     },
     "footer": {
@@ -76,11 +80,29 @@
         "padding_top": 20,
         "padding_bottom": 16
       }
+    },
+    "custom_liquid_Kngzc8": {
+      "type": "custom-liquid",
+      "custom_css": [
+        "div.footer-bottom {text-align: center;}",
+        "ul {margin: 0; padding-bottom: 6px; display: inline;}",
+        "ul li {display: inline; padding-right: 10px; font-size: 1rem;}",
+        "ul li a,div {color: #999999;}",
+        "span.footer-address {font-size: 1rem; display: inline-block;}"
+      ],
+      "settings": {
+        "custom_liquid": "<div class=\"footer-bottom\">\n<ul>{% for link in linklists.legal-links.links %}\n  <li><a href=\"{{ link.url }}\">{{ link.title }}</a></li>\n{% endfor %}</ul>\n<span class=\"footer-address\"> | \n    <strong>Head Office:</strong> Build4less LLC, 1201 N Orange Street, Suite 700 Wilmington DE 19801\n</div>",
+        "color_scheme": "scheme-2",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
     "newsletter_DmxVzf",
-    "custom_liquid_MRUVz6",
-    "footer"
+    "custom_liquid_zaGBd3",
+    "custom_liquid_L6apVm",
+    "footer",
+    "custom_liquid_Kngzc8"
   ]
 }

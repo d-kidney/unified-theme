@@ -6,16 +6,129 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- * 
- * NOTE: This unified homepage template uses dynamic sections
- * that load store-specific content via Liquid conditionals.
- * Each section handles its own store detection and content loading.
- * ------------------------------------------------------------
  */
 {
   "sections": {
-    "homepage_slideshow": {
-      "type": "homepage-slideshow",
+    "slideshow_Ldw3Vi": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_Bhz4Bx": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/HP_S5_Metal_Roofing.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "https://roofing4us.com/search?q=S5+Metal+roofing&options%5Bprefix%5D=last",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_twAKnw": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Rmax.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/rmax-insulation",
+            "button_style_secondary": false,
+            "box_align": "top-left",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_QJ9MPz": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Hp_All_Purpose_Flex_Repair_100_Silicone_Roof_Sealant.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/roofing4us-silicone",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_3pqbGK": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Gallina.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/polycarbonate-sheets",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_NEQBE6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Owens_corning.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/owens-corning",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_D7eP9M": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Fakro.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/fakro-attic-ladder",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_Bhz4Bx",
+        "slide_twAKnw",
+        "slide_QJ9MPz",
+        "slide_3pqbGK",
+        "slide_NEQBE6",
+        "slide_D7eP9M"
+      ],
       "settings": {
         "layout": "grid",
         "slide_height": "adapt_image",
@@ -27,8 +140,97 @@
         "accessibility_info": "Slideshow of various promotions"
       }
     },
-    "homepage_collections": {
-      "type": "homepage-collections",
+    "collection_list_dYRQta": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_GJWEE4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "skylights"
+          }
+        },
+        "featured_collection_LrAqE3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "polycarbonate-sheets"
+          }
+        },
+        "featured_collection_7c9CVd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "radiant-barrier"
+          }
+        },
+        "featured_collection_EFeFBF": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "rigid-insulation"
+          }
+        },
+        "featured_collection_HeY9mk": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "sealants-adhesives"
+          }
+        },
+        "featured_collection_7MzWzA": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fall-protection"
+          }
+        },
+        "featured_collection_3qncG4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "clamps"
+          }
+        },
+        "featured_collection_XJxyr8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "mineral-wool"
+          }
+        },
+        "featured_collection_XchqnB": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fakro-attic-ladder"
+          }
+        },
+        "featured_collection_7Bet9X": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "metal-roofing"
+          }
+        },
+        "featured_collection_GfYimd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "insulation-blowing-machines"
+          }
+        },
+        "featured_collection_jCFQj7": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "roof-shingles"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_GJWEE4",
+        "featured_collection_LrAqE3",
+        "featured_collection_7c9CVd",
+        "featured_collection_EFeFBF",
+        "featured_collection_HeY9mk",
+        "featured_collection_7MzWzA",
+        "featured_collection_3qncG4",
+        "featured_collection_XJxyr8",
+        "featured_collection_XchqnB",
+        "featured_collection_7Bet9X",
+        "featured_collection_GfYimd",
+        "featured_collection_jCFQj7"
+      ],
+      "custom_css": [],
       "settings": {
         "title": "Popular Categories",
         "heading_size": "h1",
@@ -42,21 +244,22 @@
         "padding_bottom": 20
       }
     },
-    "homepage_featured": {
-      "type": "homepage-featured",
+    "featured_collection": {
+      "type": "featured-collection",
       "settings": {
         "title": "Popular products",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
+        "collection": "bestsellers",
         "products_to_show": 10,
         "columns_desktop": 5,
         "full_width": false,
         "show_view_all": false,
         "view_all_style": "solid",
         "enable_desktop_slider": false,
-        "color_scheme": "",
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -69,20 +272,192 @@
         "padding_bottom": 20
       }
     },
-    "homepage_custom_content": {
-      "type": "homepage-custom-content",
-      "settings": {}
+    "custom_liquid_cJF6Gw": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".ibs-text {padding: 25px 0 0 0;}",
+        "@media only screen and (min-width: 900px) {.ibs-text {padding: 65px 25px 0 25px; }}",
+        ".ibs-brochure-con {overflow: hidden; float: none;}",
+        ".ibs-brochure-con img {width: 100%;}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div class=\"ibs-brochure-con col-12 col-xs-12 page-width\">\n<div class=\"ibs-img col-xs-12 col-md-5\">\n<img src=\"https://cdn.shopify.com/s/files/1/0420/1073/8840/files/IBS-Las-Vegas-2025---4US-Group-Brochure_84862540-0e15-46fb-b673-5d865c838d89.png?v=1741202461\" alt=\"ibs brochure cover\">\n</div>\n<div class=\"ibs-text col-xs-12 col-md-7\">\n<h2>Browse Our IBS Las Vegas 2025 Brochure</h2>\n<p>Missed us at the event? or fancy taking another look at our brochure? Don't worry, we have added it here so you can do just that!</p>\n<a href=\"/pages/ibs-las-vegas-2025-4us-group-brochure\" class=\"button\" target=\"_blank\">View Brochure</a>\n<p></p>\n</div>\n</div>",
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "padding_top": 8,
+        "padding_bottom": 16
+      }
     },
-    "homepage_reviews": {
-      "type": "homepage-reviews",
-      "settings": {}
+    "collection_list_kriNgn": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_dPHd8A": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "owens-corning"
+          }
+        },
+        "featured_collection_i9CKnq": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fakro"
+          }
+        },
+        "featured_collection_mNtHLM": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "malta-dynamics"
+          }
+        },
+        "featured_collection_B8TU6C": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "hunter-panels"
+          }
+        },
+        "featured_collection_3WeKxh": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "s5-metal-roofing"
+          }
+        },
+        "featured_collection_DA47hN": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "velux"
+          }
+        },
+        "featured_collection_Y9dy93": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "gaf"
+          }
+        },
+        "featured_collection_KkyUwH": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "suntek-skylights"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_dPHd8A",
+        "featured_collection_i9CKnq",
+        "featured_collection_mNtHLM",
+        "featured_collection_B8TU6C",
+        "featured_collection_3WeKxh",
+        "featured_collection_DA47hN",
+        "featured_collection_Y9dy93",
+        "featured_collection_KkyUwH"
+      ],
+      "settings": {
+        "title": "Popular Brands",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 4,
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "1742400946de711423": {
+      "type": "apps",
+      "blocks": {
+        "reviews_io_reviewsio_card_carousel_CaNgxN": {
+          "type": "shopify://apps/reviews-io/blocks/reviewsio-card-carousel/92a082e5-b297-4e88-b428-ac96cbc505f9",
+          "settings": {
+            "star": "#e0162b",
+            "review_type": "company",
+            "reviews_shown": 20,
+            "header_bg_colour": "#003068",
+            "header_colour": "#ffffff",
+            "header_star_colour": "#e0162b",
+            "heading_text_colour": "#0e1311",
+            "heading_font": "helvetica_n4",
+            "body_text_colour": "#0e1311",
+            "badge_icon_colour": "#3cbb91",
+            "badge_text_colour": "#0e1311",
+            "bg_start_colour": "#f3f3f3",
+            "bg_end_colour": "#f3f3f3",
+            "item_border_width": "0px",
+            "item_border_colour": "#000000",
+            "item_border_radius": "6px",
+            "item_shadow_size": "0px",
+            "item_shadow_colour": "#000000",
+            "enable_rich_snippets": true,
+            "disable_same_customer": true,
+            "logo_colour": "var(--logo-inverted)"
+          }
+        }
+      },
+      "block_order": [
+        "reviews_io_reviewsio_card_carousel_CaNgxN"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "rich_text_QCcbfE": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_dcax4w": {
+          "type": "heading",
+          "settings": {
+            "heading": "Why buy from us?",
+            "heading_size": "h2"
+          }
+        },
+        "text_fQWMVG": {
+          "type": "text",
+          "settings": {
+            "text": "<p>When it comes to roofing materials, you need a supplier you can trust to deliver quality, speed, and fair pricing all in one place. That is exactly what you get with Roofing4US. </p><p>We have built strong relationships with top manufacturers such as <a href=\"/collections/s5-metal-roofing\" title=\"s5 Metal Roofing\">S-5</a>, <a href=\"/collections/suntek-skylights\" title=\"Suntek Skylights\">Sun-Tek</a>,   <a href=\"/collections/fakro\" title=\"Fakro\">Fakro</a>, <a href=\"/collections/velux\" title=\"VELUX\">Velux</a>, and <a href=\"/collections/hunter-panels\" title=\"Hunter Panels\">Hunter</a> to offer a wide selection of <a href=\"/collections/polycarbonate-sheets\" title=\"Polycarbonate Sheets\">Polycarbonate Sheets</a>, <a href=\"/collections/metal-roofing\" title=\"Metal Roofing\">metal roofing</a>, <a href=\"/collections/underlayment-barriers\" title=\"Underlayment & Barriers\">underlayment</a>, <a href=\"/collections/roof-window\" title=\"Roof Window\">roof windows</a>, <a href=\"/collections/insulation\" title=\"Insulation\">insulation</a> and more all at competitive prices that will fit your budget. </p><p>What really sets us apart is how quickly we get your order out the door. Our efficient nationwide shipping means you will not be left waiting on critical materials that can hold up your entire project. If you are ever unsure about what to order or how to tackle a tricky roofing job, our experienced team is just a call or message away. We are here to help with honest advice and practical recommendations. </p><p>At Roofing4US, buying roofing materials is not just a transaction. It is a partnership focused on getting your project done right, on time, and within budget.<br/><br/></p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_dcax4w",
+        "text_fQWMVG"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": false,
+        "padding_top": 16,
+        "padding_bottom": 20
+      }
+    },
+    "featured_blog_KDDNk8": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "heading": "Latest Guides & News",
+        "heading_size": "h1",
+        "blog": "insulation-guides-news",
+        "post_limit": 3,
+        "columns_desktop": 3,
+        "color_scheme": "scheme-1",
+        "show_image": true,
+        "show_date": false,
+        "show_author": false,
+        "show_view_all": true,
+        "padding_top": 36,
+        "padding_bottom": 8
+      }
     }
   },
   "order": [
-    "homepage_slideshow",
-    "homepage_collections",
-    "homepage_featured",
-    "homepage_custom_content",
-    "homepage_reviews"
+    "slideshow_Ldw3Vi",
+    "collection_list_dYRQta",
+    "featured_collection",
+    "custom_liquid_cJF6Gw",
+    "collection_list_kriNgn",
+    "1742400946de711423",
+    "rich_text_QCcbfE",
+    "featured_blog_KDDNk8"
   ]
 }
