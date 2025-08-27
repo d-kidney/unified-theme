@@ -45,7 +45,7 @@
       "previous": "Previous page"
     },
     "search": {
-      "search": "Browse 50,000+ products...",
+      "search": "Browse 20,000+ roofing products...",
       "reset": "Clear search term"
     },
     "cart": {
@@ -183,9 +183,9 @@
       "view_full_details": "View full details",
       "xr_button": "View in your space",
       "xr_button_label": "View in your space, loads item in augmented reality window",
-      "taxes_included": "VAT included.",
+      "taxes_included": "Tax included.",
       "duties_included": "Duties included.",
-      "duties_and_taxes_included": "Duties and VAT included.",
+      "duties_and_taxes_included": "Duties and Tax included.",
       "shipping_policy_html": "<a href=\"{{ link }}\">Shipping</a> calculated at checkout."
     },
     "modal": {
@@ -300,13 +300,13 @@
       "empty": "Your cart is empty",
       "cart_error": "There was an error while updating your cart. Please try again.",
       "cart_quantity_error_html": "You can only add {{ quantity }} of this item to your cart.",
-      "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "Duties and VAT included. Discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
-      "duties_and_taxes_included_shipping_at_checkout_without_policy": "Duties and VAT included. Discounts and shipping calculated at checkout.",
-      "taxes_included_shipping_at_checkout_with_policy_html": "VAT included. Discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
-      "taxes_included_shipping_at_checkout_without_policy": "VAT included. Discounts and shipping calculated at checkout.",
-      "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Duties included. VAT, discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
-      "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Duties included. VAT, discounts and shipping calculated at checkout.",
-      "taxes_at_checkout_shipping_at_checkout_with_policy_html": "VAT, discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
+      "duties_and_taxes_included_shipping_at_checkout_with_policy_html": "Duties and Tax included. Discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
+      "duties_and_taxes_included_shipping_at_checkout_without_policy": "Duties and Tax included. Discounts and shipping calculated at checkout.",
+      "taxes_included_shipping_at_checkout_with_policy_html": "Tax included. Discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
+      "taxes_included_shipping_at_checkout_without_policy": "Tax included. Discounts and shipping calculated at checkout.",
+      "duties_included_taxes_at_checkout_shipping_at_checkout_with_policy_html": "Duties included. Tax, discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
+      "duties_included_taxes_at_checkout_shipping_at_checkout_without_policy": "Duties included. Tax, discounts and shipping calculated at checkout.",
+      "taxes_at_checkout_shipping_at_checkout_with_policy_html": "Tax, discounts and <a href=\"{{ link }}\">shipping</a> calculated at checkout.",
       "taxes_at_checkout_shipping_at_checkout_without_policy": "Delivery calculated at checkout.",
       "headings": {
         "product": "Product",
@@ -456,7 +456,7 @@
       "fulfillment_status": "Fulfillment Status",
       "discount": "Discount",
       "shipping": "Shipping",
-      "tax": "VAT",
+      "tax": "Tax",
       "product": "Product",
       "sku": "SKU",
       "price": "Price",
@@ -540,30 +540,30 @@
         "more_items_modal": {
           "search_item": "Search"
         },
-        "taxes_label": "VAT",
-        "estimated_taxes_label": "VAT",
-        "information_estimated_taxes_label": "VAT (estimated)",
-        "estimated_taxes_finalization_tooltip_content": "The final VAT and total will be confirmed by email or text after you place your order.",
-        "vat_label_html": "Including {{ amount }} in VAT",
-        "duties_included_label": "Total includes VAT and duties. No extra charges on delivery.",
-        "estimated_tax_label": "VAT",
-        "recurring_total_tooltip": "Does not include shipping, VAT, duties, or any applicable discounts.",
-        "duties_and_taxes_label": "Duties and VAT"
+        "taxes_label": "Tax",
+        "estimated_taxes_label": "Tax",
+        "information_estimated_taxes_label": "Tax (estimated)",
+        "estimated_taxes_finalization_tooltip_content": "The final Tax and total will be confirmed by email or text after you place your order.",
+        "vat_label_html": "Including {{ amount }} in Tax",
+        "duties_included_label": "Total includes Tax and duties. No extra charges on delivery.",
+        "estimated_tax_label": "Tax",
+        "recurring_total_tooltip": "Does not include shipping, Tax, duties, or any applicable discounts.",
+        "duties_and_taxes_label": "Duties and Tax"
       },
       "shipping": {
-        "duties_and_taxes_title": "Duties and VAT"
+        "duties_and_taxes_title": "Duties and Tax"
       },
       "payment": {
         "paypal_modal": {
-          "order_contains_fixed_selling_plans": "Total may not include VAT, shipping, deferred charges, and some discounts. Continue to checkout for the amount due today."
+          "order_contains_fixed_selling_plans": "Total may not include Tax, shipping, deferred charges, and some discounts. Continue to checkout for the amount due today."
         },
-        "taxes_not_included": "VAT not included",
-        "no_taxes_banner_content": "VAT won’t be charged on this order. Once you’ve collected payment, VAT can no longer be added.",
-        "waiting_on_taxes_message": "If your VAT don't calculate within the next few seconds, refresh the page.",
-        "waiting_on_taxes_notice": "Calculating VAT"
+        "taxes_not_included": "Tax not included",
+        "no_taxes_banner_content": "Tax won’t be charged on this order. Once you’ve collected payment, Tax can no longer be added.",
+        "waiting_on_taxes_message": "If your Taxes don't calculate within the next few seconds, refresh the page.",
+        "waiting_on_taxes_notice": "Calculating Tax"
       },
       "notice_banner": {
-        "calculating_taxes": "VAT are still being calculated. Try again in a few seconds. You haven't been charged."
+        "calculating_taxes": "Taxes are still being calculated. Try again in a few seconds. You haven't been charged."
       },
       "contact": {
         "phone_label": "Mobile number",
@@ -572,34 +572,33 @@
       },
       "field_errors": {
         "handle_phone_invalid": "Enter a valid mobile number"
+      },
+      "thank_you": {
+        "vat_invoices": {
+          "title": "Tax invoices"
+        }
       }
     }
   },
   "customer_accounts": {
     "order_details": {
-      "taxes": "VAT",
-      "taxes_included": "Including {{amount}} in VAT",
-      "duties_and_taxes_included": "Total includes duties and VAT. No extra charges on delivery.",
-      "error_duties_tooltip": "This order is being shipped from another country, so duties and VAT may be charged on delivery."
+      "taxes": "Tax",
+      "taxes_included": "Including {{amount}} in Tax",
+      "duties_and_taxes_included": "Total includes duties and Tax. No extra charges on delivery.",
+      "error_duties_tooltip": "This order is being shipped from another country, so duties and Tax may be charged on delivery.",
+      "vat_invoices": {
+        "title": "Tax invoices"
+      }
     },
     "B2B": {
       "locations": {
-        "tax_details_title": "VAT details",
-        "tax_id": "VAT Number",
-        "tax_exemptions": "VAT exemptions"
+        "tax_details_title": "Tax details",
+        "tax_id": "Tax Number",
+        "tax_exemptions": "Tax exemptions"
       }
     },
     "orders": {
       "buy_again": "Reorder"
-    },
-    "payment_methods": {
-      "store_credit": {
-        "details_modal": {
-          "events": {
-            "tax_finalization": "VAT finalization "
-          }
-        }
-      }
     }
   }
 }

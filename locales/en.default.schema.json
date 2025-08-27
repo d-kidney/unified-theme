@@ -898,7 +898,7 @@
               }
             }
           }
-        },
+        },       
         "buy_buttons": {
           "name": "Buy buttons",
           "settings": {
@@ -2064,7 +2064,7 @@
             }
           }
         },
-        "in_stock_label": {
+         "in_stock_label": {
           "name": "In Stock Label"
         },
         "buy_buttons": {
@@ -2082,7 +2082,7 @@
         },
         "product_pro_contractor": {
           "name": "Pro Contractor Sign Up"
-        },
+        }, 
          "reviews_nugget": {
           "name": "Reviews Nugget"
         },
