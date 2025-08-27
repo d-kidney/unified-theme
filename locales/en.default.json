@@ -45,7 +45,7 @@
       "previous": "Previous page"
     },
     "search": {
-      "search": "Browse 50,000+ products...",
+      "search": "Browse 10,000+ insulation products...",
       "reset": "Clear search term"
     },
     "cart": {
@@ -591,15 +591,6 @@
     },
     "orders": {
       "buy_again": "Reorder"
-    },
-    "payment_methods": {
-      "store_credit": {
-        "details_modal": {
-          "events": {
-            "tax_finalization": "VAT finalization "
-          }
-        }
-      }
     }
   }
 }
