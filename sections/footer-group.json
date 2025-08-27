@@ -37,19 +37,13 @@
         "padding_bottom": 48
       }
     },
-    "custom_liquid_MRUVz6": {
+    "custom_liquid_zaGBd3": {
       "type": "custom-liquid",
       "custom_css": [
-        "section {background: #f3f3f3;}",
-        ".footer-links div.col-xs-12 {padding-left: 7%; padding-bottom: 34px;}",
-        "div.footer-bottom {text-align: center;}",
-        "ul {margin: 0; padding-bottom: 6px; display: inline;}",
-        "ul li {display: inline; padding-right: 10px; font-size: 1rem;}",
-        "ul li a,div {color: #999999;}",
-        "span.footer-address {font-size: 1rem; display: inline-block;}"
+        "section {background: #f3f3f3;}"
       ],
       "settings": {
-        "custom_liquid": "{% render 'footer-content' %}",
+        "custom_liquid": "<div class=\"footer-links page-width\"><div class=\"col-xs-12 col-md-3\"><h3 class=\"footer-heading\">Popular Categories</h3><ul>{% for link in linklists.footer.links %}\n  <li><a href=\"{{ link.url }}\">{{ link.title }}</a></li>\n{% endfor %}</ul></div>\n\n\n<div class=\"col-xs-12 col-md-3\"><h3 class=\"footer-heading\">Customer Care</h3><ul>{% for link in linklists.customer-care.links %}\n  <li><a href=\"{{ link.url }}\">{{ link.title }}</a></li>\n{% endfor %}</ul></div>\n\n\n<div class=\"col-xs-12 col-md-3\"><h3 class=\"footer-heading\">Contact Us</h3><ul>\n  <li>Call us:<br><a href=\"tel:02039362839\">✆ 020 3936 2839</a></li>\nor\n<li><a href=\"/pages/contact-us\">✉ Email us</a></li>\n</ul></div>\n\n\n<div class=\"col-xs-12 col-md-3\">\n<h3 class=\"footer-heading\">Our Family</h3>\n<a href=\"https://insulation4less.co.uk\" target=\"_blank\"><img src=\"https://cdn.shopify.com/s/files/1/0845/8443/1893/files/i4l_220x70_4449e559-b83d-4c3a-bd63-9dee623c14f4.png?v=1738239269\" alt=\"\" width=\"220\" height=\"70\"></a> \n<a href=\"https://build4less.co.uk\" target=\"_blank\"><img src=\"https://cdn.shopify.com/s/files/1/0845/8443/1893/files/b4l_220x70_fe07fb09-b93e-4407-826a-dcfb26b100e1.png?v=1738239270\" alt=\"\" width=\"220\" height=\"70\"></a> \n<a href=\"https://tiles4less.co.uk\" target=\"_blank\"><img src=\"https://cdn.shopify.com/s/files/1/0845/8443/1893/files/t4l_220x70_49ff3877-ca37-45c3-ba84-5f5b51519202.png?v=1738239268\" alt=\"\" width=\"220\" height=\"70\"></a></div>\n</div>",
         "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
         "padding_top": 16,
         "padding_bottom": 32
@@ -76,11 +70,28 @@
         "padding_top": 20,
         "padding_bottom": 16
       }
+    },
+    "custom_liquid_Kngzc8": {
+      "type": "custom-liquid",
+      "custom_css": [
+        "div.footer-bottom {text-align: center;}",
+        "ul {margin: 0; padding-bottom: 6px; display: inline;}",
+        "ul li {display: inline; padding-right: 10px; font-size: 1rem;}",
+        "ul li a,div {color: #999999;}",
+        "span.footer-address {font-size: 1rem; display: inline-block;}"
+      ],
+      "settings": {
+        "custom_liquid": "<div class=\"footer-bottom\">\n<ul>{% for link in linklists.legal.links %}\n  <li><a href=\"{{ link.url }}\">{{ link.title }}</a></li>\n{% endfor %}</ul>\n<span class=\"footer-address\"> | \n    Building Supplies Online, 3rd Floor, 207 Regent Street, London, W1B 3HH, England </span>\n</div>",
+        "color_scheme": "scheme-2",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
     "newsletter_DmxVzf",
-    "custom_liquid_MRUVz6",
-    "footer"
+    "custom_liquid_zaGBd3",
+    "footer",
+    "custom_liquid_Kngzc8"
   ]
 }

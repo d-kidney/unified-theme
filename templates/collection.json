@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "banner": {
@@ -46,13 +55,6 @@
         "padding_bottom": 0
       }
     },
-    "collection_long_description_CcLXEC": {
-      "type": "collection-long-description",
-      "settings": {
-        "padding_top": 0,
-        "padding_bottom": 0
-      }
-    },
     "custom_liquid_qg7QBa": {
       "type": "custom-liquid",
       "settings": {
@@ -68,7 +70,6 @@
     "subcategories",
     "product-grid",
     "collection_people_also_searched_for_Ka7tMg",
-    "collection_long_description_CcLXEC",
     "custom_liquid_qg7QBa"
   ]
 }

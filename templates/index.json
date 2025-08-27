@@ -6,16 +6,91 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- * 
- * NOTE: This unified homepage template uses dynamic sections
- * that load store-specific content via Liquid conditionals.
- * Each section handles its own store detection and content loading.
- * ------------------------------------------------------------
  */
 {
   "sections": {
-    "homepage_slideshow": {
-      "type": "homepage-slideshow",
+    "slideshow_Ldw3Vi": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_twAKnw": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/BSO_Free_Delivery_1.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_XYdi8H": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Trade_Account.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://pages/trade-account-sign-up",
+            "button_style_secondary": false,
+            "box_align": "middle-right",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-5",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_8yCAkm": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Doors_1.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/doors",
+            "button_style_secondary": false,
+            "box_align": "bottom-right",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-4",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_tCGddq": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Building_Materials.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/building-materials",
+            "button_style_secondary": false,
+            "box_align": "bottom-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-4",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_twAKnw",
+        "slide_XYdi8H",
+        "slide_8yCAkm",
+        "slide_tCGddq"
+      ],
       "settings": {
         "layout": "grid",
         "slide_height": "adapt_image",
@@ -27,8 +102,54 @@
         "accessibility_info": "Slideshow of various promotions"
       }
     },
-    "homepage_collections": {
-      "type": "homepage-collections",
+    "collection_list_dYRQta": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_EFeFBF": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "doors"
+          }
+        },
+        "featured_collection_XJxyr8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "building-materials"
+          }
+        },
+        "featured_collection_7c9CVd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bathroom"
+          }
+        },
+        "featured_collection_GJWEE4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "paving"
+          }
+        },
+        "featured_collection_GfYimd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "roofing"
+          }
+        },
+        "featured_collection_LrAqE3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "tiles"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_EFeFBF",
+        "featured_collection_XJxyr8",
+        "featured_collection_7c9CVd",
+        "featured_collection_GJWEE4",
+        "featured_collection_GfYimd",
+        "featured_collection_LrAqE3"
+      ],
       "settings": {
         "title": "Popular Categories",
         "heading_size": "h1",
@@ -42,21 +163,22 @@
         "padding_bottom": 20
       }
     },
-    "homepage_featured": {
-      "type": "homepage-featured",
+    "featured_collection": {
+      "type": "featured-collection",
       "settings": {
         "title": "Popular products",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
+        "collection": "bestsellers",
         "products_to_show": 10,
         "columns_desktop": 5,
         "full_width": false,
         "show_view_all": false,
         "view_all_style": "solid",
         "enable_desktop_slider": false,
-        "color_scheme": "",
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -69,20 +191,54 @@
         "padding_bottom": 20
       }
     },
-    "homepage_custom_content": {
-      "type": "homepage-custom-content",
-      "settings": {}
-    },
-    "homepage_reviews": {
-      "type": "homepage-reviews",
-      "settings": {}
+    "multicolumn_tqLKKD": {
+      "type": "multicolumn",
+      "blocks": {
+        "column_rM49h4": {
+          "type": "column",
+          "settings": {
+            "title": "",
+            "text": "<p>Building Supplies Online (<strong>BSO</strong>) was established with the intention of offering a quality range of building products, from industry leading manufacturers, direct to the trade and public at trade prices. Now under new management and part of the Insulation4less Ltd family of websites. BSO.co.uk join the following family of websites <a href=\"https://www.insulation4less.co.uk/\" target=\"_blank\" title=\"Insulation4less\">Insulation4less</a>, <a href=\"https://build4less.co.uk/\" target=\"_blank\" title=\"Build4less\">Build4less</a>, <a href=\"https://tiles4less.co.uk/\" target=\"_blank\" title=\"Tiles4less\">Tiles4less</a>.</p><p>Our customers are at the heart of our business and we continually strive to deliver excellent customer service and experience.</p><p>Our dedicated account managers are able to offer advice and help with large, complex orders, ensuring our customers are able to order the right products at the best price.</p><p><strong>Building Supplies Online</strong> offer the largest number of building supplies (over 40,000) available to purchase online, with UK Nationwide Delivery available. At <strong>BSO</strong> we pride ourselves on our ability to offer a wide variety of leading brand building supplies at great prices, without compromising on quality or performance. Our extensive range of products includes <a href=\"https://www.building-supplies-online.co.uk/windows/velux-windows.html\" title=\"VELUX windows\">VELUX Windows</a>, <a href=\"https://www.building-supplies-online.co.uk/doors.html\" title=\"Doors\">Doors</a>, <a href=\"https://www.building-supplies-online.co.uk/bathroom.html\" title=\"Bathrooms\">Bathrooms</a>, <a href=\"https://www.building-supplies-online.co.uk/tiles.html\" title=\"Tiles\">Tiles</a>, <a href=\"https://www.building-supplies-online.co.uk/paving-patio-slabs.html\" title=\"Paving\">Paving</a>, <a href=\"https://www.building-supplies-online.co.uk/building-materials/insulation.html\" title=\"Insulation\">Insulation</a>, <a href=\"https://www.building-supplies-online.co.uk/outdoor-and-garden/fence-panels-gates.html\" title=\"Fencing\">Fencing</a>, <a href=\"https://www.building-supplies-online.co.uk/fixings.html\" title=\"Fixings \">Fixings</a>, <a href=\"https://www.building-supplies-online.co.uk/building-materials.html\" title=\"Building Materials\">Building Materials</a> and more. Explore our website to discover more. Our product choices are extensive, for example we have a great range of Internal Doors to buy online with over 6,000 doors in stock.</p><p>We are now the preferred choice for many Trade customers and DIY home improvement projects, due to our competitive prices on our extensive range of quality, well known brands.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column_RfUQ9N": {
+          "type": "column",
+          "settings": {
+            "title": "",
+            "text": "<p>These prices are due to <strong>BSO</strong> sourcing methods; our <strong>building supplies</strong> are sourced ethically using a trusted supply chain, which allows us to be a reliable, trusted <strong>builders' merchant.</strong></p><p>Be sure to check out our Monthly Offers for the latest deals and freely speak to our experts if you have enquiries regarding any products or <strong>building supplies</strong>.</p><p>We offer UK nationwide delivery on all our products with a range of products available! BSO are a market leader in the<strong> DIY</strong> (Do it yourself) market. We are a <strong>DIY store</strong> online and offer products to enable you to carry out home improvements without the need to employ trades people. Instead of looking for a DIY store near me why not take advantage of our nationwide delivery service and order from the comfort of your own home. With our in-house experts we can offer you DIY advice on a range of products to help you decide on the right products. As an online <strong>Builders' Merchant</strong> you are can browse our extensive range of products easily and as we aren't limited by floor space, unlike a local DIY store, we are able to give you the best choice at trade prices.</p><p>Unlike your local <strong>builders' merchant</strong>, we deliver nationwide. The advantage of using us is that you can pick your delivery day as opposed to it being delivered within a window. When looking for builders merchants nearby, consider using our online service as we are specialised in dealing with the trade. Our dedicated trade team can help you with your order and make sure you get what you want, when you need it.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column_rM49h4",
+        "column_RfUQ9N"
+      ],
+      "settings": {
+        "title": "Building Supplies Online - BSO For the Trade & DIY (Under New Management)",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "columns_desktop": 2,
+        "column_alignment": "left",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 16,
+        "padding_bottom": 32
+      }
     }
   },
   "order": [
-    "homepage_slideshow",
-    "homepage_collections",
-    "homepage_featured",
-    "homepage_custom_content",
-    "homepage_reviews"
+    "slideshow_Ldw3Vi",
+    "collection_list_dYRQta",
+    "featured_collection",
+    "multicolumn_tqLKKD"
   ]
 }
