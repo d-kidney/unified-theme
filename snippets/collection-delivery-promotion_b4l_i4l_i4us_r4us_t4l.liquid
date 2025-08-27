@@ -1,0 +1,24 @@
+{% comment %}
+  Collection Delivery Promotion Snippet
+  
+  Displays a simple badge showing the shipping threshold for the product's delivery vendor.
+  
+  Usage:
+  {% render 'collection-delivery-promotion', card_product: card_product %}
+  
+  Note: This snippet uses the card_product parameter that's passed from the card-product.liquid template.
+{% endcomment %}
+
+{% if card_product != blank %}
+  {% assign delivery_vendor = card_product.metafields.custom.delivery_vendor.value %}
+  {% if delivery_vendor != blank %}
+    {% render 'delivery-calculation',
+      vendor_data: delivery_vendor,
+      group_quantity: 0,
+      group_value: 0,
+      group_vendor_name: delivery_vendor.name,
+      display_type: 'collection',
+      product: card_product
+    %}
+  {% endif %}
+{% endif %}

@@ -1,0 +1,286 @@
+{% comment %}
+  Renders product availability functionality for different product states:
+  - OOS with no reorder date: Show "Notify when back in stock" button
+  - POA (Price on Application): Show guide price or POA with enquiry buttons
+  - Call for price: Show call/email buttons
+  - Discontinued/Not for sale: Show alternative product (handled elsewhere)
+  
+  Accepts:
+  - section_id: {String} ID of the section
+  - block: {Object} Block information for shopify_attributes
+  - type: {String} Either 'price' or 'buy-buttons' to determine what to render
+  
+  Usage:
+  {% render 'custom-product-availability', 
+    section_id: section.id,
+    block: block,
+    type: 'price' %}
+  
+  or
+  
+  {% render 'custom-product-availability', 
+    section_id: section.id,
+    block: block,
+    type: 'buy-buttons' %}
+{% endcomment %}
+
+{% if use_variant %}
+  {% assign variant = product.selected_or_first_available_variant %}
+{% else %}
+  {% assign variant = product.selected_or_first_available_variant %}
+{% endif %}
+
+{% assign availability_status = variant.metafields.custom.product_availability_status %}
+{% assign is_call_for_price = variant.metafields.custom.call_to_enquire %}
+{% assign guide_price = variant.metafields.custom.guide_price %}
+
+{% if type == 'price' %}
+  {% if availability_status == 'poa' %}
+    <div id="price-{{ section_id }}" class="product-availability-notice price" role="status" {{ block.shopify_attributes }}>
+      <div class="poa-price">
+        {% if variant.price > 0 %}
+          <span class="price-item price-item--regular exc_vat_price">
+            Guide Price: {{ variant.price | money }}
+          </span>
+          <span class="price-item price-item--regular inc_vat_price">
+            Guide Price: {{ variant.price | times: 1.2 | money }}
+          </span>
+        {% elsif guide_price != blank %}
+          <span class="price-item price-item--guide exc_vat_price">
+            Guide Price: {{ guide_price | money }}
+          </span>
+          <span class="price-item price-item--guide inc_vat_price">
+            Guide Price: {{ guide_price | times: 1.2 | money }}
+          </span>
+        {% else %}
+          <span class="price-item price-item--poa">POA</span>
+        {% endif %}
+        {% if context == 'product' %}
+          <p class="poa-notice">Please note: Pricing is not updated regularly. Submit an enquiry to get accurate pricing.</p>
+        {% endif %}
+      </div>
+    </div>
+  {% elsif is_call_for_price %}
+    <div id="price-{{ section_id }}" class="product-availability-notice price" role="status" {{ block.shopify_attributes }}>
+      <a class="make_enquiry" href="/pages/contact-us" target="_blank">Make an enquiry</a>
+    </div>
+  {% endif %}
+{% elsif type == 'buy-buttons' %}
+  <div {{ block.shopify_attributes }}>
+    <product-form
+      class="product-form"
+      data-hide-errors="false"
+      data-section-id="{{ section.id }}"
+    >
+      <div class="product-form__buttons">
+        {% if availability_status == 'no_restock_date' %}
+          <button type="button" class="button button--full-width button--primary notify-stock-button" data-product-id="{{ product.id }}" data-variant-id="{{ variant.id }}">
+            Notify When Back In Stock
+          </button>
+        {% elsif availability_status == 'poa' or availability_status == 'custom_product' or availability_status == 'cte' %}
+          <add-to-enquiry data-product-id="{{ product.id }}">
+            <button type="button" class="product-form__submit button button--full-width button--primary">
+              Add to Enquiry
+            </button>
+          </add-to-enquiry>
+        {% elsif is_call_for_price %}
+          <add-to-enquiry data-product-id="{{ product.id }}">
+            <button type="button" class="product-form__submit button button--full-width button--primary">
+              Add to Enquiry
+            </button>
+          </add-to-enquiry>
+        {% endif %}
+      </div>
+    </product-form>
+  </div>
+{% endif %}
+
+{% comment %}
+Add modal with Shopify contact form for back in stock notifications
+{% endcomment %}
+{% if availability_status == 'no_restock_date' and type == 'buy-buttons' %}
+<div id="notify-modal-{{ product.id }}" class="notify-modal" style="display: none;">
+  <div class="notify-modal-overlay"></div>
+  <div class="notify-modal-content">
+    <button type="button" class="notify-modal-close" aria-label="Close">&times;</button>
+    <h3>Notify When Back In Stock</h3>
+    <p>Enter your email and we'll notify you when {{ product.title }} is available again.</p>
+    
+    <div id="notify-form-container-{{ product.id }}" class="notify-contact-form">
+      <div class="field">
+        <input
+          type="email"
+          id="notify-email-{{ product.id }}"
+          class="field__input"
+          autocomplete="email"
+          placeholder="Your email"
+          required
+        >
+        <label class="field__label" for="notify-email-{{ product.id }}">Email</label>
+      </div>
+      
+      <button type="button" id="notify-submit-{{ product.id }}" class="button button--full-width">
+        Notify Me
+      </button>
+      
+      <div class="form-errors" style="display: none;">
+        <p>There was an error submitting your request. Please try again.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .notify-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .notify-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .notify-modal-content {
+    position: relative;
+    background: white;
+    padding: 3rem;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+    z-index: 1;
+  }
+  
+  .notify-modal-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+  
+  .notify-contact-form .field {
+    margin-bottom: 1.5rem;
+  }
+  
+  .notify-contact-form .form-success {
+    color: #0f7938;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  
+  .notify-contact-form .form-errors {
+    color: #d02e2e;
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-success-container {
+    text-align: center;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const notifyButtons = document.querySelectorAll('.notify-stock-button');
+    const modal = document.getElementById('notify-modal-{{ product.id }}');
+    
+    if (modal) {
+      const overlay = modal.querySelector('.notify-modal-overlay');
+      const closeBtn = modal.querySelector('.notify-modal-close');
+      const submitBtn = document.getElementById('notify-submit-{{ product.id }}');
+      const emailInput = document.getElementById('notify-email-{{ product.id }}');
+      const formContainer = document.getElementById('notify-form-container-{{ product.id }}');
+      const errorDiv = formContainer.querySelector('.form-errors');
+      
+      // Show modal when button clicked
+      notifyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          modal.style.display = 'flex';
+        });
+      });
+      
+      // Close modal handlers
+      [overlay, closeBtn].forEach(element => {
+        element.addEventListener('click', function() {
+          modal.style.display = 'none';
+        });
+      });
+      
+      // Handle form submission
+      if (submitBtn) {
+        submitBtn.addEventListener('click', async function() {
+          const email = emailInput.value.trim();
+          
+          // Basic validation
+          if (!email || !email.includes('@')) {
+            emailInput.focus();
+            return;
+          }
+          
+          // Disable button and show loading state
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Submitting...';
+          errorDiv.style.display = 'none';
+          
+          try {
+            const response = await fetch('https://shopify-enquiry-system.diarmuid-1c2.workers.dev/api/notify-back-in-stock', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                email: email,
+                variantId: '{{ variant.id }}'
+              })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+              // Show success message
+              formContainer.innerHTML = `
+                <div class="form-success-container">
+                  <p class="form-success">✓ Thank you! We'll notify you when this product is back in stock.</p>
+                  <button type="button" class="button button--full-width" 
+                          onclick="document.getElementById('notify-modal-{{ product.id }}').style.display='none'">
+                    Close
+                  </button>
+                </div>
+              `;
+            } else {
+              throw new Error(data.error || 'Failed to submit request');
+            }
+          } catch (error) {
+            // Show error message
+            console.error('Notification request error:', error);
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Notify Me';
+            errorDiv.style.display = 'block';
+          }
+        });
+        
+        // Submit on Enter key
+        emailInput.addEventListener('keypress', function(e) {
+          if (e.key === 'Enter') {
+            submitBtn.click();
+          }
+        });
+      }
+    }
+  });
+</script>
+{% endif %}

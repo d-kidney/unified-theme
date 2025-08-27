@@ -1,0 +1,219 @@
+{% comment %}
+  Renders pricing for custom grouped products
+  
+  Accepts:
+  - product: {Object} Product Liquid object (required)
+  - context: {String} Context for rendering ('product' or 'collection') (optional, defaults to 'product')
+  
+  Usage:
+  {% render 'custom-grouped-product-pricing', 
+    product: product,
+    context: 'product'
+  %}
+{% endcomment %}
+
+{%- liquid
+  assign context = context | default: 'product'
+  
+  comment
+    Access the metafield directly from the product object
+  endcomment
+  
+  assign custom_grouped_product = product.metafields.custom.custom_grouped_product.value
+  assign parent_product = custom_grouped_product.grouped_parent.value
+  assign child_products = custom_grouped_product.child_products.value
+  
+  assign is_parent = false
+  if product.id == parent_product.id
+    assign is_parent = true
+  endif
+  
+  comment
+    Check if this product has call_to_enquire metafield
+  endcomment
+  assign is_call_for_price = product.selected_or_first_available_variant.metafields.custom.call_to_enquire
+-%}
+
+{% if is_call_for_price %}
+  {% render 'custom-product-availability', 
+    section_id: section.id,
+    block: block,
+    type: 'price' %}
+{% elsif is_parent %}
+  {% comment %} Parent product - show price range {% endcomment %}
+  {% assign sorted_child_products = child_products | sort: 'price' %}
+  {% assign lowest_price = sorted_child_products | map: 'price' | sort | first %}
+  {% assign highest_price = sorted_child_products | map: 'price' | sort | last %}
+  
+  {% comment %} Calculate highest discount percentage for sale badge {% endcomment %}
+  {% assign highest_discount = 0 %}
+  {% assign have_sales = false %}
+  {% for child_product in child_products %}
+    {% if child_product.compare_at_price and child_product.compare_at_price > child_product.price %}
+      {% assign compare_at_price = child_product.compare_at_price | money %}
+      {% assign compare_at_price = compare_at_price | replace: '£', '' %}
+      {% assign compare_at_price = compare_at_price | replace: ',', '' %}
+      {% assign price = child_product.price | money %}
+      {% assign price = price | replace: '£', '' %}
+      {% assign price = price | replace: ',', '' %}
+      {% assign price_difference = compare_at_price | minus: price %}    
+      {% assign discount_ratio = price_difference | divided_by: compare_at_price | times: 1.0 %}
+      {% assign discount = discount_ratio | times: 100 %}
+      {% if discount > highest_discount %}
+        {% assign highest_discount = discount | plus: 0 %}
+      {% endif %}
+      {% assign have_sales = true %}
+    {% endif %}
+  {% endfor %}
+  
+  {% if context == 'collection' %}
+    {% comment %} Collection card display {% endcomment %}
+    <div class="multiple-options">Multiple Options</div><span class="price-from-label">from </span> 
+    <div class="price">
+      <div class="price__container">
+        <div class="price__regular">
+          <span class="price-item price-item--regular exc_vat_price">
+            <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+            {{- lowest_price | money -}}
+          </span>
+          <span class="price-item price-item--regular inc_vat_price">
+            {{- lowest_price | times: 1.2 | money -}}
+          </span>
+        </div>
+      </div>
+    </div>
+    {% if highest_discount > 0 %}
+      <div class="badge group_product_prices price__badge-sale" {% if highest_discount > 0 %}style="display:block;"{% endif %}>
+        Save Up to <strong>{{ highest_discount | round }}%</strong>
+      </div>
+    {% endif %}
+  {% else %}
+    {% comment %} Product page display {% endcomment %}
+    <div class="price">
+      {% if highest_discount > 0 %}
+        <div class="badge price__badge-sale">
+          Save Up to <strong>{{ highest_discount | round }}%</strong>
+        </div>
+      {% endif %}
+      
+      <div class="price__container">
+        <div class="price__regular">
+          <span class="price-item price-item--regular exc_vat_price">
+            <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+            <span>From </span>
+            {{- lowest_price | money -}}
+            <span> to </span>
+            {{- highest_price | money -}}
+          </span>
+          <span class="price-item price-item--regular inc_vat_price">
+            <span>From </span>
+            {{- lowest_price | times: 1.2 | money -}}
+            <span> to </span>
+            {{- highest_price | times: 1.2 | money -}}
+          </span>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% else %}
+  {% comment %} Child product - show individual price {% endcomment %}
+  {% if context == 'collection' %}
+    {% comment %} Collection card display {% endcomment %}
+    <div class="price">
+      {% if product.compare_at_price > product.price %}
+        {% assign compare_at_price = product.compare_at_price | money %}
+        {% assign compare_at_price = compare_at_price | replace: '£', '' %}
+        {% assign compare_at_price = compare_at_price | replace: ',', '' %}
+        {% assign price = product.price | money %}
+        {% assign price = price | replace: '£', '' %}
+        {% assign price = price | replace: ',', '' %}
+        {% assign price_difference = compare_at_price | minus: price %}    
+        {% assign discount_ratio = price_difference | divided_by: compare_at_price | times: 1.0 %}
+        {% assign discount = discount_ratio | times: 100 %}
+        
+        <div class="badge price__badge-sale">
+          Save <span>{{ discount | round }}%</span>
+        </div>
+        
+        <div class="price__container">
+          <div class="price__sale show">
+            <span class="price-item price-item--sale exc_vat_price">
+              <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
+              {{ product.price | money }}
+            </span>
+            <span class="price-item price-item--sale inc_vat_price">
+              {{ product.price | times: 1.2 | money }}
+            </span>
+            <s class="price-item price-item--regular exc_vat_price">
+              <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+              {{ product.compare_at_price | money }}
+            </s>
+            <s class="price-item price-item--regular inc_vat_price">
+              <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+              {{ product.compare_at_price | times: 1.2 | money }}
+            </s>
+          </div>
+        </div>
+      {% else %}
+        <div class="price__container">
+          <div class="price__regular">
+            <span class="price-item price-item--regular exc_vat_price">
+              <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+              {{ product.price | money }}
+            </span>
+            <span class="price-item price-item--regular inc_vat_price">
+              {{ product.price | times: 1.2 | money }}
+            </span>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% else %}
+    {% comment %} Product page display {% endcomment %}
+    <div class="price">
+      {% if product.compare_at_price > product.price %}
+        {% assign compare_at_price = product.compare_at_price | money %}
+        {% assign compare_at_price = compare_at_price | replace: '£', '' %}
+        {% assign compare_at_price = compare_at_price | replace: ',', '' %}
+        {% assign price = product.price | money %}
+        {% assign price = price | replace: '£', '' %}
+        {% assign price = price | replace: ',', '' %}
+        {% assign price_difference = compare_at_price | minus: price %}    
+        {% assign discount_ratio = price_difference | divided_by: compare_at_price | times: 1.0 %}
+        {% assign discount = discount_ratio | times: 100 %}
+        
+        <div class="badge price__badge-sale">
+          Save <span>{{ discount | round }}%</span>
+        </div>
+        
+        <div class="price__container">
+          <div class="price__sale">
+            <span class="price-item price-item--sale exc_vat_price">
+              <span class="visually-hidden">{{ 'products.product.price.sale_price' | t }}</span>
+              {{ product.price | money }}
+            </span>
+            <span class="price-item price-item--sale inc_vat_price">
+              {{ product.price | times: 1.2 | money }}
+            </span>
+            <s class="price-item price-item--regular">
+              <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+              {{ product.compare_at_price | times: 1.2 | money }}
+            </s>
+          </div>
+        </div>
+      {% else %}
+        <div class="price__container">
+          <div class="price__regular">
+            <span class="price-item price-item--regular exc_vat_price">
+              <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+              {{ product.price | money }}
+            </span>
+            <span class="price-item price-item--regular inc_vat_price">
+              {{ product.price | times: 1.2 | money }}
+            </span>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
+{% endif %}

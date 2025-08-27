@@ -1,0 +1,16 @@
+{% comment %} Auto-generated dispatcher file {% endcomment %}
+{% render 'store-detection' %}
+
+{% if store_id == 'b4l' %}
+  {% render 'main-product_b4l' %}
+{% elsif store_id == 'bso' %}
+  {% render 'main-product_bso' %}
+{% elsif store_id == 'i4l' %}
+  {% render 'main-product_i4l' %}
+{% elsif store_id == 'i4us' %}
+  {% render 'main-product_i4us' %}
+{% elsif store_id == 'r4us' %}
+  {% render 'main-product_r4us' %}
+{% elsif store_id == 't4l' %}
+  {% render 'main-product_t4l' %}
+{% endif %}

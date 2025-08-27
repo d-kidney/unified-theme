@@ -1,0 +1,64 @@
+{% comment %} Tiles4Less collection list content {% endcomment %}
+
+<ul class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down" role="list">
+  {% assign collection = collections['bathroom-floor-tiles'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['kitchen-wall-tiles'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['porcelain-tiles'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['mosaic-floor-tiles'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['ceramic-floor-tiles'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['bathroom-products'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+</ul>

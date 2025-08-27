@@ -1,0 +1,1248 @@
+{% render 'store-detection' %}
+
+{% if store_id == 'b4l' or store_id == 'bso' or store_id == 'i4l' or store_id == 'i4us' or store_id == 'r4us' %}
+  {{ 'component-card_b4l_bso_i4l_i4us_r4us.css' | asset_url | stylesheet_tag }}
+{% elsif store_id == 't4l' %}
+  {{ 'component-card_t4l.css' | asset_url | stylesheet_tag }}
+{% endif %}
+{% if store_id == 'b4l' or store_id == 't4l' %}
+  {{ 'component-cart.b4l_t4l.css' | asset_url | stylesheet_tag }}
+{% elsif store_id == 'i4us' or store_id == 'r4us' %}
+  {{ 'component-cart.i4us_r4us.css' | asset_url | stylesheet_tag }}
+{% elsif store_id == 'bso' %}
+  {{ 'component-cart_bso.css' | asset_url | stylesheet_tag }}
+{% elsif store_id == 'i4l' %}
+  {{ 'component-cart_i4l.css' | asset_url | stylesheet_tag }}
+{% endif %}
+{% if store_id == 'b4l' or store_id == 'i4l' or store_id == 'i4us' or store_id == 'r4us' or store_id == 't4l' %}
+  {{ 'component-cart-items_b4l_i4l_i4us_r4us_t4l.css' | asset_url | stylesheet_tag }}
+{% elsif store_id == 'bso' %}
+  {{ 'component-cart-items_bso.css' | asset_url | stylesheet_tag }}
+{% endif %}
+{{ 'component-totals.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-discounts.css' | asset_url | stylesheet_tag }}
+{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
+{{ 'enquiry-checkout-style.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+
+<div class="page-width">
+  <div class="title-wrapper-with-link">
+    <h1 class="title title--primary">Your Enquiry</h1>
+    <a href="{{ routes.all_products_collection_url }}" class="underlined-link" onclick="window.location.href='{{ routes.all_products_collection_url }}'; return false;">
+      {{- 'general.continue_shopping' | t -}}
+    </a>
+  </div>
+  
+  <div class="enquiry-form-container">
+    <div class="enquiry-items-container">
+      <div id="enquiry-items-list" class="cart__items">
+        <!-- Empty message -->
+        <div class="cart__warnings" id="enquiry-empty-message" style="display: none;">
+          <h1 class="cart__empty-text">Start your enquiry</h1>
+          <p style="margin: 1rem 0; color: rgba(var(--color-foreground), 0.75); font-size: 1.1em;">
+            Add products to your enquiry list to request pricing or availability information.
+          </p>
+          <a href="{{ routes.all_products_collection_url }}" class="button">
+            Browse Products
+          </a>
+
+          {%- if shop.customer_accounts_enabled and customer == null -%}
+            <h2 class="cart__login-title">{{ 'sections.cart.login.title' | t }}</h2>
+            <p class="cart__login-paragraph">
+              {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
+            </p>
+          {%- endif -%}
+        </div>
+        
+        <!-- Enquiry items will be dynamically inserted here by JavaScript -->
+        <div class="cart-items" id="enquiry-items-container">
+          <!-- Skeleton loader shown while loading -->
+          <div class="skeleton-loader" id="enquiry-skeleton-loader">
+            <div class="cart-item skeleton-item">
+              <div class="skeleton-image"></div>
+              <div class="skeleton-details">
+                <div class="skeleton-line skeleton-title"></div>
+                <div class="skeleton-line skeleton-variant"></div>
+              </div>
+              <div class="skeleton-quantity">
+                <div class="skeleton-line"></div>
+              </div>
+            </div>
+            <div class="cart-item skeleton-item">
+              <div class="skeleton-image"></div>
+              <div class="skeleton-details">
+                <div class="skeleton-line skeleton-title"></div>
+                <div class="skeleton-line skeleton-variant"></div>
+              </div>
+              <div class="skeleton-quantity">
+                <div class="skeleton-line"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="enquiry-form">
+      <div class="cart__footer">
+        <div class="cart__blocks">
+          <div class="js-contents">
+            <div class="totals">
+              <h2 class="totals__subtotal">Enter your email below to send your enquiry</h2>
+            </div>
+            <div class="value-props">
+              <div class="value-prop">
+                <svg class="value-prop__icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                </svg>
+                <span>Volume discounts</span>
+              </div>
+              <div class="value-prop">
+                <svg class="value-prop__icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                </svg>
+                <span>Fast response</span>
+              </div>
+              <div class="value-prop">
+                <svg class="value-prop__icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+                </svg>
+                <span>No obligation</span>
+              </div>
+            </div>
+            
+            <!-- Sleek progress indicator -->
+            <div class="form-progress">
+              <div class="form-progress__bar">
+                <div class="form-progress__fill" data-step="1"></div>
+              </div>
+              <div class="form-progress__text">
+                <span class="current-step">Step 1</span> of 2
+              </div>
+            </div>
+            
+            <div class="cart__ctas">
+              <form id="enquiry-contact-form" class="enquiry-form-checkout" novalidate>
+                <!-- Step 1: Email only -->
+                <div class="enquiry-step-content" id="step-1" data-step="1">
+                  <div class="enquiry-field enquiry-field--required">
+                    <input type="email" id="enquiry-email" name="contact[email]" class="enquiry-field__input" placeholder="Email address" required autofocus>
+                    <div class="enquiry-field__error" role="alert">Please enter a valid email address</div>
+                  </div>
+                  
+                  <div class="field">
+                    <button type="button" class="button" id="next-button">Continue</button>
+                  </div>
+                </div>
+                
+                <!-- Step 2: All other details -->
+                <div class="enquiry-step-content" id="step-2" data-step="2" style="display: none;">
+                  <div class="enquiry-field">
+                    <select id="enquiry-country" name="contact[country]" class="enquiry-field__input enquiry-field__select">
+                      <option value="GB" selected>United Kingdom</option>
+                      <option value="IE">Ireland</option>
+                      <option value="US">United States</option>
+                      <option value="CA">Canada</option>
+                      <option value="AU">Australia</option>
+                      <option value="NZ">New Zealand</option>
+                    </select>
+                  </div>
+                  
+                  <div style="display: flex; gap: 1rem;">
+                    <div class="enquiry-field enquiry-field--half">
+                      <input type="text" id="enquiry-first-name" name="contact[first_name]" class="enquiry-field__input" placeholder="First name" required>
+                      <div class="enquiry-field__error" role="alert">Please enter your first name</div>
+                    </div>
+                    <div class="enquiry-field enquiry-field--half">
+                      <input type="text" id="enquiry-last-name" name="contact[last_name]" class="enquiry-field__input" placeholder="Last name" required>
+                      <div class="enquiry-field__error" role="alert">Please enter your last name</div>
+                    </div>
+                  </div>
+                  
+                  <div class="enquiry-field">
+                    <input type="text" id="enquiry-company" name="contact[company]" class="enquiry-field__input" placeholder="Company (optional)">
+                  </div>
+                  
+                  <div class="enquiry-field">
+                    <input type="text" id="enquiry-address1" name="contact[address1]" class="enquiry-field__input" placeholder="Address" required>
+                    <div class="enquiry-field__error" role="alert">Please enter your address</div>
+                  </div>
+                  
+                  <div class="enquiry-field">
+                    <input type="text" id="enquiry-address2" name="contact[address2]" class="enquiry-field__input" placeholder="Apartment, suite, etc. (optional)">
+                  </div>
+                  
+                  <div style="display: flex; gap: 1rem;">
+                    <div class="enquiry-field enquiry-field--half">
+                      <input type="text" id="enquiry-city" name="contact[city]" class="enquiry-field__input" placeholder="City" required>
+                      <div class="enquiry-field__error" role="alert">Please enter your city</div>
+                    </div>
+                    <div class="enquiry-field enquiry-field--half">
+                      <input type="text" id="enquiry-postcode" name="contact[postcode]" class="enquiry-field__input" placeholder="Postcode" required pattern=".*" data-validation-type="postcode">
+                      <div class="enquiry-field__error" role="alert">Please enter a valid postcode</div>
+                    </div>
+                  </div>
+                  
+                  <div class="enquiry-field enquiry-field--required">
+                    <input type="tel" id="enquiry-phone" name="contact[phone]" class="enquiry-field__input" placeholder="Mobile number (e.g., 07123456789)" pattern="[0-9+\s()-]*" title="Please enter a valid phone number" required>
+                    <span class="enquiry-field__info" title="In case we need to contact you about your delivery">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M8 7V11M8 5V5.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </span>
+                    <small class="enquiry-field__help">If outside UK, include country code (e.g., +1 for US)</small>
+                    <div class="enquiry-field__error" role="alert">Please enter a valid phone number</div>
+                  </div>
+                  
+                  
+                  <div class="enquiry-field" style="margin-top: 3rem;">
+                    <label class="enquiry-field__label" style="font-weight: 600; margin-bottom: 1rem; display: block;">Upload your quote or materials list</label>
+                    <div class="file-upload-wrapper">
+                      <input type="hidden" role="uploadcare-uploader" 
+                             id="enquiry-quote"
+                             name="contact[competitor_quote]"
+                             data-public-key="0beeb7828b20478ce421"
+                             data-tabs="file"
+                             data-file-types="pdf doc docx jpg jpeg png gif"
+                             data-max-file-size="5242880"
+                             data-images-only="false"
+                             data-system-dialog="false"
+                             data-button-class="file-upload__label"
+                             data-button-caption='<svg class="icon icon-upload" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg><span class="file-upload__text">Choose file</span><span class="file-upload__status">No file chosen</span>' />
+                      <div class="file-upload__preview" style="display: none;">
+                        <span class="file-upload__filename"></span>
+                        <button type="button" class="file-upload__remove">Remove</button>
+                      </div>
+                      <div class="file-upload__help">
+                        <p class="file-upload__allowed">Allowed file types: PDF, JPEG, GIF, PNG</p>
+                        <p class="file-upload__description">This can be an official quote from a supplier, a scan of a materials list, or even a photo of a written list.</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="enquiry-field">
+                    <textarea id="enquiry-message" name="contact[body]" class="enquiry-field__input enquiry-field__textarea" rows="4" placeholder="Additional notes (optional)"></textarea>
+                  </div>
+                  
+                  
+                  <div class="form-buttons" style="display: flex; gap: 1rem; margin-top: 2rem;flex-direction: column;">
+                    <button type="button" class="button button--secondary" id="back-button" style="flex: 1;">Back</button>
+                    <input type="hidden" id="enquiry-items-data" name="contact[enquiry_items]" value="">
+                    <button type="submit" class="button button--primary" style="flex: 1;">Send Enquiry</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Create a mock checkout object to prevent errors from web pixels -->
+<script>
+  window.checkout = {
+    total_price: { amount: "0.00", currency_code: "GBP" },
+    discount_code: null,
+    line_items: []
+  };
+</script>
+
+<!-- Load Uploadcare widget -->
+<script src="https://ucarecdn.com/libs/widget/3.x/uploadcare.full.min.js"></script>
+
+<!-- Load the configuration and core files first with cache busting -->
+<script src="{{ 'enquiry-config.js' | asset_url }}?v={{ 'now' | date: '%s' }}"></script>
+<script src="{{ 'enquiry.js' | asset_url }}?v={{ 'now' | date: '%s' }}"></script>
+
+<!-- Load our dedicated enquiry form page script -->
+<script src="{{ 'enquiry-form.js' | asset_url }}?v={{ 'now' | date: '%s' }}"></script>
+
+<!-- Quantity selector template -->
+<template id="enquiry-quantity-template">
+  <div class="cart-item__quantity-wrapper">
+    <div class="enquiry-quantity">
+      <button class="quantity__button enquiry-quantity__button" name="minus" type="button" data-action="decrease" data-enquiry-specific="true">
+        <span class="visually-hidden">Decrease quantity</span>
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="icon icon-minus" fill="none" viewBox="0 0 10 2">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 110 1H1A.5.5 0 01.5 1z" fill="currentColor">
+        </path></svg>
+      </button>
+      <input
+        class="quantity__input enquiry-quantity__input"
+        type="number"
+        name="enquiry-quantity"
+        value="1"
+        min="1"
+        aria-label="Quantity"
+        data-enquiry-specific="true"
+      >
+      <button class="quantity__button enquiry-quantity__button" name="plus" type="button" data-action="increase" data-enquiry-specific="true">
+        <span class="visually-hidden">Increase quantity</span>
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="icon icon-plus" fill="none" viewBox="0 0 10 10">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M1 4.51a.5.5 0 000 1h3.5l.01 3.5a.5.5 0 001-.01V5.5l3.5-.01a.5.5 0 00-.01-1H5.5L5.49.99a.5.5 0 00-1 .01v3.5l-3.5.01H1z" fill="currentColor">
+        </path></svg>
+      </button>
+    </div>
+  </div>
+</template>
+
+<!-- Add styles for enquiry quantity elements and enhanced form -->
+<style>
+  /* Reset and base styles */
+  .enquiry-form-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin: 4rem auto;
+  }
+  
+  @media screen and (min-width: 990px) {
+    .enquiry-form-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      margin-bottom:60px;
+    }
+  }
+  
+  /* Enhanced form container */
+  .enquiry-form {
+    background: rgb(var(--color-background));
+    border-radius: 1rem;
+    box-shadow: 0 0 0 1px rgba(var(--color-foreground), 0.08), 
+                0 2px 4px rgba(var(--color-foreground), 0.04),
+                0 12px 24px rgba(var(--color-foreground), 0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .enquiry-form:hover {
+    box-shadow: 0 0 0 1px rgba(var(--color-foreground), 0.1), 
+                0 4px 8px rgba(var(--color-foreground), 0.06),
+                0 16px 32px rgba(var(--color-foreground), 0.1);
+  }
+  
+  .enquiry-form .cart__footer {
+    padding: 3rem;
+    background: transparent;
+    line-height: 1.3;
+
+  }
+  
+  @media screen and (max-width: 749px) {
+    .enquiry-form .cart__footer {
+      padding: 2rem;
+    }
+  }
+  
+  /* Title and subtitle styling */
+  .totals {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .totals__subtotal {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin: 0 auto 0.8rem;
+    color: rgb(var(--color-foreground));
+  }
+  
+  .totals__subtitle {
+    font-size: 1.5rem;
+    color: rgba(var(--color-foreground), 0.7);
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  /* Enquiry quantity styles */
+  .enquiry-quantity {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(var(--color-foreground), 0.2);
+    border-radius: 0.8rem;
+    overflow: hidden;
+    background: rgb(var(--color-background));
+  }
+  
+  .enquiry-quantity__button {
+    width: 3.5rem;
+    padding: 0;
+    margin: 0;
+    height: 3.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+  
+  .enquiry-quantity__button:hover {
+    background: rgba(var(--color-foreground), 0.05);
+  }
+  
+  .enquiry-quantity__button:active {
+    background: rgba(var(--color-foreground), 0.1);
+  }
+  
+  .enquiry-quantity__input {
+    color: rgb(var(--color-foreground));
+    font-size: 1.5rem;
+    font-weight: 500;
+    width: 5rem;
+    text-align: center;
+    appearance: none;
+    border: none;
+    border-left: 1px solid rgba(var(--color-foreground), 0.2);
+    border-right: 1px solid rgba(var(--color-foreground), 0.2);
+    padding: 0;
+    height: 3.5rem;
+    margin: 0;
+    background: transparent;
+  }
+  
+  /* Step indicators - refined */
+  .form-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2.5rem 0 3.5rem;
+    padding: 0 2rem;
+  }
+  
+  .form-step {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+  }
+  
+  .form-step.active {
+    opacity: 1;
+  }
+  
+  .form-step__number {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: rgba(var(--color-foreground), 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.6rem;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .form-step.active .form-step__number {
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    box-shadow: 0 2px 12px rgba(var(--color-button), 0.3);
+  }
+  
+  .form-step__label {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: rgba(var(--color-foreground), 0.5);
+    transition: all 0.3s ease;
+  }
+  
+  .form-step.active .form-step__label {
+    color: rgb(var(--color-foreground));
+  }
+  
+  .form-step__line {
+    width: 6rem;
+    height: 2px;
+    background: rgba(var(--color-foreground), 0.1);
+    margin: 0 1rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .form-step__line::after {
+    content: '';
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(var(--color-button));
+    transition: left 0.3s ease;
+  }
+  
+  .form-step.active + .form-step__line::after {
+    left: 0;
+  }
+  
+  /* Form structure */
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-step-content {
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Field styling - completely redesigned */
+  .field {
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .field:last-child {
+    margin-bottom: 0;
+  }
+  
+  .form__label {
+    display: block;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: rgb(var(--color-foreground));
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.02em;
+  }
+  
+  .field__input {
+    width: 100%;
+    padding: 1.6rem 1.8rem;
+    font-size: 1.6rem;
+    border: 2px solid rgba(var(--color-foreground), 0.1);
+    border-radius: 1.2rem;
+    background: rgba(var(--color-foreground), 0.02);
+    color: rgb(var(--color-foreground));
+    transition: all 0.3s ease;
+    font-family: inherit;
+  }
+  
+  .field__input::placeholder {
+    color: rgba(var(--color-foreground), 0.4);
+  }
+  
+  .field__input:hover {
+    border-color: rgba(var(--color-foreground), 0.2);
+    background: rgba(var(--color-foreground), 0.03);
+  }
+  
+  .field__input:focus {
+    outline: none;
+    border-color: rgb(var(--color-button));
+    background: rgb(var(--color-background));
+    box-shadow: 0 0 0 4px rgba(var(--color-button), 0.1);
+  }
+  
+  textarea.field__input {
+    resize: vertical;
+    min-height: 120px;
+    font-family: inherit;
+  }
+  
+  /* Section dividers - cleaner design */
+  .section-divider {
+    position: relative;
+    text-align: left;
+    margin: 3rem 0 2rem;
+    padding-left: 0;
+  }
+  
+  .section-divider__text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(var(--color-foreground), 0.5);
+    background: transparent;
+    padding: 0;
+    position: relative;
+  }
+  
+  /* File upload - modernized */
+  .field--file-upload {
+    margin-top: 1rem;
+  }
+  
+  .file-upload-wrapper {
+    position: relative;
+  }
+  
+  .file-upload__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  .file-upload__label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 2rem;
+    border: 2px dashed rgba(var(--color-button), 0.3);
+    border-radius: var(--buttons-radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(var(--color-button), 0.05);
+    text-align: center;
+    min-height: 120px;
+  }
+  
+  .file-upload__label:hover {
+    border-color: rgb(var(--color-button));
+    background: rgba(var(--color-button), 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(var(--color-button), 0.15);
+  }
+  
+  .file-upload__input:focus + .file-upload__label {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(var(--color-button), 0.1);
+  }
+  
+  .icon-upload {
+    width: 3rem;
+    height: 3rem;
+    margin-bottom: 1rem;
+    color: rgb(var(--color-button));
+    transition: all 0.3s ease;
+  }
+  
+  .file-upload__label:hover .icon-upload {
+    transform: scale(1.1);
+  }
+  
+  .file-upload__text {
+    font-weight: 600;
+    font-size: 1.6rem;
+    color: rgb(var(--color-button));
+    margin-bottom: 0.3rem;
+    display: block;
+  }
+  
+  .file-upload__status {
+    font-size: 1.3rem;
+    color: rgba(var(--color-foreground), 0.6);
+    display: block;
+    margin-top: 0.3rem;
+  }
+  
+  .file-upload__hint {
+    font-size: 1.3rem;
+    color: rgba(var(--color-foreground), 0.5);
+  }
+  
+  .file-upload__help {
+    margin-top: 1.2rem;
+    text-align: center;
+  }
+  
+  .file-upload__allowed {
+    font-size: 1.3rem;
+    color: rgba(var(--color-foreground), 0.7);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .file-upload__description {
+    font-size: 1.2rem;
+    color: rgba(var(--color-foreground), 0.6);
+    line-height: 1.5;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .file-upload__preview {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.8rem;
+    background: rgba(var(--color-button), 0.1);
+    border: 2px solid rgba(var(--color-button), 0.2);
+    border-radius: 1.2rem;
+    margin-top: 1rem;
+  }
+  
+  .file-upload__filename {
+    font-weight: 500;
+    color: rgb(var(--color-foreground));
+    font-size: 1.4rem;
+  }
+  
+  .file-upload__remove {
+    background: none;
+    border: none;
+    color: rgb(var(--color-button));
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1.4rem;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.6rem;
+    transition: all 0.2s ease;
+  }
+  
+  .file-upload__remove:hover {
+    background: rgba(var(--color-button), 0.1);
+  }
+  
+  /* Buttons - refined styling */
+  .button {
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 1.8rem 3rem;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 5.6rem;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .button--primary {
+    background: rgb(var(--color-button));
+    color: rgb(var(--color-button-text));
+    border: none;
+    box-shadow: 0 2px 8px rgba(var(--color-button), 0.2);
+  }
+  
+  .button--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(var(--color-button), 0.3);
+  }
+  
+  .button--primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(var(--color-button), 0.2);
+  }
+  
+  .button--secondary {
+    background: transparent;
+    border: 2px solid rgba(var(--color-foreground), 0.2);
+    color: rgb(var(--color-foreground));
+  }
+  
+  .button--secondary:hover {
+    background: rgba(var(--color-foreground), 0.05);
+    border-color: rgba(var(--color-foreground), 0.3);
+    transform: translateY(-1px);
+  }
+  
+  /* Form buttons layout */
+  .form-buttons {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  
+  /* Step transitions */
+  .form-step-content {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .form-step-content.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Loading state */
+  .form-loading {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+  
+  .form-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4rem;
+    height: 4rem;
+    margin: -2rem 0 0 -2rem;
+    border: 3px solid rgba(var(--color-foreground), 0.1);
+    border-top-color: rgb(var(--color-button));
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Empty state enhancements */
+  .cart__empty-subtext {
+    font-size: 1.5rem;
+    color: rgba(var(--color-foreground), 0.6);
+    margin: 1rem 0 2.5rem;
+    line-height: 1.5;
+  }
+  
+  .cart__warnings {
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+  
+  .cart__empty-text {
+    font-size: 2.4rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  /* Cart items styling */
+  .cart-items {
+    border-top: 1px solid rgba(var(--color-foreground), 0.08);
+  }
+  
+  .cart-item {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
+    align-items: start;
+  }
+  .cart-item__media{
+    width:100%;
+  }
+  @media screen and (max-width: 749px) {
+    .cart-item {
+      grid-template-columns: 80px 1fr;
+      gap: 1.5rem;
+      padding: 2rem 0;
+    }
+    
+    .cart-item__quantity {
+      grid-column: 1 / -1;
+      margin-top: 1rem;
+    }
+  }
+  
+  .cart-item__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.8rem;
+  }
+  
+  .cart-item__details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width:100%;
+  }
+  .cart-item__details-info{
+    width:100%;
+  }
+ .cart-item__details .cart-item__name {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: rgb(var(--color-foreground));
+    text-decoration: none;
+    line-height: 1.4;
+     max-width:100%;
+  }
+  
+  .cart-item__name:hover {
+    text-decoration: underline;
+  }
+  
+  .product-option {
+    font-size: 1.4rem;
+    color: rgba(var(--color-foreground), 0.7);
+  }
+  
+  .cart-item__quantity-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 749px) {
+    .form-steps {
+      margin: 2rem 0 2.5rem;
+    }
+    
+    .form-step__label {
+      display: none;
+    }
+    
+    .form-step__line {
+      width: 3rem;
+    }
+    
+    .field__input {
+      padding: 1.4rem 1.6rem;
+    }
+    
+    .button {
+      padding: 1.6rem 2.5rem;
+      min-height: 5rem;
+    }
+    
+    .form-buttons {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    
+    .button--secondary {
+      order: 2;
+    }
+    
+    .section-divider {
+      margin: 2.5rem 0 1.5rem;
+    }
+  }
+  
+  /* Success state */
+  @keyframes checkmark {
+    0% {
+      stroke-dashoffset: 50;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+  
+  .form-success {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+  
+  .success-icon {
+    width: 6rem;
+    height: 6rem;
+    margin: 0 auto 2rem;
+    color: rgb(var(--color-button));
+  }
+  
+  .success-icon path {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: checkmark 0.6s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+  
+  /* Final polish */
+  .enquiry-form-container * {
+    box-sizing: border-box;
+  }
+  
+  /* Ensure proper focus visibility */
+  *:focus-visible {
+    outline: 2px solid rgb(var(--color-button));
+    outline-offset: 2px;
+  }
+  
+  /* Smooth transitions for all interactive elements */
+  .button,
+  .field__input,
+  .file-upload__label,
+  .enquiry-quantity__button {
+    transition-property: all;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  /* Help text styling */
+  .enquiry-field__help {
+    display: block;
+    font-size: 1.2rem;
+    color: rgba(var(--color-foreground), 0.6);
+    margin-top: 0.5rem;
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .field__input,
+    .button--secondary {
+      border-width: 3px;
+    }
+    
+    .form-step__number {
+      border: 2px solid currentColor;
+    }
+  }
+  
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Skeleton loader styles */
+  .skeleton-loader {
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .skeleton-item {
+    display: grid;
+    grid-template-columns: 100px 1fr auto;
+    gap: 2rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(var(--color-foreground), 0.08);
+    align-items: start;
+  }
+  
+  @media screen and (max-width: 749px) {
+    .skeleton-item {
+      grid-template-columns: 80px 1fr;
+      gap: 1.5rem;
+      padding: 2rem 0;
+    }
+  }
+  
+  .skeleton-image {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(90deg, 
+      rgba(var(--color-foreground), 0.04) 0%,
+      rgba(var(--color-foreground), 0.08) 50%,
+      rgba(var(--color-foreground), 0.04) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: 0.8rem;
+  }
+  
+  @media screen and (max-width: 749px) {
+    .skeleton-image {
+      width: 80px;
+      height: 80px;
+    }
+  }
+  
+  .skeleton-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .skeleton-line {
+    height: 1.6rem;
+    background: linear-gradient(90deg, 
+      rgba(var(--color-foreground), 0.04) 0%,
+      rgba(var(--color-foreground), 0.08) 50%,
+      rgba(var(--color-foreground), 0.04) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: 0.4rem;
+  }
+  
+  .skeleton-title {
+    width: 200px;
+    height: 2rem;
+  }
+  
+  .skeleton-variant {
+    width: 150px;
+    height: 1.4rem;
+  }
+  
+  .skeleton-quantity .skeleton-line {
+    width: 120px;
+    height: 3.5rem;
+    border-radius: 0.8rem;
+  }
+  
+  @media screen and (max-width: 749px) {
+    .skeleton-quantity {
+      grid-column: 1 / -1;
+      margin-top: 1rem;
+    }
+  }
+  
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /* Hide skeleton when items are loaded */
+  .skeleton-loader.hide {
+    display: none;
+  }
+  
+  /* Fade in animation for real items */
+  .cart-item:not(.skeleton-item) {
+    animation: itemFadeIn 0.4s ease-out forwards;
+    opacity: 0;
+  }
+  
+  @keyframes itemFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Stagger animation for multiple items */
+  .cart-item:not(.skeleton-item):nth-child(1) { animation-delay: 0.05s; }
+  .cart-item:not(.skeleton-item):nth-child(2) { animation-delay: 0.1s; }
+  .cart-item:not(.skeleton-item):nth-child(3) { animation-delay: 0.15s; }
+  .cart-item:not(.skeleton-item):nth-child(4) { animation-delay: 0.2s; }
+  .cart-item:not(.skeleton-item):nth-child(5) { animation-delay: 0.25s; }
+</style>
+
+<!-- Initialize EnquiryForm if not already defined -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Ensure EnquiryForm is defined to prevent fallback errors
+    if (!window.EnquiryForm) {
+      console.log('Initializing EnquiryForm object');
+      window.EnquiryForm = window.EnquiryForm || {};
+    }
+    
+    // Two-step form navigation
+    const emailInput = document.getElementById('enquiry-email');
+    const nextButton = document.getElementById('next-button');
+    const backButton = document.getElementById('back-button');
+    const step1 = document.getElementById('step-1');
+    const step2 = document.getElementById('step-2');
+    const formSteps = document.querySelectorAll('.form-step');
+    
+    // Make step 1 active on load
+    step1.classList.add('active');
+    
+    // Handle Next button
+    nextButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Validate email
+      if (!emailInput.value || !emailInput.validity.valid) {
+        emailInput.focus();
+        emailInput.reportValidity();
+        return;
+      }
+      
+      // Transition to step 2
+      step1.style.display = 'none';
+      step1.classList.remove('active');
+      
+      step2.style.display = 'block';
+      // Force reflow before adding active class for animation
+      step2.offsetHeight;
+      step2.classList.add('active');
+      
+      // Update step indicators
+      formSteps[0].classList.remove('active');
+      formSteps[1].classList.add('active');
+      
+      // Focus on name field
+      document.getElementById('enquiry-name').focus();
+    });
+    
+    // Handle Back button
+    backButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Transition back to step 1
+      step2.style.display = 'none';
+      step2.classList.remove('active');
+      
+      step1.style.display = 'block';
+      step1.offsetHeight;
+      step1.classList.add('active');
+      
+      // Update step indicators
+      formSteps[1].classList.remove('active');
+      formSteps[0].classList.add('active');
+      
+      // Focus on email field
+      emailInput.focus();
+    });
+    
+    // Allow Enter key to proceed from email field
+    emailInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        nextButton.click();
+      }
+    });
+    
+    // File upload handling
+    const fileInput = document.getElementById('enquiry-quote');
+    const fileLabel = document.querySelector('.file-upload__label');
+    const filePreview = document.querySelector('.file-upload__preview');
+    const fileNameSpan = document.querySelector('.file-upload__filename');
+    const removeButton = document.querySelector('.file-upload__remove');
+    
+    if (fileInput) {
+      fileInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          // Validate file size (5MB max)
+          if (file.size > 5 * 1024 * 1024) {
+            alert('File size must be less than 5MB');
+            this.value = '';
+            return;
+          }
+          
+          // Show preview
+          fileNameSpan.textContent = file.name;
+          fileLabel.style.display = 'none';
+          filePreview.style.display = 'flex';
+        }
+      });
+      
+      if (removeButton) {
+        removeButton.addEventListener('click', function() {
+          fileInput.value = '';
+          fileLabel.style.display = 'flex';
+          filePreview.style.display = 'none';
+          fileNameSpan.textContent = '';
+        });
+      }
+    }
+    
+    // Form reference for other handlers
+    const form = document.getElementById('enquiry-contact-form');
+    
+    // Smooth scroll to form when clicking continue shopping from empty state
+    const continueButtons = document.querySelectorAll('.cart__warnings .button');
+    continueButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        if (this.textContent.includes('Continue Shopping')) {
+          e.preventDefault();
+          window.location.href = this.href;
+        }
+      });
+    });
+  });
+</script>

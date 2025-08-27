@@ -1,0 +1,25 @@
+{% comment %} Insulation4Us featured collection content {% endcomment %}
+
+{% assign featured_collection = collections['bestsellers'] %}
+
+<div class="products-wrapper">
+  {% if featured_collection != blank %}
+    <ul class="grid product-grid grid--5-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down" role="list">
+      {% for product in featured_collection.products limit: 10 %}
+        <li class="grid__item">
+          {% render 'card-product',
+            card_product: product,
+            media_aspect_ratio: section_settings_image_ratio,
+            image_shape: section_settings_image_shape,
+            show_secondary_image: section_settings_show_secondary_image,
+            show_vendor: section_settings_show_vendor,
+            show_rating: section_settings_show_rating,
+            show_quick_add: section_settings_quick_add
+          %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>{{ 'sections.featured_collection.no_collection' | t }}</p>
+  {% endif %}
+</div>

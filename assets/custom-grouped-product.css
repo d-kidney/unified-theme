@@ -1,0 +1,193 @@
+/* Custom Grouped Product Styles */
+
+/* Main container */
+.custom-grouped-product {
+  margin-bottom: 2rem;
+}
+
+/* Price display styles */
+.custom-grouped-product-price {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.custom-grouped-product-price__badge {
+  display: inline-block;
+  background-color: var(--color-badge-sale);
+  color: var(--color-badge-text);
+  padding: 0.25rem 0.5rem;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.custom-grouped-product-price__multiple-options {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--color-foreground-subdued);
+  margin-bottom: 0.25rem;
+}
+
+.custom-grouped-product-price__range-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-grouped-product-price__range {
+  font-weight: 500;
+}
+
+.custom-grouped-product-price__range.ex-vat {
+  display: block;
+}
+
+.custom-grouped-product-price__range.inc-vat {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-foreground-subdued);
+}
+
+.custom-grouped-product-price__from,
+.custom-grouped-product-price__to {
+  font-weight: normal;
+}
+
+.custom-grouped-product-price__current {
+  font-weight: 500;
+}
+
+.custom-grouped-product-price__current.ex-vat {
+  display: block;
+}
+
+.custom-grouped-product-price__current.inc-vat {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-foreground-subdued);
+}
+
+.custom-grouped-product-price__compare-at {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-foreground-subdued);
+  text-decoration: line-through;
+}
+
+/* Option selector styles */
+.custom-grouped-product__option-selectors {
+  margin-top: 1.5rem;
+}
+
+.custom-grouped-product__option-selector {
+  margin-bottom: 1.5rem;
+}
+
+.custom-grouped-product__option-title {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.custom-grouped-product__option-prompt {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-foreground-subdued);
+  margin-bottom: 0.5rem;
+}
+
+.custom-grouped-product__option-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.custom-grouped-product__option-button,
+.custom-grouped-product__option-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3rem;
+  min-height: 2.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 0.25rem;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-grouped-product__option-button:hover,
+.custom-grouped-product__option-link:hover {
+  border-color: var(--color-foreground);
+}
+
+.custom-grouped-product__option-button.selected,
+.custom-grouped-product__option-link.selected {
+  border-color: var(--color-foreground);
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+}
+
+/* Selected options display (for child products) */
+.custom-grouped-product__selected-options {
+  margin-top: 1rem;
+}
+
+.custom-grouped-product__selected-option {
+  margin-bottom: 0.5rem;
+}
+
+.custom-grouped-product__selected-option-label {
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.custom-grouped-product__selected-option-value {
+  font-weight: normal;
+}
+
+.custom-grouped-product__parent-link {
+  margin-top: 1.5rem;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 749px) {
+  .custom-grouped-product__option-grid {
+    gap: 0.3rem;
+  }
+  
+  .custom-grouped-product__option-button,
+  .custom-grouped-product__option-link {
+    min-width: 2.5rem;
+    min-height: 2.2rem;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.85rem;
+  }
+}
+
+/* Collection card specific styles */
+.card .custom-grouped-product-price {
+  margin-bottom: 0;
+}
+
+.card .custom-grouped-product-price__badge {
+  position: absolute;
+  top: -2.5rem;
+  right: 0;
+  z-index: 2;
+}
+
+.card .custom-grouped-product-price__range,
+.card .custom-grouped-product-price__current {
+  font-size: 0.9rem;
+}
+
+.card .custom-grouped-product-price__range.inc-vat,
+.card .custom-grouped-product-price__current.inc-vat {
+  font-size: 0.8rem;
+}

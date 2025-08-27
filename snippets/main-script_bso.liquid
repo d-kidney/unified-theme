@@ -1,0 +1,589 @@
+<script>
+  {% if template == 'product' or template == 'cart' %}
+      let estDeliveryDateArray = []
+    
+      // EST Delivery Date Function
+      function deliveryDateConverter(DateArg, today = new Date()){
+        var months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
+        var date = (today.getMonth() + 1)+'/'+today.getDate()+'/'+today.getFullYear();
+        var startDate = date;
+        startDate = new Date(startDate);
+        var FinalDate_Cal = "", noOfDaysToAdd = parseInt(DateArg), count = 0;
+        while(count < noOfDaysToAdd){
+          FinalDate_Cal = new Date(startDate.setDate(startDate.getDate() + 1));
+          if(FinalDate_Cal.getDay() != 0 && FinalDate_Cal.getDay() != 6){
+            count++;
+          }
+        }
+        return FinalDate_Cal;
+      }
+      
+      const nth = function(d) {
+        if (d > 3 && d < 21) return 'th';
+        switch (d % 10) {
+          case 1:  return "st";
+          case 2:  return "nd";
+          case 3:  return "rd";
+          default: return "th";
+        }
+      }
+  
+      function getNextWorkingDate(startDate, days) {
+        const date = new Date(startDate);
+        let count = 0;
+        while (count < days) {
+            date.setDate(date.getDate() + 1);
+            if (date.getDay() !== 0 && date.getDay() !== 6) { 
+                count++;
+            }
+        }
+        return date;
+      }
+    
+  {% endif %}
+  
+  {% if template == 'product' %}
+      const shopifyStore = "building-supplies-online-co-uk.myshopify.com"
+      const accessToken = "50da26386745e7a5489b3a802aa70357"
+      
+      var selectedVariantId = {{ product.selected_or_first_available_variant.id }}
+      let callForPiceArray = []
+      let CalculatorData = []
+      let Complementaryproducts = null
+      
+      {% if product.variants.size >= 1 %}
+        {% for variant in product.variants %}
+          
+          // CALL FOR PRICE Array
+          callForPiceArray.push({
+            metafield: {% if variant.metafields.custom.call_to_enquire %} {{ variant.metafields.custom.call_to_enquire }} {% else %} false {% endif %},
+            id: {{ variant.id | json}}
+          });
+  
+          // EST Delivery Date Array
+          estDeliveryDateArray.push({
+            id: {{ variant.id | json }},
+            datestart: {%
+            if variant.metafields.custom.estimated_delivery_date %}
+              {% assign date_parts = variant.metafields.custom.estimated_delivery_date | split: '-' %}
+              "{{ date_parts[0] }}"
+            {% else %}
+              ""
+            {% endif %},
+            dateend: {%
+            if variant.metafields.custom.estimated_delivery_date %}
+              {% assign date_parts = variant.metafields.custom.estimated_delivery_date | split: '-' %}
+              "{{ date_parts[1] }}"
+            {% else %}
+              ""
+            {% endif %},
+            product_availability_status: {%
+            if variant.metafields.custom.product_availability_status %}
+              {% assign value = variant.metafields.custom.product_availability_status %}
+              "{{ value }}"
+            {% else %}
+              ""
+            {% endif %},
+            restock_date: {% if variant.metafields.custom.restocking_date %} "{{ variant.metafields.custom.restocking_date}}" {% else %} "" {% endif %}
+          });
+
+          // QUANTITY CALCULATOR
+          CalculatorData.push({
+            m2_coverage: {% if variant.metafields.custom.m2_coverage %} "{{ variant.metafields.custom.m2_coverage}}" {% else %} "" {% endif %},
+            quantity_calculator: {% if product.metafields.custom.quantity_calculator %} '{{ product.metafields.custom.quantity_calculator}}' {% else %} '' {% endif %},
+            id: {{ variant.id | json}},
+          });
+          
+        {% endfor %}
+      {% endif %}
+
+      // Complementary products
+      {% if product.metafields.shopify--discovery--product_recommendation.complementary_products %} 
+        Complementaryproducts = {{ product.metafields.shopify--discovery--product_recommendation.complementary_products }}
+      {% endif %}
+    
+      // CALL FOR PRICE FUCNTION
+      function callForPrice(variant_id){
+         if(callForPiceArray && callForPiceArray.length > 0){
+           var have_call_for_price = callForPiceArray.find(variant => variant.id == variant_id).metafield
+           if(have_call_for_price){
+             jQuery('.product__info-container').addClass('have_call_for_price')
+           } else {
+             jQuery('.product__info-container').removeClass('have_call_for_price')
+           }
+         }
+      }
+  
+      // EST Delivery Date Function
+      function estDeliveryDate(variant_id){
+        jQuery('.in_stock_label').hide()
+        jQuery('.in_stock_label').removeClass('red')
+        jQuery('.in_stock_label').removeClass('orange')
+        if(jQuery('.fromDate').length) {
+          var dateStart = estDeliveryDateArray.find(variant => variant.id == variant_id).datestart;
+          var dateEnd = estDeliveryDateArray.find(variant => variant.id == variant_id).dateend;
+          var restock_date = estDeliveryDateArray.find(variant => variant.id == variant_id).restock_date;
+          if(dateStart !== "" && dateEnd !== ""){
+            const restock_inputDate = new Date(restock_date);
+            const today = new Date();
+            const exact_days = dateEnd - dateStart;
+            const resultDate = getNextWorkingDate(restock_inputDate, exact_days)
+            if(restock_date !== "" && restock_inputDate > today){
+                //jQuery('.in_stock_label').hide()
+                jQuery('.est_delivery_date').find('p strong').html(`Expected in stock: <span>${Number(restock_inputDate.toString('dd MMM').split(' ')[2]).toString() + nth(parseInt(restock_inputDate.toString('dd MMM').split(' ')[2])) + " " + restock_inputDate.toString('dd MMM').split(' ')[1]}</span>.<div>Est delivery: <span class="fromDate">${Number(deliveryDateConverter(dateStart, restock_inputDate).toString('dd MMM').split(' ')[2]).toString() + nth(Number(deliveryDateConverter(dateStart, restock_inputDate).toString('dd MMM').split(' ')[2])) + " " + deliveryDateConverter(dateStart, restock_inputDate).toString('dd MMM').split(' ')[1]}</span> - <span class="toDate">${Number(deliveryDateConverter(dateEnd, restock_inputDate).toString('dd MMM').split(' ')[2]).toString() + nth(deliveryDateConverter(dateEnd, restock_inputDate).toString('dd MMM').split(' ')[2]) + " " + deliveryDateConverter(dateEnd, restock_inputDate).toString('dd MMM').split(' ')[1]}</span>.</div>`);   
+            } else {
+                const days = getWeekdaysBetween(deliveryDateConverter(dateStart), today)
+                if (days > 10) {
+                   jQuery('.in_stock_label').hide()
+                }
+                if (days <= 5) {
+                  jQuery('.in_stock_label').show()
+                  jQuery('.in_stock_label .in_stock_text').text(' In stock, ready for delivery')
+                } else {
+                  jQuery('.in_stock_label').show()
+                  jQuery('.in_stock_label .in_stock_text').text('In stock')
+                }
+                jQuery('.est_delivery_date').find('p strong').html(`Est Delivery between <span class="fromDate">${deliveryDateConverter(dateStart).toString('dd MMM').split(' ')[2] + nth(parseInt(deliveryDateConverter(dateStart).toString('dd MMM').split(' ')[0])) + " " + deliveryDateConverter(dateStart).toString('dd MMM').split(' ')[1]}</span> and <span class="toDate">${deliveryDateConverter(dateEnd).toString('dd MMM').split(' ')[2] + nth(parseInt(deliveryDateConverter(dateEnd).toString('dd MMM').split(' ')[0])) + " " + deliveryDateConverter(dateEnd).toString('dd MMM').split(' ')[1]}</span>.`);
+            }
+            jQuery('.est_delivery_date').show();
+          } else{
+            jQuery('.in_stock_label').show()
+            jQuery('.in_stock_label .in_stock_text').text('In stock')
+            jQuery('.est_delivery_date').hide();
+          }
+        }
+        var availability_status = estDeliveryDateArray.find(variant => variant.id == variant_id).product_availability_status;
+        var restock_date = estDeliveryDateArray.find(variant => variant.id == variant_id).restock_date;
+      
+        if (availability_status && availability_status.trim() !== "") {
+          jQuery('.in_stock_label').show();
+          switch (availability_status.toLowerCase()) {
+            case 'discontinued':
+              jQuery('.in_stock_label').addClass('red')
+              jQuery('.in_stock_label .in_stock_text').html('<span>Discontinued</span>');
+              break;
+            case 'no_restock_date':
+              jQuery('.in_stock_label').addClass('red')
+              jQuery('.in_stock_label .in_stock_text').html('<span>Out of stock</span>');
+              break;
+            case 'not_for_sale':
+            case 'poa':
+            case 'custom_product':
+            case 'cte':
+              jQuery('.in_stock_label').hide(); // Just hide the whole label
+              break;
+            default:
+              jQuery('.in_stock_label').hide(); // For any other unknown status
+              break;
+          }
+        }
+      
+        if (restock_date && restock_date.trim() !== "") {
+          jQuery('.in_stock_label').show();
+          jQuery('.in_stock_label').addClass('orange')
+          jQuery('.in_stock_label .in_stock_text').html('Available for backorder');
+        }
+      
+      
+      }
+
+      function normalizeDate(date) {
+        return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+      }
+      
+      function getWeekdaysBetween(date1, date2) {
+        const start = normalizeDate(new Date(Math.min(date1, date2)));
+        const end = normalizeDate(new Date(Math.max(date1, date2)));
+      
+        let count = 0;
+        const current = new Date(start);
+      
+        while (current <= end) {
+          const day = current.getDay();
+          if (day !== 0 && day !== 6) {
+            count++;
+          }
+          current.setDate(current.getDate() + 1);
+        }
+      
+        return count;
+      }
+
+      // QUANTITY CALCULATOR FUNCTION
+      function showCalculator(selectedVariantId){
+           var variant_m2_val = CalculatorData.find(variant => variant.id == selectedVariantId).m2_coverage
+           var quantity_calculator = CalculatorData.find(variant => variant.id == selectedVariantId).quantity_calculator
+           
+           if(variant_m2_val && quantity_calculator !== "" && !quantity_calculator.includes('No')){
+           if(quantity_calculator.includes('Yes (with wastage)')){
+             jQuery('.calculator .calculator_content .wastage_content > label, .calculator .calculator_content .wastage_content > p').show()
+           } else {
+             jQuery('.calculator .calculator_content .wastage_content > label, .calculator .calculator_content .wastage_content > p').hide()
+           }
+           jQuery('.product__info-wrapper .calculator').slideDown()
+           } else {
+             jQuery('.product__info-wrapper .calculator').slideUp()
+           }
+       }
+      function updateToDefault(productQuantity, wastage_text, show_wastage, selectedVariantId){
+           jQuery('.product__info-wrapper .quantity__input').val(productQuantity).change()
+           jQuery('.wastage_content .wastage_text span.m2_val').html(wastage_text);
+            jQuery('.wastage_content .wastage_text span > .qty_field').html(productQuantity)
+           if(show_wastage){
+             jQuery('.wastage_content .wastage_text').slideDown()
+           } else{
+             jQuery('.wastage_content .wastage_text').hide()
+           }
+           jQuery('.calculator .calculator_content .calculate.btn span').hide()
+      }
+      
+      // GET THE METAFIELDS FOR RECOMMENDED PRODUCTS
+      async function relatedProducts(id) {
+        const productId = `gid://shopify/Product/${id}`;
+        const query = `
+          {
+            product(id: "${productId}") {
+              id
+              variants(first: 50) {
+                edges {
+                  node {
+                    id
+                    price {
+                      amount
+                      currencyCode
+                    }
+                    compareAtPrice {
+                      amount
+                      currencyCode
+                    }
+                    metafields(identifiers: [{ namespace: "custom", key: "call_to_enquire" }]) {
+                      namespace
+                      key
+                      value
+                    }
+                  }
+                }
+              }
+            }
+          }`;
+    
+        try {
+            const response = await fetch(`https://${shopifyStore}/api/2024-04/graphql.json`, {
+                method: "POST",
+                headers: {
+                    "X-Shopify-Storefront-Access-Token": accessToken,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ query })
+            });
+    
+            const data = await response.json();
+            let product_detail = {id: 0, is_call_enquire: false}
+    
+            if (data.errors) {
+                console.error("GraphQL Errors:", data.errors);
+            } else {
+                const product_variant = data.data.product?.variants?.edges;
+                const group_products = product_variant.length > 1;
+    
+                if (group_products) {
+                    const sortedVariants = product_variant.sort((a, b) => {
+                        return parseFloat(a.node.price.amount) - parseFloat(b.node.price.amount)
+                    })
+                  
+                    let foundValidVariant = false;
+                
+                    for (const variantEdge of sortedVariants) {
+                        const variant = variantEdge.node;
+                        const callForPrice = variant.metafields[0]?.value === 'true'
+                
+                        if (!callForPrice) {
+                            product_detail = {
+                                id: variant.id,
+                                is_call_enquire: false,
+                                price: variant.price.amount,
+                                compare_price: variant?.compareAtPrice?.amount
+                            };
+                            foundValidVariant = true;
+                            break;
+                        }
+                    }
+                
+                    if (!foundValidVariant) {
+                        product_detail = { id: 0, is_call_enquire: true };
+                    }
+                } else {
+                    if (product_variant[0]?.node.metafields[0] && product_variant[0]?.node.metafields[0]?.value) {
+                        if (product_variant[0]?.node.metafields[0]?.value === 'true') {
+                            product_detail = {id: 0, is_call_enquire: true}
+                        }
+                    }
+                }
+            }
+    
+            return product_detail
+          } catch (error) {
+              console.error("Error fetching metafields:", error);
+              return false;
+          }
+      }
+
+      // Fetch Complementary products
+      async function fetchComplementaryProducts(id) {
+        const query = `
+            {
+                product(id: "${id}") {
+                id
+                title
+                onlineStoreUrl
+                images(first: 10) {
+                    edges {
+                    node {
+                        src
+                        altText
+                    }
+                    }
+                }
+                variants(first: 50) {
+                    edges {
+                    node {
+                        id
+                        title
+                        price {
+                        amount
+                        currencyCode
+                        }
+                        compareAtPrice {
+                        amount
+                        currencyCode
+                        }
+                        image {
+                        src
+                        altText
+                        }
+                        metafields(identifiers: [{ namespace: "custom", key: "call_to_enquire" }]) {
+                        namespace
+                        key
+                        value
+                        }
+                    }
+                    }
+                }
+                }
+            }`;
+    
+        try {
+            const response = await fetch(`https://${shopifyStore}/api/2024-04/graphql.json`, {
+                method: "POST",
+                headers: {
+                    "X-Shopify-Storefront-Access-Token": accessToken,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ query })
+            });
+    
+            const data = await response.json()
+            let html = ''
+            if (data.errors) {
+                console.error("GraphQL Errors:", data.errors);
+            } else {
+                  let is_call_enquire = false
+                  const product = data.data.product;
+                  let product_title = product.title;
+                  let product_url = product.onlineStoreUrl;
+                  let product_images = product.images.edges.map(edge => edge.node.src);
+                  let product_price = product.variants.edges[0].node.price.amount;
+                  let compare_price = product.variants.edges[0].node?.compareAtPrice?.amount;
+                  let product_variant = product?.variants?.edges;
+                  is_call_enquire = product_variant[0].node?.metafields[0]?.value === 'true'
+                  let group_products = product_variant.length > 1
+                  if(group_products){
+                    const variants = product.variants.edges;
+                    const minPrice = variants.reduce((min, current) => {
+                        return parseFloat(current.node.price.amount) < parseFloat(min.node.price.amount) ? current : min;
+                    })
+                    const compareAtPrices = variants.filter(v => v.node?.compareAtPrice?.amount);
+                    const minComparePrice = compareAtPrices.length > 0 
+                        ? compareAtPrices.reduce((min, current) => 
+                            parseFloat(current.node.compareAtPrice.amount) < parseFloat(min.node.compareAtPrice.amount) ? current : min
+                          ) 
+                        : null;
+                    if(minPrice && minPrice?.node?.metafields[0]?.value){
+                        const sortedVariants = product_variant.sort((a, b) => {
+                            return parseFloat(a.node.price.amount) - parseFloat(b.node.price.amount)
+                        })
+                        let foundValidVariant = false
+                        for (const variantEdge of sortedVariants) {
+                          const variant = variantEdge.node;
+                          const callForPrice = variant.metafields[0]?.value === 'true'
+                      
+                          if (!callForPrice) {
+                              product_price = variant?.price?.amount
+                              compare_price = variant?.compareAtPrice?.amount
+                              is_call_enquire = false
+                              foundValidVariant = true
+                              break;
+                          }
+                      }
+                      if (!foundValidVariant) {
+                          is_call_enquire = true
+                      }
+                        
+                    } else {
+                        product_price = minPrice?.node?.price?.amount
+                        compare_price = minComparePrice?.node?.compareAtPrice?.amount
+                    }
+                  }
+                  let truncatedTitle = product.title
+                  let show_sale_price = compare_price && parseFloat(compare_price) > parseFloat(product_price);
+                  if (truncatedTitle.length > 60) {
+                      truncatedTitle = truncatedTitle.substring(0, 60) + "...";
+                  }
+                  html = `
+                      <div class="col-xs-6 col-md-3">
+                        <div class="recommendation-item ${group_products ? 'group_product' : ''} ${is_call_enquire ? 'call_enquire' : ''}">
+                          <a href="${product_url}">
+                              <img src="${product_images[0]}" alt="${product.title}" class="recommendation-image">
+                              <p class="recommendation-title">${truncatedTitle}</p>
+                          </a>
+                          ${show_sale_price ? `
+                            <div class="sale_price">
+                              <p class="recommendation-price exc_vat_price">£${product_price}</p>
+                              <p class="recommendation-price compare_price exc_vat_price">£${compare_price}</p>
+                              
+                              <p class="recommendation-price inc_vat_price">£${((product_price) * 1.2).toFixed(2)}</p>
+                              <p class="recommendation-price compare_price inc_vat_price">£${((compare_price) * 1.2).toFixed(2)}</p>
+                            </div>
+                          ` : `
+                            <div class="regular_price">
+                              <p class="recommendation-price exc_vat_price">£${product_price}</p>
+                              <p class="recommendation-price inc_vat_price">£${(product_price * 1.2).toFixed(2)}</p>
+                            </div>
+                          `}
+                            <a class="make_enquiry" href="/pages/contact" target="_blank">Make an enquiry</a>
+                        </div>
+                      </div>
+                  `;  
+              
+                if (group_products) {
+
+                } else {
+                
+                }
+            }
+    
+            return html
+          } catch (error) {
+              console.error("Error fetching metafields:", error);
+              return false;
+          }
+      }
+
+      jQuery(document).ready(function(){
+          estDeliveryDate(selectedVariantId)
+          showCalculator(selectedVariantId)
+          
+          // QUANTITY CALCULATOR FUNCTION
+          jQuery('.calculator h4').on('click', function(){
+            if (jQuery(this).parent().find('.calculator_content').is(':visible') == true) {
+              jQuery(this).parent().find('.calculator_content').slideUp()
+              jQuery(this).parent('.calculator').removeClass('active')
+            } else{
+              jQuery(this).parent().find('.calculator_content').slideDown()
+              jQuery(this).parent('.calculator').addClass('active')
+            }
+          })
+  
+          jQuery(".calculator .input_fields input[type=number]").on("keypress", function (event) {
+             let charCode = event.which ? event.which : event.keyCode;
+             let currentValue = jQuery(this).val();
+             if (
+                 (charCode < 48 || charCode > 57) && charCode !== 46 
+             ) {
+                 event.preventDefault();
+             }
+             if (charCode === 46 && currentValue.includes(".")) {
+                 event.preventDefault();
+             }
+          })
+        
+         jQuery(".calculator .input_fields input[type=number]").on("paste", function (event) {
+             let pasteData = (event.originalEvent || event).clipboardData.getData('text')
+             if (!/^\d*\.?\d*$/.test(pasteData)) {
+                 event.preventDefault()
+             }
+         });
+         
+         jQuery('.calculator .calculate.btn').on('click', function(){
+           var length = parseFloat(jQuery('.calculator .input_fields input[name="length"]').val())
+           var width = parseFloat(jQuery('.calculator .input_fields input[name="width"]').val())
+           if(length && width){
+             var meter_squer = length *  width;
+             var wastage_text = "";
+             if(meter_squer){
+                 jQuery('.calculator .calculator_content .calculate.btn span').show()
+                 if(window.location.href.split('?variant=').length == 2) {
+                     selectedVariantId = parseInt(window.location.href.split('=')[1])
+                 }
+                 var variant_m2_val = CalculatorData.find(variant => variant.id == selectedVariantId).m2_coverage
+                 wastage_text = meter_squer.toFixed(2) + 'm<sup>2</sup>'
+                 if (jQuery('.calculator .wastage_content input[type="checkbox"]').is(':checked')) {
+                     var m2_ten_percent = meter_squer * 0.10
+                     meter_squer = (meter_squer + m2_ten_percent).toFixed(2)
+                     wastage_text = meter_squer + 'm<sup>2</sup> (inc. 10% wastage)'
+                 }
+                 var productQuantity = Math.ceil(meter_squer / parseFloat(variant_m2_val))
+                 jQuery('.wastage_content .wastage_text span > .default_m2_value').html((productQuantity * parseFloat(variant_m2_val)).toFixed(2) + 'm<sup>2</sup>')
+                 setTimeout(function(){
+                   updateToDefault(productQuantity, wastage_text, true, selectedVariantId)
+                 },500)
+             }
+           }
+         })
+    })
+
+  {% endif %}
+  
+  {% if template == 'cart' %}
+      {% for item in cart.items %}            
+          
+        // EST Delivery Date Array
+        estDeliveryDateArray.push({
+          id: {{ item.id | json }},
+          datestart: {%
+          if item.variant.metafields.custom.estimated_delivery_date %}
+            {% assign date_parts = item.variant.metafields.custom.estimated_delivery_date | split: '-' %}
+            "{{ date_parts[0] }}"
+          {% else %}
+            ""
+          {% endif %},
+          dateend: {%
+          if item.variant.metafields.custom.estimated_delivery_date %}
+            {% assign date_parts = item.variant.metafields.custom.estimated_delivery_date | split: '-' %}
+            "{{ date_parts[1] }}"
+          {% else %}
+            ""
+          {% endif %},
+          restock_date: {% if item.variant.metafields.custom.restocking_date %} "{{ item.variant.metafields.custom.restocking_date}}" {% else %} "" {% endif %}
+        });
+          
+      {% endfor %}
+    
+      // EST Delivery Date Function
+      function estDeliveryDate(){
+          jQuery('#main-cart-items .cart-items tbody tr.cart-item').each(function(item){
+            var matchVariantID = jQuery(this).find('.cart-item__details').find('.cart-item__name').attr('href')
+            if(matchVariantID){
+              matchVariantID = matchVariantID.split('variant=')[1]
+            }
+            const has_item = estDeliveryDateArray.find(item => item.id == matchVariantID)
+            if(has_item){
+              if(has_item.datestart !== "" && has_item.dateend !== ""){
+                jQuery(this).find('.cart-item__details').find(`.cart-item__name[href*="${has_item.id}"]`).siblings('.est_delivery_date').show().find('p strong').html(`Est Delivery between <span class="fromDate">${deliveryDateConverter(has_item?.datestart).toString('dd MMM').split(' ')[2] + nth(parseInt(deliveryDateConverter(has_item?.datestart).toString('dd MMM').split(' ')[0])) + " " + deliveryDateConverter(has_item?.datestart).toString('dd MMM').split(' ')[1]}</span> and <span class="toDate">${deliveryDateConverter(has_item?.dateend).toString('dd MMM').split(' ')[2] + nth(parseInt(deliveryDateConverter(has_item?.dateend).toString('dd MMM').split(' ')[0])) + " " + deliveryDateConverter(has_item?.dateend).toString('dd MMM').split(' ')[1]}</span>.`);
+              }
+            }
+          })
+      }
+    
+  {% endif %}
+</script>

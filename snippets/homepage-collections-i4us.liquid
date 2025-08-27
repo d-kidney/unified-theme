@@ -1,0 +1,124 @@
+{% comment %} Insulation4Us collection list content {% endcomment %}
+
+<ul class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down" role="list">
+  {% assign collection = collections['rigid-insulation'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['mineral-wool'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['radiant-barrier'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['spray-foam'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['insulation-blowing-machines'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['fiberglass'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['ac-units-dehumidifiers'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['polycarbonate-sheets'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['eco-friendly-insulation'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['basement-insulation'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['fakro-attic-ladder'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['roofing-membranes'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+</ul>

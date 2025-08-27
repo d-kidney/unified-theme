@@ -1,0 +1,476 @@
+{% comment %} Tiles4Less custom content sections {% endcomment %}
+
+{% comment %} Custom liquid section: custom_liquid_VFP783 {% endcomment %}
+<div class="custom-liquid-section">
+<a href="https://tiles4less.co.uk/collections/wood-effect-tiles">
+<img src="https://tiles4less.co.uk/cdn/shop/files/T4L_Wood_Effects_Floor_TIles.png?v=1738443970" alt="wood effect floor tiles" class="hp-banner small-hide">
+</a>
+</div>
+
+{% comment %} Custom liquid section: custom_liquid_r9aTPW {% endcomment %}
+<div class="custom-liquid-section">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Reviews</title>
+    <style>
+       
+        .review-container {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            margin: 0 auto;
+        }
+
+        .review-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-header {
+            margin-bottom: 30px;
+        }
+
+        .review-title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 8px;
+        }
+
+        .review-subtitle {
+            font-size: 16px;
+            color: #6b7280;
+            font-weight: 400;
+        }
+
+        .stars-container {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin: 25px 0;
+        }
+
+        .star {
+            width: 32px;
+            height: 32px;
+            background: #10b981;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .star.empty {
+            background: #e5e7eb;
+        }
+
+        .star svg {
+            width: 16px;
+            height: 16px;
+            fill: white;
+        }
+
+        .star.half-star {
+            background: #e5e7eb;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .star.half-star::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: #10b981;
+            border-radius: 6px 0 0 6px;
+            z-index: 1;
+        }
+
+        .star.half-star svg {
+            position: relative;
+            z-index: 2;
+        }
+
+        .rating-info {
+            margin: 20px 0;
+        }
+
+        .rating-score {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+
+        .rating-details {
+            font-size: 17px;
+            font-weight: 600;
+            color: #242627;
+        }
+
+        .review-snippet {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            opacity: 1;
+            transform: translateY(0);
+min-height:300px;
+        }
+
+        .review-snippet.fade-out {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .review-snippet.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .review-text {
+            font-size: 16px;
+            color: #374151;
+            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 12px;
+            white-space: pre-line;
+        }
+
+        .review-author {
+            font-size: 14px;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .progress-indicator {
+            display: flex !important;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 15px;
+            visibility: visible;
+        }
+
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #e5e7eb;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            display: block;
+        }
+
+        .progress-dot.active {
+            background: #10b981;
+        }
+
+        .cta-link {
+            display: inline-block;
+            background: #242627;
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 25px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-link:hover {
+            background: #111827;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Desktop Responsive Design */
+        @media (min-width: 768px) {
+            .review-container {
+                max-width: 600px;
+                padding: 50px;
+            }
+
+            .review-content {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                align-items: start;
+            }
+
+            .review-left {
+                text-align: center;
+            }
+
+            .review-right {
+                text-align: left;
+            }
+
+            .review-snippet {
+                margin: 0 0 25px 0;
+min-height:220px;
+            }
+
+            .review-header {
+                grid-column: 1 / -1;
+                text-align: center;
+                margin-bottom: 40px;
+            }
+
+            .progress-indicator {
+                grid-column: 1 / -1;
+                justify-self: center;
+                margin-top: 20px;
+            }
+
+            .cta-link {
+                grid-column: 1 / -1;
+                align-self: center;
+                justify-self: center;
+                margin-top: 30px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .review-container {
+                max-width: 1300px;
+                padding: 20px 60px 60px;
+            }
+
+            .star {
+                width: 36px;
+                height: 36px;
+            }
+
+            .star svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .review-container {
+                padding: 30px 20px;
+            }
+            
+            .star {
+                width: 28px;
+                height: 28px;
+            }
+
+            .star svg {
+                width: 22px;
+                height: 22px;
+            }
+            
+            .review-title {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="review-container">
+        <div class="review-header">
+            <h1 class="review-title">Customer Reviews</h1>            
+        </div>
+
+        <div class="review-content">
+            <div class="review-left">
+                <div class="stars-container">
+                    <div class="star">
+                        <svg viewBox="0 0 24 24">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                        </svg>
+                    </div>
+                    <div class="star">
+                        <svg viewBox="0 0 24 24">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                        </svg>
+                    </div>
+                    <div class="star">
+                        <svg viewBox="0 0 24 24">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                        </svg>
+                    </div>
+                    <div class="star">
+                        <svg viewBox="0 0 24 24">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                        </svg>
+                    </div>
+                    <div class="star half-star">
+                        <svg viewBox="0 0 24 24">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="rating-info">
+                    <div class="rating-score">4.2 out of 5</div>
+                    <div class="rating-details">Rated Excellent</div>
+                </div>
+            </div>
+
+            <div class="review-right">
+                <div class="review-snippet" id="reviewSnippet">
+                    <div class="review-text">"Tried to find 690 x 240 tiles to match old broken ones, and Tiles4Less were very helpful on the phone, locating the right tiles. That was on a Thursday, and the tiles arrived early Monday morning."</div>
+                    <div class="review-author">— Sarah M.</div>
+                </div>
+                
+                <div class="progress-indicator" id="progressIndicator">
+                    <div class="progress-dot active" onclick="goToReview(0)"></div>
+                    <div class="progress-dot" onclick="goToReview(1)"></div>
+                    <div class="progress-dot" onclick="goToReview(2)"></div>
+                    <div class="progress-dot" onclick="goToReview(3)"></div>
+                    <div class="progress-dot" onclick="goToReview(4)"></div>
+                    <div class="progress-dot" onclick="goToReview(5)"></div>
+                    <div class="progress-dot" onclick="goToReview(6)"></div>
+                </div>
+            </div>
+        </div>
+
+        <a href="/pages/reviews" class="cta-link">View All Reviews</a>
+    </div>
+
+    <script>
+        const reviewSnippets = [
+            {
+                text: "Tried to find 690 x 240 tiles to match old broken ones, and Tiles4Less were very helpful on the phone, locating the right tiles. That was on a Thursday, and the tiles arrived early Monday morning.",
+                author: "Sarah M."
+            },
+            {
+                text: "Very fast feedback on queries and good price.\n\nRyan Hill there was great at sending samples, the order process and support on queries.",
+                author: "Michael Ryan"
+            },
+            {
+                text: "Great service! Very easy to order online, great communications and quick delivery. Tiles came perfectly packaged and delivery was flawless. Would highly recommend.",
+                author: "JWilliam"
+            },
+            {
+                text: "After I placed my order, I contacted the company about a specific delivery request, and they responded quickly and positively. The tiles came quickly, through the agency of a company local to me, and were as described.",
+                author: "Catherine Tailby"
+            },
+            {
+                text: "Online order for Indian sandstone patio slabs. Ordered online after a few questions answered by Darren over the telephone and by email. He was very helpful. Product arrived (on three pallets) within only a few days, delivery driver very personable and helpful.",
+                author: "Amanda T."
+            },
+            {
+                text: "The slabs had been very well packaged in wooden crates, plastic bound on wooden pallets. Excellent quality slabs purchased to lay a patio. No hesitation in recommending this company.",
+                author: "Robert H."
+            },
+            {
+                text: "Superb service and extremely helpful. Will definitely be using Tiles4less on our next refurb.",
+                author: "Julie Culhane"
+            }
+        ];
+
+        let currentReviewIndex = 0;
+        let cyclingInterval;
+
+        function updateProgressIndicator() {
+            const dots = document.querySelectorAll('.progress-dot');
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentReviewIndex);
+            });
+        }
+
+        function updateReview(reviewIndex) {
+            const review = reviewSnippets[reviewIndex];
+            const reviewContainer = document.getElementById('reviewSnippet');
+            
+            // Fade out current review
+            reviewContainer.classList.remove('fade-in');
+            reviewContainer.classList.add('fade-out');
+            
+            setTimeout(() => {
+                reviewContainer.innerHTML = 
+                    '<div class="review-text">"' + review.text + '"</div>' +
+                    '<div class="review-author">— ' + review.author + '</div>';
+                
+                // Fade in new review
+                reviewContainer.classList.remove('fade-out');
+                reviewContainer.classList.add('fade-in');
+                
+                updateProgressIndicator();
+            }, 250);
+        }
+
+        function cycleToNextReview() {
+            currentReviewIndex = (currentReviewIndex + 1) % reviewSnippets.length;
+            updateReview(currentReviewIndex);
+        }
+
+        function goToReview(index) {
+            if (index !== currentReviewIndex) {
+                currentReviewIndex = index;
+                updateReview(currentReviewIndex);
+                // Reset the cycling timer
+                stopCycling();
+                startCycling();
+            }
+        }
+
+        function startCycling() {
+            // Clear any existing interval first
+            stopCycling();
+            cyclingInterval = setInterval(cycleToNextReview, 10000);
+        }
+
+        function stopCycling() {
+            if (cyclingInterval) {
+                clearInterval(cyclingInterval);
+                cyclingInterval = null;
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing reviews...');
+            updateProgressIndicator();
+            startCycling();
+            
+            // Pause cycling when user hovers over the review container
+            const reviewContainer = document.querySelector('.review-container');
+            if (reviewContainer) {
+                reviewContainer.addEventListener('mouseenter', stopCycling);
+                reviewContainer.addEventListener('mouseleave', startCycling);
+            }
+        });
+
+        // Handle page visibility changes to pause/resume cycling
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                stopCycling();
+            } else {
+                startCycling();
+            }
+        });
+    </script>
+</body>
+</html>
+</div>
+
+{% comment %} Custom liquid section: custom_liquid_MV8JeQ {% endcomment %}
+<div class="custom-liquid-section">
+<a href="https://tiles4less.co.uk/products/marble-white-tiles-honed-finish">
+<img src="https://tiles4less.co.uk/cdn/shop/files/Medicea_Marble.png?v=1738443010" alt="marble white tiles" class="hp-banner small-hide">
+</a>
+</div>
+

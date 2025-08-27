@@ -1,0 +1,10 @@
+<!-- Create a mock checkout object to prevent errors from web pixels -->
+<script>
+  window.checkout = {
+    total_price: { amount: "0.00", currency_code: "GBP" },
+    discount_code: null,
+    line_items: []
+  };
+</script>
+
+{% render 'page-enquiry-form' %}

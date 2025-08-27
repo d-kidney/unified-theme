@@ -1,0 +1,8 @@
+{% comment %} Auto-generated dispatcher file {% endcomment %}
+{% render 'store-detection' %}
+
+{% if store_id == 'b4l' or store_id == 'i4l' or store_id == 'i4us' or store_id == 'r4us' or store_id == 't4l' %}
+  {% render 'header-mega-menu_b4l_i4l_i4us_r4us_t4l' %}
+{% elsif store_id == 'bso' %}
+  {% render 'header-mega-menu_bso' %}
+{% endif %}

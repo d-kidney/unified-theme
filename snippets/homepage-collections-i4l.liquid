@@ -1,0 +1,64 @@
+{% comment %} Insulation4Less collection list content {% endcomment %}
+
+<ul class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down" role="list">
+  {% assign collection = collections['loft-insulation'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['pir-insulation'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['acoustic-insulation'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['plasterboard'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['loft-insulation-between-rafters'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+  {% assign collection = collections['breather-membranes'] %}
+  {% if collection != blank %}
+    <li class="collection-list__item grid__item">
+      {% render 'card-collection', 
+        card_collection: collection, 
+        media_aspect_ratio: section.settings.image_ratio,
+        columns: section.settings.columns_desktop 
+      %}
+    </li>
+  {% endif %}
+</ul>

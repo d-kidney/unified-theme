@@ -1,0 +1,47 @@
+{% if product.metafields.custom.key_selling_points %}
+  {% assign ksps_raw = product.metafields.custom.key_selling_points | remove: '["' | remove: '"]' %}
+  {% assign ksps = ksps_raw | split: '","' %}
+  {% assign ksp_count = ksps | size %}
+
+  <li class="ksp-container small-hide{% unless ksp_count == 2 %} ksp-item-full-width{% endunless %}" style="display:no.ne;">
+  {% for ksp in ksps %}
+    {% assign ksp_parts = ksp | split: ':' %}
+
+    {% if ksp_parts.size == 3 %}
+      {% assign icon_key = ksp_parts[0] | strip | downcase %}
+      {% assign ksp_title = ksp_parts[1] | strip %}
+      {% assign ksp_description = ksp_parts[2] | strip %}
+      <div
+        class="ksp-item">
+        {% case icon_key %}
+          {% when 'connection' %}
+          {{ 'icon-connection.svg' | inline_asset_content }}
+          {% when 'warranty' %}
+            {{ 'icon-warranty.svg' | inline_asset_content }}
+          {% when 'shield' %}
+            {{ 'icon-shield.svg' | inline_asset_content }}
+          {% when 'battery' %}
+            {{ 'icon-battery.svg' | inline_asset_content }}
+          {% when 'muscle' %}
+            {{ 'icon-muscle.svg' | inline_asset_content }}
+          {% when 'leaves' %}
+            {{ 'icon-leaves.svg' | inline_asset_content }}
+          {% when 'piggybank' %}
+            {{ 'icon-piggy-bank.svg' | inline_asset_content }}
+          {% when 'tools' %}
+            {{ 'icon-tools.svg' | inline_asset_content }}
+          {% when 'delivery' %}
+            {{ 'icon-fast-delivery-truck.svg' | inline_asset_content }}
+          {% else %}
+            {{ 'icon-tick-circle.svg' | inline_asset_content }}
+        {% endcase %}
+
+        <div>
+          <b>{{ ksp_title }}</b>
+        <p>{{ ksp_description }}</p>
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+  </li>
+{% endif %}

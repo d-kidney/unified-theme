@@ -1,0 +1,104 @@
+{% comment %} Insulation4Us slideshow content {% endcomment %}
+
+<div class="slideshow-wrapper">
+  <slideshow-component
+    class="slideshow"
+    data-layout="{{ 'grid' }}"
+    data-slide-height="{{ 'adapt_image' }}"
+    data-auto-rotate="{{ true }}"
+    data-change-speed="{{ 5 }}"
+  >
+    <div class="slideshow__slide">
+      {% if 'shopify://shop_images/Rmax.png' != blank %}
+        <img src="{{ 'shopify://shop_images/Rmax.png' | image_url }}" alt="Slide {{ 1 }}" loading="lazy">
+      {% endif %}
+      {% if '' != blank or '' != blank %}
+        <div class="slideshow__text-wrapper banner__content {{ 'top-left' }} {{ 'center' }}">
+          {% if '' != blank %}
+            <h2 class="{{ 'h1' }}">{{ '' }}</h2>
+          {% endif %}
+          {% if '' != blank %}
+            <div class="slideshow__subheading">{{ '' }}</div>
+          {% endif %}
+          {% if '' != blank %}
+            <a href="{{ '' }}" class="button {% if false %}button--secondary{% else %}button{% endif %}">
+              {{ '' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if 'shopify://collections/rmax-polyiso' != blank %}
+        <a href="{{ 'shopify://collections/rmax-polyiso' }}" class="slideshow__slide-link" aria-label="Slide link"></a>
+      {% endif %}
+    </div>
+    <div class="slideshow__slide">
+      {% if 'shopify://shop_images/Gallina.png' != blank %}
+        <img src="{{ 'shopify://shop_images/Gallina.png' | image_url }}" alt="Slide {{ 2 }}" loading="lazy">
+      {% endif %}
+      {% if '' != blank or '' != blank %}
+        <div class="slideshow__text-wrapper banner__content {{ 'middle-center' }} {{ 'center' }}">
+          {% if '' != blank %}
+            <h2 class="{{ 'h1' }}">{{ '' }}</h2>
+          {% endif %}
+          {% if '' != blank %}
+            <div class="slideshow__subheading">{{ '' }}</div>
+          {% endif %}
+          {% if '' != blank %}
+            <a href="{{ '' }}" class="button {% if false %}button--secondary{% else %}button{% endif %}">
+              {{ '' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if 'shopify://collections/polycarbonate-sheets' != blank %}
+        <a href="{{ 'shopify://collections/polycarbonate-sheets' }}" class="slideshow__slide-link" aria-label="Slide link"></a>
+      {% endif %}
+    </div>
+    <div class="slideshow__slide">
+      {% if 'shopify://shop_images/Owens_corning.png' != blank %}
+        <img src="{{ 'shopify://shop_images/Owens_corning.png' | image_url }}" alt="Slide {{ 3 }}" loading="lazy">
+      {% endif %}
+      {% if '' != blank or '' != blank %}
+        <div class="slideshow__text-wrapper banner__content {{ 'middle-center' }} {{ 'center' }}">
+          {% if '' != blank %}
+            <h2 class="{{ 'h1' }}">{{ '' }}</h2>
+          {% endif %}
+          {% if '' != blank %}
+            <div class="slideshow__subheading">{{ '' }}</div>
+          {% endif %}
+          {% if '' != blank %}
+            <a href="{{ '' }}" class="button {% if false %}button--secondary{% else %}button{% endif %}">
+              {{ '' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if 'shopify://collections/owens-corning' != blank %}
+        <a href="{{ 'shopify://collections/owens-corning' }}" class="slideshow__slide-link" aria-label="Slide link"></a>
+      {% endif %}
+    </div>
+    <div class="slideshow__slide">
+      {% if 'shopify://shop_images/Fakro.png' != blank %}
+        <img src="{{ 'shopify://shop_images/Fakro.png' | image_url }}" alt="Slide {{ 4 }}" loading="lazy">
+      {% endif %}
+      {% if '' != blank or '' != blank %}
+        <div class="slideshow__text-wrapper banner__content {{ 'middle-center' }} {{ 'center' }}">
+          {% if '' != blank %}
+            <h2 class="{{ 'h1' }}">{{ '' }}</h2>
+          {% endif %}
+          {% if '' != blank %}
+            <div class="slideshow__subheading">{{ '' }}</div>
+          {% endif %}
+          {% if '' != blank %}
+            <a href="{{ '' }}" class="button {% if false %}button--secondary{% else %}button{% endif %}">
+              {{ '' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if 'shopify://collections/fakro-attic-ladder' != blank %}
+        <a href="{{ 'shopify://collections/fakro-attic-ladder' }}" class="slideshow__slide-link" aria-label="Slide link"></a>
+      {% endif %}
+    </div>
+  </slideshow-component>
+</div>

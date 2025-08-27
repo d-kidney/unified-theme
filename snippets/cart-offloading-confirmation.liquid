@@ -1,0 +1,35 @@
+{% assign vendor_match = 'false' %}
+                {% for item in cart.items %}
+                  {% if vendor_match == 'matched' %}{% break %}{% endif %}
+                  {% if item.vendor == 'B4L Sheet Materials' %}
+                    {% assign vendor_match = 'matched' %}
+                    <div class="cart-attribute__field offload_confirmation">
+                      <b>Buying <span>Sheet Materials</span>?</b>
+                      <label
+                        >Do you have mechanical off-load on site? this will factor into how we approach your delivery.</label
+                      >
+                      <input
+                        required
+                        class="required"
+                        type="radio"
+                        name="attributes[offload_confirmation]"
+                        value="yes"
+                        {% if cart.attributes.offload_confirmation == 'yes' %}
+                          checked
+                        {% endif %}
+                      >
+                      <span>yes</span>
+                      <input
+                        required
+                        class="required"
+                        type="radio"
+                        name="attributes[offload_confirmation]"
+                        value="no"
+                        {% if cart.attributes.offload_confirmation == 'no' %}
+                          checked
+                        {% endif %}
+                      >
+                      <span>no</span>
+                    </div>
+                  {% endif %}
+                {% endfor %}

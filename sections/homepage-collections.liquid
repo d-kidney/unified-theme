@@ -1,0 +1,188 @@
+{% comment %} Homepage collection list with store-specific collections {% endcomment %}
+{% render 'store-detection' %}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="collection-list-wrapper page-width section-{{ section.id }}-padding">
+  {% if section.settings.title != blank %}
+    <h2 class="collection-list-title {{ section.settings.heading_size }}">
+      {{ section.settings.title }}
+    </h2>
+  {% endif %}
+
+  {% comment %} Define store-specific collections {% endcomment %}
+  {% case store_id %}
+    {% when 'b4l' %}
+      {% assign featured_collections = 'doors,bathrooms,decking,pressure-washers,roofing,cladding-boards' | split: ',' %}
+    {% when 't4l' %}
+      {% assign featured_collections = 'bathroom-tiles,kitchen-tiles,floor-tiles,wall-tiles,outdoor-tiles,tile-accessories' | split: ',' %}
+    {% when 'bso' %}
+      {% assign featured_collections = 'doors,building-materials,bathroom,paving,roofing,tiles' | split: ',' %}
+    {% when 'i4l' %}
+      {% assign featured_collections = 'loft-insulation,cavity-wall-insulation,floor-insulation,pipe-insulation,insulation-boards,accessories' | split: ',' %}
+    {% when 'i4us' %}
+      {% assign featured_collections = 'fiberglass-insulation,foam-board-insulation,spray-foam,radiant-barriers,vapor-barriers,insulation-tools' | split: ',' %}
+    {% when 'r4us' %}
+      {% assign featured_collections = 'shingles,metal-roofing,flat-roofing,roofing-underlayment,gutters,roofing-tools' | split: ',' %}
+    {% else %}
+      {% assign featured_collections = 'all' | split: ',' %}
+  {% endcase %}
+
+  <ul class="collection-list grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down" role="list">
+    {% for collection_handle in featured_collections %}
+      {% assign collection = collections[collection_handle] %}
+      {% if collection != blank %}
+        <li class="collection-list__item grid__item">
+          {% render 'card-collection', 
+            card_collection: collection, 
+            media_aspect_ratio: section.settings.image_ratio,
+            columns: section.settings.columns_desktop 
+          %}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+
+  {% if section.settings.show_view_all %}
+    <div class="center collection-list-view-all">
+      <a href="{{ routes.collections_url }}" class="button">
+        {{ 'sections.collection_list.view_all' | t }}
+      </a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Homepage Collections",
+  "tag": "section",
+  "class": "homepage-collections",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Popular Categories"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        }
+      ],
+      "default": "square",
+      "label": "Image ratio"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 6,
+      "label": "Number of columns on desktop"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "options": [
+        {
+          "value": "1",
+          "label": "1 column"
+        },
+        {
+          "value": "2",
+          "label": "2 columns"
+        }
+      ],
+      "default": "2",
+      "label": "Number of columns on mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show \"View all\" button",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "swipe_on_mobile",
+      "default": false,
+      "label": "Enable swipe on mobile"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Section padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 28
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 20
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,62 @@
+{% comment %}
+  Renders the call-for-price functionality for both price and buy buttons.
+  
+  Accepts:
+  - section_id: {String} ID of the section
+  - block: {Object} Block information for shopify_attributes
+  - type: {String} Either 'price' or 'buy-buttons' to determine what to render
+  
+  Usage:
+  {% render 'custom-product-availability', 
+    section_id: section.id,
+    block: block,
+    type: 'price' %}
+  
+  or
+  
+  {% render 'custom-product-availability', 
+    section_id: section.id,
+    block: block,
+    type: 'buy-buttons' %}
+{% endcomment %}
+
+{% if type == 'price' %}
+
+  {% if template.name == 'product' %}
+    <div id="price-{{ section_id }}" class="product-availability-notice price" role="status" {{ block.shopify_attributes }}>
+      <div class="call_for_pice call_for_pice_text">
+        <p>
+          {% if product.variants.size > 1 %}
+            The option you have selected may be in short supply.
+          {% else %}
+            This product may be in short supply.
+          {% endif %}
+          To make an enquiry please email us at
+          <a href="mailto:sales@i4lgroup.co.uk">sales@i4lgroup.co.uk</a>.
+        </p>
+      </div>
+    </div>
+  {% else %}
+    <div id="price-{{ section_id }}" class="product-availability-notice price" role="status" {{ block.shopify_attributes }}>
+      <a class="make_enquiry" href="/pages/contact-us" target="_blank">Make an enquiry</a>
+    </div>
+  {% endif %}
+{% elsif type == 'buy-buttons' %}
+  <div {{ block.shopify_attributes }}>
+    <product-form
+      class="product-form"
+      data-hide-errors="false"
+      data-section-id="{{ section.id }}"
+    >
+      <div class="product-availability-notice buy-buttons">
+  
+        <div class="product-form__buttons">
+       <div class="call_for_pice product-form__buttons">
+                  
+                  <a class="button button--full-width button--default" href="mailto:sales@i4lgroup.co.uk">✉ Email Us</a>
+                </div>
+        </div>
+      </div>
+    </product-form>
+  </div>
+{% endif %}

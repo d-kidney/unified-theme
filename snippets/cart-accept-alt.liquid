@@ -1,0 +1,42 @@
+{% assign tag_match = 'false' %}
+{% for item in cart.items %}
+  {% if tag_match == 'matched' %}
+    {% break %}
+  {% endif %}
+
+  {% if item.product.tags contains 'accept-alt-pir' %}
+    {% assign tag_match = 'matched' %}
+
+    <div class="cart-attribute__field accept_alt">
+      <b>Buying <span>PIR</span>?</b>
+      <label for="accept-alt">
+        Would you also accept an equivalent alternative brand that achieves the same U-Value if it can be delivered
+        quicker?
+      </label>
+      <input
+        required
+        id="accept-alt-yes"
+        class="required"
+        type="radio"
+        name="attributes[accept_alt]"
+        value="yes"
+        {% if cart.attributes.accept_alt == 'yes' %}
+          checked
+        {% endif %}
+      >
+      <span>yes</span>
+      <input
+        required
+        id="accept-alt-no"
+        class="required"
+        type="radio"
+        name="attributes[accept_alt]"
+        value="no"
+        {% if cart.attributes.accept_alt == 'no' %}
+          checked
+        {% endif %}
+      >
+      <span>no</span>
+    </div>
+  {% endif %}
+{% endfor %}

@@ -1,0 +1,178 @@
+{% render 'store-detection' %}
+
+{% comment %}
+  Renders enquiry drawer
+
+  Usage:
+  {% render 'enquiry-drawer' %}
+{% endcomment %}
+
+{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
+{% if store_id == 'b4l' or store_id == 'bso' or store_id == 'i4l' or store_id == 'i4us' or store_id == 'r4us' %}
+  {{ 'component-card_b4l_bso_i4l_i4us_r4us.css' | asset_url | stylesheet_tag }}
+{% elsif store_id == 't4l' %}
+  {{ 'component-card_t4l.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+<script src="{{ 'enquiry-config.js' | asset_url }}"></script>
+<script src="{{ 'enquiry.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+
+<style>
+  .drawer {
+    visibility: hidden;
+  }
+  
+  /* Quantity display styles for read-only quantity in drawer */
+  .quantity-display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.5rem 0;
+  }
+  
+  .quantity-label {
+    font-weight: 500;
+    font-size: 1rem;
+  }
+  
+  .quantity-info {
+    font-size: 0.8rem;
+    color: rgba(var(--color-foreground), 0.75);
+    margin-top: 0.2rem;
+  }
+</style>
+
+<enquiry-drawer class="drawer{% if enquiry == empty %} is-empty{% endif %}">
+  <div id="EnquiryDrawer" class="cart-drawer">
+    <div id="EnquiryDrawer-Overlay" class="cart-drawer__overlay"></div>
+    <div
+      class="drawer__inner gradient color-{{ settings.cart_color_scheme }}"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Enquiry"
+      tabindex="-1"
+    >
+      {%- if enquiry == empty -%}
+        <div class="drawer__inner-empty">
+          <div class="cart-drawer__warnings center">
+            <div class="cart-drawer__empty-content">
+              <h2 class="cart__empty-text">Your enquiry is empty</h2>
+              <button
+                class="drawer__close"
+                type="button"
+                onclick="this.closest('enquiry-drawer').close()"
+                aria-label="{{ 'accessibility.close' | t }}"
+              >
+                <span class="svg-wrapper">
+                  {{- 'icon-close.svg' | inline_asset_content -}}
+                </span>
+              </button>
+              <a href="{{ routes.all_products_collection_url }}" class="button">
+                {{ 'general.continue_shopping' | t }}
+              </a>
+
+              {%- if shop.customer_accounts_enabled and customer == null -%}
+                <p class="cart__login-title h3">Have an account?</p>
+                <p class="cart__login-paragraph">
+                  <a href="{{ routes.account_login_url }}" class="link underlined-link">Log in</a> to check out faster.
+                </p>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+      <div class="drawer__header">
+        <h2 class="drawer__heading">Your Enquiry</h2>
+        <button
+          class="drawer__close"
+          type="button"
+          onclick="this.closest('enquiry-drawer').close()"
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          <span class="svg-wrapper">
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </span>
+        </button>
+      </div>
+      <enquiry-drawer-items
+        {% if enquiry == empty %}
+          class=" is-empty"
+        {% endif %}
+      >
+        <form
+          action="/pages/enquiry-form"
+          id="EnquiryDrawer-Form"
+          class="cart__contents cart-drawer__form"
+          method="get"
+        >
+          <div id="EnquiryDrawer-Items" class="drawer__contents js-contents">
+            {%- if enquiry != empty -%}
+              <div class="drawer__cart-items-wrapper">
+                <table class="cart-items" role="table">
+                  <thead role="rowgroup">
+                    <tr role="row">
+                      <th id="EnquiryDrawer-ColumnProductImage" role="columnheader">
+                        <span class="visually-hidden">Product Image</span>
+                      </th>
+                      <th
+                        id="EnquiryDrawer-ColumnProduct"
+                        class="caption-with-letter-spacing"
+                        scope="col"
+                        role="columnheader"
+                      >
+                        Product
+                      </th>
+                      <th id="EnquiryDrawer-ColumnQuantity" role="columnheader">
+                        <span class="visually-hidden">Quantity</span>
+                      </th>
+                    </tr>
+                  </thead>
+
+                  <tbody role="rowgroup" id="EnquiryItems">
+                    <!-- Enquiry items will be dynamically inserted here by JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            {%- endif -%}
+            <p id="EnquiryDrawer-LiveRegionText" class="visually-hidden" role="status"></p>
+            <p id="EnquiryDrawer-LineItemStatus" class="visually-hidden" aria-hidden="true" role="status">
+              {{ 'accessibility.loading' | t }}
+            </p>
+          </div>
+          <div id="EnquiryDrawer-Errors" role="alert"></div>
+        </form>
+      </enquiry-drawer-items>
+      <div class="drawer__footer">
+        <details id="Details-EnquiryDrawer">
+          <summary>
+            <span class="summary__title">
+              Add a note
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </span>
+          </summary>
+          <enquiry-note class="field">
+            <label class="visually-hidden" for="EnquiryDrawer-Note">Add a note to your enquiry</label>
+            <textarea
+              id="EnquiryDrawer-Note"
+              class="text-area text-area--resize-vertical field__input"
+              name="note"
+              placeholder="Add a note to your enquiry"
+            ></textarea>
+          </enquiry-note>
+        </details>
+
+        <div class="cart__ctas">
+          <button
+            type="button"
+            id="EnquiryDrawer-Submit"
+            class="cart__checkout-button button"
+            onclick="window.location.href='/pages/enquiry-form'"
+          >
+            Submit Enquiry
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</enquiry-drawer>

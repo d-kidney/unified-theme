@@ -1,0 +1,44 @@
+<div class="collection-long-desc page-width" id="category-desc">
+          {% if collection.metafields.global.full_description %}
+            {{ collection.metafields.global.full_description }}
+          {% endif %}
+
+          {% if collection.metafields.global.seo_intro %}
+            <div class="placeholder-intro">{{ collection.metafields.global.seo_intro }}</div>
+          {% endif %}
+
+          {% if collection.metafields.global.seo_main %}
+            <div class="placeholder-main rte container">
+              <input class="sd-input" id="sd-ch-2" type="checkbox">
+              <label class="sd-label" for="sd-ch-2"></label>
+              <div class="sd-text placeholder-sd-text">
+                {{ collection.metafields.global.seo_main }}
+              </div>
+            </div>
+          {% endif %}
+
+          {% if collection.metafields.global.full_description %}
+            <div class="read_more">Read More</div>
+          {% endif %}
+</div>
+
+<!-- CLS Issue Fix - Collection Long Description -->
+<script>
+  $(function() {
+    setTimeout(function(){
+    	$(".collection-long-desc").addClass('collapse');
+    },20000);
+
+    $(".collection-long-desc .read_more").on('click', function(){
+      if($(this).parent('.collection-long-desc.collapse').length){
+      	$(this).text('Read Less');
+        	$(this).parent('.collection-long-desc').removeClass('collapse');
+      	$(this).parent('.collection-long-desc > *').slideDown(400);
+      } else{
+      	$(this).parent('.collection-long-desc').addClass('collapse');
+      	$(this).parent('.collection-long-desc > *').slideUp(400);
+        	$(this).text('Read More');
+      }
+    });
+  });
+</script>

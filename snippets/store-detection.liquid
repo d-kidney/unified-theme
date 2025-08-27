@@ -1,0 +1,19 @@
+{%- comment -%}
+  Store Detection Snippet
+  Sets the store_id variable based on shop.permanent_domain
+{%- endcomment -%}
+
+{%- assign store_id = 'unknown' -%}
+{%- if shop.permanent_domain contains 'build4less' -%}
+  {%- assign store_id = 'b4l' -%}
+{%- elsif shop.permanent_domain contains 'tiles4less' -%}
+  {%- assign store_id = 't4l' -%}
+{%- elsif shop.permanent_domain contains 'building-supplies-online' or shop.permanent_domain contains 'buildingsuppliesonline' -%}
+  {%- assign store_id = 'bso' -%}
+{%- elsif shop.permanent_domain contains 'insulation4less' -%}
+  {%- assign store_id = 'i4l' -%}
+{%- elsif shop.permanent_domain contains 'insulation4us' -%}
+  {%- assign store_id = 'i4us' -%}
+{%- elsif shop.permanent_domain contains 'roofing4us' -%}
+  {%- assign store_id = 'r4us' -%}
+{%- endif -%}

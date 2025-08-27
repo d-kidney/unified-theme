@@ -1,0 +1,59 @@
+{% comment %}
+  Renders enquiry notification
+
+  Accepts:
+  - color_scheme: {String} sets the color scheme of the notification (optional)
+  - desktop_menu_type: {String} passes the desktop menu type which allows us to use the right css class (optional)
+
+  Usage:
+  {% render 'enquiry-notification' %}
+{% endcomment %}
+
+<script src="{{ 'enquiry-config.js' | asset_url }}"></script>
+<script src="{{ 'enquiry.js' | asset_url }}" defer="defer"></script>
+
+<enquiry-notification>
+  <div class="cart-notification-wrapper{% if desktop_menu_type != 'drawer' %} page-width{% endif %}">
+    <div
+      id="enquiry-notification"
+      class="cart-notification focus-inset{% if color_scheme %} color-{{ color_scheme }} gradient{% endif %}"
+      aria-modal="true"
+      aria-label="Item added to enquiry"
+      role="dialog"
+      tabindex="-1"
+    >
+      <div class="cart-notification__header">
+        <h2 class="cart-notification__heading caption-large text-body">
+          {{- 'icon-checkmark.svg' | inline_asset_content -}}
+          Item added to enquiry <a href="/pages/enquiry-form" class="link">Edit enquiry</a>
+        </h2>
+        <button
+          type="button"
+          class="cart-notification__close modal__close-button link link--text focus-inset"
+          aria-label="{{ 'accessibility.close' | t }}"
+        >
+          <span class="svg-wrapper">
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </span>
+        </button>
+      </div>
+      <div class="cart-notification__links">
+        <button type="button" class="link button-label">{{ 'general.continue_shopping' | t }}</button>
+        <a
+          href="/pages/enquiry-form"
+          id="enquiry-notification-button"
+          class="button"
+        >
+          View Enquiry
+        </a>
+      </div>
+      
+      <div id="enquiry-notification-product" class="cart-notification-product"></div>
+    </div>
+  </div>
+</enquiry-notification>
+{% style %}
+  #enquiry-notification {
+    display: none;
+  }
+{% endstyle %}

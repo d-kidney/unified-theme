@@ -1,0 +1,12 @@
+{% comment %} Auto-generated dispatcher file {% endcomment %}
+{% render 'store-detection' %}
+
+{% if store_id == 'b4l' or store_id == 't4l' %}
+  {% render 'reviews-nugget_b4l_t4l' %}
+{% elsif store_id == 'i4l' %}
+  {% render 'reviews-nugget_i4l' %}
+{% elsif store_id == 'i4us' %}
+  {% render 'reviews-nugget_i4us' %}
+{% elsif store_id == 'r4us' %}
+  {% render 'reviews-nugget_r4us' %}
+{% endif %}

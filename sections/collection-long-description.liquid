@@ -1,0 +1,43 @@
+{% if collection.metafields.global['alt-title'] %}
+  <h1 class="collection-hero__title page-width alt">
+    {{- collection.metafields.global['alt-title'] | escape -}}
+  </h1>
+{% endif %}
+
+{% if collection.metafields.global.full_description %}
+  {% render 'collection-long-description' %}
+{% endif %}
+
+{% schema %}
+{
+  "name": "Long Description",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Long Description"
+    }
+  ]
+}
+{% endschema %}

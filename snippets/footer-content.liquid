@@ -1,0 +1,242 @@
+{% comment %}
+  Store-specific footer content
+  Handles all footer variations including contact info, linklists, and partner sites
+{% endcomment %}
+
+{% render 'store-detection' %}
+
+{% comment %}Partner Sites Section (all stores except BSO has different format){% endcomment %}
+{% if store_id != 'bso' %}
+<div class="footer-global col-12">
+  <div class="page-width">
+    <div class="col-md-4 fg-title">Explore more across our partner sites.</div>
+
+    <div class="site-footer__item col-md-2">
+      <div class="fg-img-container">
+        <a href="https://build4less.co.uk/" target="_blank">
+          <img class="js lazyautosizes ls-is-cached lazyloaded" 
+               src="https://cdn.shopify.com/s/files/1/0579/4807/8277/files/b4l-150x60-trans.png?v=1681484473">
+        </a>
+      </div>
+    </div>
+
+    <div class="site-footer__item col-md-3">
+      <div class="fg-img-container">
+        <a href="https://insulation4less.co.uk/" target="_blank">
+          <img class="js lazyautosizes ls-is-cached lazyloaded"
+               src="https://cdn.shopify.com/s/files/1/0579/4807/8277/files/i4l-240x60-trans.png?v=1681484780">
+        </a>
+      </div>
+    </div>
+
+    <div class="site-footer__item col-md-2">
+      <div class="fg-img-container">
+        <a href="https://tiles4less.co.uk/" target="_blank">
+          <img class="js lazyautosizes ls-is-cached lazyloaded"
+               src="https://cdn.shopify.com/s/files/1/0579/4807/8277/files/t4l-150x60-trans.png?v=1681484473">
+        </a>
+      </div>
+    </div>
+
+    <div class="site-footer__item col-md-1">
+      <div class="fg-img-container fg-img-bso">
+        <a href="https://www.building-supplies-online.co.uk" target="_blank">
+          <img class="js lazyautosizes ls-is-cached lazyloaded"
+               src="https://cdn.shopify.com/s/files/1/0579/4807/8277/files/bso-80x60-trans.png?v=1681484780">
+        </a>
+      </div>
+    </div>
+    
+    {% if shop.metaobjects.global.build4less['fg-col-1'] != blank %}
+    <div class="fg-list">
+      <div class="fg-list-container">
+        {% if shop.metaobjects.global.build4less['fg-col-1'] != blank %}
+          {{ shop.metaobjects.global.build4less['fg-col-1'] }}
+        {% endif %}
+      </div>
+
+      <div class="fg-list-container">
+        {% if shop.metaobjects.global.build4less['fg-col-2'] != blank %}
+          {{ shop.metaobjects.global.build4less['fg-col-2'] }}
+        {% endif %}
+      </div>
+
+      <div class="fg-list-container">
+        {% if shop.metaobjects.global.build4less['fg-col-3'] != blank %}
+          {{ shop.metaobjects.global.build4less['fg-col-3'] }}
+        {% endif %}
+      </div>
+
+      <div class="fg-list-container">
+        {% if shop.metaobjects.global.build4less['fg-col-4'] != blank %}
+          {{ shop.metaobjects.global.build4less['fg-col-4'] }}
+        {% endif %}
+      </div>
+
+      <div class="fg-list-container">
+        {% if shop.metaobjects.global.build4less['fg-col-5'] != blank %}
+          {{ shop.metaobjects.global.build4less['fg-col-5'] }}
+        {% endif %}
+      </div>
+      <div class="fg-notice">ⓘ  The above links will open in a new tab and navigate you away from this site and towards one of our partner sites.</div>
+      <div class="read_more">Hide Partner Links</div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
+
+{% comment %}Footer Links Section{% endcomment %}
+<div class="footer-links page-width">
+  {% case store_id %}
+    {% when 'bso' %}
+      {% comment %}BSO has different structure{% endcomment %}
+      <div class="col-xs-12 col-md-3">
+        <h3 class="footer-heading">Popular Categories</h3>
+        <ul>
+          {% for link in linklists.footer.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="col-xs-12 col-md-3">
+        <h3 class="footer-heading">Customer Care</h3>
+        <ul>
+          {% for link in linklists.customer-care.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="col-xs-12 col-md-3">
+        <h3 class="footer-heading">Contact Us</h3>
+        <ul>
+          <li>Call us:<br><a href="tel:02039362839">✆ 020 3936 2839</a></li>
+          or
+          <li><a href="/pages/contact-us">✉ Email us</a></li>
+        </ul>
+      </div>
+
+      <div class="col-xs-12 col-md-3">
+        <h3 class="footer-heading">Our Family</h3>
+        <a href="https://insulation4less.co.uk" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0845/8443/1893/files/i4l_220x70_4449e559-b83d-4c3a-bd63-9dee623c14f4.png?v=1738239269" alt="" width="220" height="70">
+        </a> 
+        <a href="https://build4less.co.uk" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0845/8443/1893/files/b4l_220x70_fe07fb09-b93e-4407-826a-dcfb26b100e1.png?v=1738239270" alt="" width="220" height="70">
+        </a> 
+        <a href="https://tiles4less.co.uk" target="_blank">
+          <img src="https://cdn.shopify.com/s/files/1/0845/8443/1893/files/t4l_220x70_49ff3877-ca37-45c3-ba84-5f5b51519202.png?v=1738239268" alt="" width="220" height="70">
+        </a>
+      </div>
+
+    {% else %}
+      {% comment %}Standard layout for other stores{% endcomment %}
+      <div class="col-xs-12 col-md-4">
+        <h3 class="footer-heading">About Us</h3>
+        <ul>
+          {% for link in linklists.about-us.links %}
+            <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="col-xs-12 col-md-4">
+        <h3 class="footer-heading">Customer Care</h3>
+        <ul>
+          {% if store_id == 'r4us' %}
+            {% for link in linklists.customer-centre.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          {% else %}
+            {% for link in linklists.customer-care.links %}
+              <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
+          {% endif %}
+        </ul>
+      </div>
+
+      <div class="col-xs-12 col-md-4">
+        <h3 class="footer-heading">Contact Us</h3>
+        <ul>
+          {% case store_id %}
+            {% when 'b4l' %}
+              <li>Call us:<br><a href="tel:020-3481-1978">✆ 020-3481-1978</a></li>
+              or
+              <li><a href="/pages/contact-us">✉ Email us</a></li>
+
+            {% when 't4l' %}
+              <li>Call us:<br><a href="tel:+4420-4571-0589">✆ 020-4571-0589</a></li>
+              or
+              <li><a href="/pages/contact-us">✉ Email us</a></li>
+
+            {% when 'i4l' %}
+              <li>Call us now:<br><a href="tel:020-3582-6399">✆ 020-3582-6399</a></li>
+              or
+              <li><a href="/pages/contact-us">✉  Email us</a></li>
+
+            {% when 'i4us' %}
+              <li>Call us:<br>
+                <p>
+                  <strong>Florida: </strong> <a href="tel:786-224-0029" target="_blank" title="tel:786-224-0029" aria-describedby="a11y-new-window-external-message" rel="null noopener">786-224-0029</a><br>
+                  <strong>New York: </strong> <a href="tel:646-741-2417" target="_blank" title="tel:646-741-2417" aria-describedby="a11y-new-window-external-message" rel="null noopener">646-741-2417</a><br>
+                  <strong>Texas:</strong> <a href="tel:281-657-1443" target="_blank" title="tel:281-657-1443" aria-describedby="a11y-new-window-external-message" rel="null noopener"> 281-657-1443</a><br>
+                  <strong>San Fran: </strong> <a href="tel:415-527-0855" target="_blank" title="tel:415-527-0855" aria-describedby="a11y-new-window-external-message" rel="null noopener">415-527-0855</a>
+                </p>
+                or<br>
+                <a href="/pages/contact-us">✉ Email us</a>
+              </li>
+
+            {% when 'r4us' %}
+              <li>Call us:<br>
+                <p>
+                  <strong>Florida: </strong> <a href="tel:786-224-0029" target="_blank" title="tel:786-224-0029" aria-describedby="a11y-new-window-external-message" rel="null noopener">786-224-0029</a><br>
+                  <strong>New York: </strong> <a href="tel:646-741-2417" target="_blank" title="tel:646-741-2417" aria-describedby="a11y-new-window-external-message" rel="null noopener">646-741-2417</a><br>
+                  <strong>Texas:</strong> <a href="tel:281-657-1443" target="_blank" title="tel:281-657-1443" aria-describedby="a11y-new-window-external-message" rel="null noopener"> 281-657-1443</a><br>
+                  <strong>San Fran: </strong> <a href="tel:415-527-0855" target="_blank" title="tel:415-527-0855" aria-describedby="a11y-new-window-external-message" rel="null noopener">415-527-0855</a><br>
+                  or
+                </p>
+                <li><a href="/pages/contact-us">✉ Email us</a></li>
+              </li>
+          {% endcase %}
+        </ul>
+      </div>
+  {% endcase %}
+</div>
+
+{% comment %}Price Increases Section - only for Build4Less{% endcomment %}
+{% if store_id == 'b4l' %}
+<div class="footer-increases">
+  <div class="page-width">
+    <div class="col-12 col-md-8">
+      <span>Keep up-to-date on all future manufacturer price increases</span>
+    </div>
+    <div class="col-12 col-md-4">
+      <a href="https://build4less.co.uk/pages/price-updates" class="btn" target="_blank">View price increases</a>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% comment %}Footer Bottom with Legal Links and Address{% endcomment %}
+<div class="footer-bottom">
+  <ul>
+    {% if store_id == 'bso' %}
+      {% for link in linklists.legal.links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+    {% else %}
+      {% for link in linklists.legal-links.links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+    {% endif %}
+  </ul>
+  <span class="footer-address"> | 
+    {% if store_id == 'i4us' or store_id == 'r4us' %}
+      <strong>Head Office:</strong> Build4less LLC, 1201 N Orange Street, Suite 700 Wilmington DE 19801
+    {% else %}
+      Building Supplies Online, 3rd Floor, 207 Regent Street, London, W1B 3HH, England
+    {% endif %}
+  </span>
+</div>

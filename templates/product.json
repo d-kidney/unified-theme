@@ -1,0 +1,163 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "sku": {
+          "type": "sku",
+          "settings": {
+            "text_style": "body"
+          }
+        },
+        "product_star_rating": {
+          "type": "product_star_rating",
+          "settings": {}
+        },
+        "delivery_text": {
+          "type": "delivery_text",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "in_stock_label": {
+          "type": "in_stock_label",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "klarna_messaging": {
+          "type": "shopify://apps/klarna-on-site-messaging/blocks/app-block/b95936a9-74b6-4a95-8103-6a1b6459c25e",
+          "settings": {
+            "data_key": "credit-promotion-auto-size",
+            "theme": "default",
+            "topPadding": "0",
+            "bottomPadding": "10",
+            "messagePrefix": ""
+          }
+        },
+        "product_pro_contractor": {
+          "type": "product_pro_contractor",
+          "settings": {}
+        },
+        "icon_with_text": {
+          "type": "icon-with-text",
+          "settings": {
+            "layout": "vertical",
+            "icon_1": "box",
+            "heading_1": "Shipping protection for peace of mind",
+            "icon_2": "stopwatch",
+            "heading_2": "Fast processing and delivery",
+            "icon_3": "truck",
+            "heading_3": "Flexible delivery options"
+          }
+        },
+        "reviews_nugget": {
+          "type": "reviews_nugget",
+          "settings": {}
+        },
+        "delivery_banner_b4l": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"del-promo-container\">\n<img src=\"https://cdn.shopify.com/s/files/1/0222/7290/1216/files/400_Ex_Vat_ae641013-07e0-4c99-ab32-c05849cd944b.png?v=1748522786\" class=\"exc_vat_price\"  style=\"width:100%; max-width:440px;\">\n\n<img src=\"https://cdn.shopify.com/s/files/1/0222/7290/1216/files/480_Inc_Vat_2.png?v=1748522786\" class=\"inc_vat_price\"  style=\"width:100%; max-width:440px;\">\n</div>"
+          }
+        },
+        "delivery_banner_bso": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<div class=\"del-promo-container\">\n<img src=\"https://cdn.shopify.com/s/files/1/0222/7290/1216/files/BSO_350_Ex_Vat.png?v=1744627887\" class=\"exc_vat_price\" style=\"width:100%; max-width:440px;\">\n\n<img src=\"https://cdn.shopify.com/s/files/1/0222/7290/1216/files/BSO_Inc_Vat.png?v=1744627887\" class=\"inc_vat_price\" style=\"width:100%; max-width:440px;\">\n</div>"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      }
+    },
+    "product-why-buy-from-us": {
+      "type": "product-why-buy-from-us",
+      "settings": {}
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 4,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "product-recently-viewed": {
+      "type": "product-recently-viewed",
+      "settings": {
+        "hide_if_empty": true,
+        "title": "Recently viewed",
+        "hide_if_one": true,
+        "products_to_show": 6,
+        "columns_desktop": 6,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product-why-buy-from-us",
+    "related-products",
+    "product-recently-viewed"
+  ]
+}

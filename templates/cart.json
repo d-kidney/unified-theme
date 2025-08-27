@@ -1,0 +1,49 @@
+{
+  "sections": {
+    "cart-items": {
+      "type": "main-cart-items",
+      "settings": {
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "cart-footer": {
+      "type": "main-cart-footer",
+      "blocks": {
+        "subtotal": {
+          "type": "subtotal",
+          "settings": {}
+        },
+        "buttons": {
+          "type": "buttons",
+          "settings": {}
+        },
+        "klarna_on_site_messaging_app_block_DUzDeN": {
+          "type": "shopify://apps/klarna-on-site-messaging/blocks/app-block/b95936a9-74b6-4a95-8103-6a1b6459c25e",
+          "settings": {
+            "data_key": "credit-promotion-badge",
+            "theme": "default",
+            "topPadding": "0",
+            "bottomPadding": "0",
+            "messagePrefix": ""
+          }
+        }
+      },
+      "block_order": [
+        "subtotal",
+        "buttons",
+        "klarna_on_site_messaging_app_block_DUzDeN"
+      ],
+      "settings": {
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "padding_top": 20,
+        "padding_bottom": 40
+      }
+    }
+  },
+  "order": [
+    "cart-items",
+    "cart-footer"
+  ]
+}

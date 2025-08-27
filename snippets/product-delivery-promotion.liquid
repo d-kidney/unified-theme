@@ -1,0 +1,10 @@
+{% comment %} Auto-generated dispatcher file {% endcomment %}
+{% render 'store-detection' %}
+
+{% if store_id == 'b4l' or store_id == 'i4l' or store_id == 'i4us' or store_id == 'r4us' %}
+  {% render 'product-delivery-promotion_b4l_i4l_i4us_r4us' %}
+{% elsif store_id == 'bso' %}
+  {% render 'product-delivery-promotion_bso' %}
+{% elsif store_id == 't4l' %}
+  {% render 'product-delivery-promotion_t4l' %}
+{% endif %}

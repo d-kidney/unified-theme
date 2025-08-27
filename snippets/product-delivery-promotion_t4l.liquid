@@ -1,0 +1,44 @@
+{% comment %}
+  Product Delivery Promotion Snippet
+  
+  Displays a dynamic promotion message for product pages, taking into account
+  what's already in the cart and showing how much more the customer needs to add
+  to reach the next shipping threshold.
+  
+  Usage:
+  {% render 'product-delivery-promotion', product: product %}
+{% endcomment %}
+
+{% if product != blank %}
+  {% assign delivery_vendor = product.metafields.custom.delivery_vendor.value %}
+  {% if delivery_vendor != blank %}
+    {% assign cart_vendor_quantity = 0 %}
+    {% assign cart_vendor_value = 0 %}
+    
+    {% for item in cart.items %}
+      {% assign item_vendor_data = item.product.metafields.custom.delivery_vendor.value %}
+      {% if item_vendor_data and item_vendor_data.name == delivery_vendor.name %}
+        {% assign cart_vendor_quantity = cart_vendor_quantity | plus: item.quantity %}
+        {% assign cart_vendor_value = cart_vendor_value | plus: item.final_line_price %}
+      {% endif %}
+    {% endfor %}
+    
+    {% if delivery_vendor.calculation_basis contains 'Free Delivery' %}
+      <div class="product-delivery-promotion">
+        <p class="fd-l">Free Delivery on {{ delivery_vendor.name }} products</p>
+      </div>
+    {% else %}
+      {% render 'delivery-calculation',
+        vendor_data: delivery_vendor,
+        group_quantity: cart_vendor_quantity,
+        group_value: cart_vendor_value,
+        group_vendor_name: delivery_vendor.name,
+        display_type: 'product',
+        product: product
+      %}
+    {% endif %}
+  {% endif %}
+{% else %}
+  {% comment %}No product provided{% endcomment %}
+{% endif %}
+

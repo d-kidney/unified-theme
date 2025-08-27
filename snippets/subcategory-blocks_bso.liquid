@@ -1,0 +1,48 @@
+{% if collection.metafields.custom.sub_cat_block.value or collection.metafields.custom.child_collections.value %}
+  <div class="page-width">
+    <div class="sub-cat-block">
+      {% assign categories = collection.metafields.custom.sub_cat_block.value %}
+      {% if categories == blank %}
+        {% assign categories = collection.metafields.custom.child_collections.value %}
+      {% endif %}
+
+      {% for cat in categories %}
+        <a href="{{ cat.url }}" class="sub-cat-tab">
+          <div class="sub-cat-media">
+            {% if cat.image %}
+              <img 
+                src="{{ cat.image | img_url: 'medium' }}"
+                class=""
+                alt="{{ cat.title | escape }}"
+                loading="lazy"
+                width="200"
+                height="200"
+              >
+            {% else %}
+              <div class="sub-cat-placeholder small-hide">
+                <span class="sub-cat-initials">
+                  {% assign words = cat.title | split: ' ' %}
+                  {% for word in words %}
+                    {{- word | slice: 0, 1 -}}
+                  {% endfor %}
+                </span>
+              </div>
+            {% endif %}
+          </div>
+          <h3>{{ cat.title }}</h3>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+
+
+
+
+
+
+
+
+
+

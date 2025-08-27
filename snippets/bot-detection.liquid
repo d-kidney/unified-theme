@@ -1,0 +1,25 @@
+{% comment %}
+  Snippet: bot-detection.liquid
+  Detects if the current visitor is likely a search engine bot
+{% endcomment %}
+
+{% assign user_agent = request.headers['User-Agent'] | downcase %}
+{% assign is_bot = false %}
+
+{% if 
+  user_agent contains 'googlebot' or 
+  user_agent contains 'bingbot' or 
+  user_agent contains 'yandex' or 
+  user_agent contains 'baiduspider' or 
+  user_agent contains 'duckduckbot' or 
+  user_agent contains 'slurp' or 
+  user_agent contains 'facebookexternalhit' or 
+  user_agent contains 'twitterbot' or
+  user_agent contains 'applebot' or
+  user_agent contains 'linkedinbot' or
+  user_agent contains 'msnbot' or
+  user_agent contains 'ahrefsbot' or
+  user_agent contains 'semrushbot'
+%}
+  {% assign is_bot = true %}
+{% endif %}

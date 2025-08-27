@@ -1,0 +1,25 @@
+<style>
+  slider-component ul li:first-child .product__media::before {
+      content: '{{ product.metafields.custom.bought_so_far.value }}K+ bought so far';
+    font-size:1.45rem;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      padding: 4px 40px 4px 8px;
+      border-radius: 3px;
+      background: linear-gradient(268deg, rgba(19, 163, 96, 0.12) 50%, rgba(19, 163, 96, 0) 92%);
+      z-index: 1;
+  }
+  slider-component ul li:first-child .product__media::after {
+    content: '';
+    position: absolute;
+    top: 17px;
+    right: 21px;
+    width: 22px;
+    height: 23px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='25' viewBox='0 0 24 25' fill='none'%3E%3Cpath d='M1 2.91016L3.9535 4.35434L6.62026 15.5948C6.78789 16.3642 7.44359 16.9102 8.19997 16.9102H18.3176C19.074 16.9102 19.7297 16.3642 19.8973 15.5948L21.959 6.1314C22.1894 5.07393 21.4189 4.06696 20.3793 4.06696C16.4598 4.06696 10.3428 4.06696 10.3428 4.06696' stroke='%2313A360' stroke-width='1.4' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M16.5528 8.20801C15.5445 9.21637 11.8161 12.6126 11.8161 12.6126L9.50098 10.6973' stroke='%2313A360' stroke-width='1.4' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='16.5' cy='21.4102' r='1.5' stroke='%2313A360' stroke-width='1.4' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='9.5' cy='21.4102' r='1.5' stroke='%2313A360' stroke-width='1.4' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+</style>

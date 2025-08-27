@@ -1,0 +1,27 @@
+{% comment %} Homepage reviews section - handles different review apps per store {% endcomment %}
+{% render 'store-detection' %}
+
+<div class="homepage-reviews">
+  {% comment %} Different stores may use different review apps {% endcomment %}
+  {% case store_id %}
+    {% when 'b4l', 't4l' %}
+      {% comment %} Reviews.io app block {% endcomment %}
+      <div class="apps-block">
+        <!-- Reviews.io carousel would be rendered here if app is installed -->
+        <!-- shopify://apps/reviews-io/blocks/reviewsio-card-carousel/92a082e5-b297-4e88-b428-ac96cbc505f9 -->
+      </div>
+      
+    {% else %}
+      {% comment %} Other review solutions {% endcomment %}
+      <!-- Other review apps or custom review display -->
+  {% endcase %}
+</div>
+
+{% schema %}
+{
+  "name": "Homepage Reviews",
+  "tag": "section",
+  "class": "homepage-reviews",
+  "settings": []
+}
+{% endschema %}

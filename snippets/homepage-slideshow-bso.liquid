@@ -1,0 +1,165 @@
+{% comment %} BSO slideshow content - 4 slides from BSO theme {% endcomment %}
+
+{{ 'section-image-banner.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
+
+<slideshow-component
+  class="slider-mobile-gutter page-width mobile-text-below"
+  role="region"
+  aria-roledescription="Carousel"
+  aria-label="Slideshow of various promotions"
+>
+  <div class="slideshow banner banner--medium grid grid--1-col slider slider--everywhere"
+       id="Slider-homepage-slideshow"
+       aria-live="polite"
+       aria-atomic="true"
+       data-autoplay="true"
+       data-speed="5"
+  >
+    {% comment %} Slide 1: BSO Free Delivery {% endcomment %}
+    <div class="slideshow__slide grid__item grid--1-col slider__slide"
+         id="Slide-homepage-slideshow-1"
+         role="group"
+         aria-roledescription="Slide"
+         aria-label="1 of 4"
+    >
+      <div class="slideshow__media banner__media media">
+        {% assign image_1 = 'shopify://shop_images/BSO_Free_Delivery_1.png' %}
+        {% if image_1 != blank %}
+          <img src="{{ image_1 | image_url: width: 1920 }}"
+               loading="lazy"
+               alt="BSO Free Delivery"
+               width="1920"
+               height="600"
+          >
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+      <div class="slideshow__text-wrapper banner__content banner__content--middle-center page-width">
+        <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-scheme-1">
+          {% comment %} No text content for this slide {% endcomment %}
+        </div>
+      </div>
+      <a href="/collections" class="banner__content-link" aria-label="Shop all collections"></a>
+    </div>
+
+    {% comment %} Slide 2: Trade Account {% endcomment %}
+    <div class="slideshow__slide grid__item grid--1-col slider__slide"
+         id="Slide-homepage-slideshow-2"
+         role="group"
+         aria-roledescription="Slide"
+         aria-label="2 of 4"
+    >
+      <div class="slideshow__media banner__media media">
+        {% assign image_2 = 'shopify://shop_images/Trade_Account.png' %}
+        {% if image_2 != blank %}
+          <img src="{{ image_2 | image_url: width: 1920 }}"
+               loading="lazy"
+               alt="Trade Account"
+               width="1920"
+               height="600"
+          >
+        {% else %}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+      <div class="slideshow__text-wrapper banner__content banner__content--middle-right page-width">
+        <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-scheme-5">
+          {% comment %} No text content for this slide {% endcomment %}
+        </div>
+      </div>
+      <a href="/pages/trade-account-sign-up" class="banner__content-link" aria-label="Sign up for trade account"></a>
+    </div>
+
+    {% comment %} Slide 3: Doors {% endcomment %}
+    <div class="slideshow__slide grid__item grid--1-col slider__slide"
+         id="Slide-homepage-slideshow-3"
+         role="group"
+         aria-roledescription="Slide"
+         aria-label="3 of 4"
+    >
+      <div class="slideshow__media banner__media media">
+        {% assign image_3 = 'shopify://shop_images/Doors_1.png' %}
+        {% if image_3 != blank %}
+          <img src="{{ image_3 | image_url: width: 1920 }}"
+               loading="lazy"
+               alt="Doors"
+               width="1920"
+               height="600"
+          >
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+      <div class="slideshow__text-wrapper banner__content banner__content--bottom-right page-width">
+        <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-scheme-4">
+          {% comment %} No text content for this slide {% endcomment %}
+        </div>
+      </div>
+      <a href="/collections/doors" class="banner__content-link" aria-label="Shop doors collection"></a>
+    </div>
+
+    {% comment %} Slide 4: Building Materials {% endcomment %}
+    <div class="slideshow__slide grid__item grid--1-col slider__slide"
+         id="Slide-homepage-slideshow-4"
+         role="group"
+         aria-roledescription="Slide"
+         aria-label="4 of 4"
+    >
+      <div class="slideshow__media banner__media media">
+        {% assign image_4 = 'shopify://shop_images/Building_Materials.png' %}
+        {% if image_4 != blank %}
+          <img src="{{ image_4 | image_url: width: 1920 }}"
+               loading="lazy"
+               alt="Building Materials"
+               width="1920"
+               height="600"
+          >
+        {% else %}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        {% endif %}
+      </div>
+      <div class="slideshow__text-wrapper banner__content banner__content--bottom-center page-width">
+        <div class="slideshow__text banner__box content-container content-container--full-width-mobile color-scheme-4">
+          {% comment %} No text content for this slide {% endcomment %}
+        </div>
+      </div>
+      <a href="/collections/building-materials" class="banner__content-link" aria-label="Shop building materials"></a>
+    </div>
+  </div>
+
+  {% comment %} Slideshow controls {% endcomment %}
+  <div class="slideshow__controls slideshow__controls--top slider-buttons">
+    <button type="button" class="slider-button slider-button--prev" name="previous" aria-label="Previous slide">
+      <svg aria-hidden="true" focusable="false" class="icon icon-caret">
+        <use href="#icon-caret"></use>
+      </svg>
+    </button>
+    <div class="slider-counter slider-counter--dots">
+      <div class="slideshow__control-wrapper">
+        {% for i in (1..4) %}
+          <button class="slider-counter__link slider-counter__link--dots link" 
+                  aria-label="Load slide {{ i }} of 4"
+                  aria-controls="Slider-homepage-slideshow">
+            <span class="dot"></span>
+          </button>
+        {% endfor %}
+      </div>
+    </div>
+    <button type="button" class="slider-button slider-button--next" name="next" aria-label="Next slide">
+      <svg aria-hidden="true" focusable="false" class="icon icon-caret">
+        <use href="#icon-caret"></use>
+      </svg>
+    </button>
+    <button type="button" class="slideshow__autoplay slider-button" aria-label="Pause slideshow">
+      <svg class="icon icon-pause" aria-hidden="true">
+        <use href="#icon-pause"></use>
+      </svg>
+      <svg class="icon icon-play" aria-hidden="true">
+        <use href="#icon-play"></use>
+      </svg>
+    </button>
+  </div>
+</slideshow-component>

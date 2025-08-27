@@ -1,0 +1,52 @@
+{% assign breadcrumb_titles = '' | split: ',' %}
+{% assign breadcrumb_urls = '' | split: ',' %}
+
+{% if product %}
+  {% assign product_title = product.title | split: ',' %}
+  {% assign product_url = product.url | split: ',' %}
+  {% assign breadcrumb_titles = product_title | concat: breadcrumb_titles %}
+  {% assign breadcrumb_urls = product_url | concat: breadcrumb_urls %}
+
+  {% assign primary_collection = product.metafields.custom.primary_collection.value %}
+  {% if primary_collection != blank %}
+    {% assign current_collection = primary_collection %}
+  {% endif %}
+{% else %}
+  {% assign current_collection = collection %}
+{% endif %}
+
+{% for i in (1..5) %}
+  {% if current_collection != blank %}
+    {% assign new_title = current_collection.title | split: ',' %}
+    {% assign new_url = current_collection.url | split: ',' %}
+    {% assign breadcrumb_titles = new_title | concat: breadcrumb_titles %}
+    {% assign breadcrumb_urls = new_url | concat: breadcrumb_urls %}
+    
+    {% assign parent_collection = current_collection.metafields.custom.collection_parent.value %}
+    {% if parent_collection != blank %}
+      {% assign current_collection = parent_collection %}
+    {% else %}
+      {% assign current_collection = blank %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+
+<nav aria-label="Breadcrumb">
+  <ol class="breadcrumbs">
+    <li><a href="/">Home</a></li>
+    {% assign count = breadcrumb_titles.size | minus: 1 %}
+    {% for i in (0..count) %}
+      <li>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 20" width="12" height="12" fill="none" stroke="#3C5CAA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 4l8 8-8 8"/>
+        </svg>
+        {% if forloop.last %}
+          <span aria-current="page">{{ breadcrumb_titles[i] }}</span>
+        {% else %}
+          <a href="{{ breadcrumb_urls[i] }}">{{ breadcrumb_titles[i] }}</a>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ol>
+</nav>

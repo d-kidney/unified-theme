@@ -1,0 +1,89 @@
+{% comment %}
+  Snippet: unavailable-product-notice.liquid
+  Handles notices for products that are unavailable with alternatives or recommendations
+  
+  Accepts:
+  - product: The product object
+  - variant: The current variant object (optional)
+  - variant_status: The variant's availability status (optional)
+{% endcomment %}
+
+{% render 'bot-detection' %}
+
+{% if is_bot %}
+  {% comment %} Show only the original product to bots {% endcomment %}
+  {% render 'product-details', product: product %}
+{% else %}
+  {% comment %} Use variant status if provided, otherwise fall back to product status {% endcomment %}
+  {% if variant_status %}
+    {% assign status = variant_status %}
+  {% else %}
+    {% assign status = product.metafields.custom.product_availability_status %}
+  {% endif %}
+  
+  <div class="unavailable-notice" data-unavailable-notice>
+    <div class="notice-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#46B4B4" stroke-width="2"/>
+        <path d="M9 15L15 9M9 9L15 15" stroke="#46B4B4" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="notice-content">
+      {% if status == 'discontinued' %}
+        <h3 class="notice-title">Product Discontinued</h3>
+        <p class="notice-text"><strong>{{ product.title }}</strong> is discontinued. 
+          {% if product.metafields.custom.alternative_product %}
+            We recommend the alternative product below.
+          {% else %}
+            We have some recommended alternatives below that may be suitable.
+          {% endif %}
+        </p>
+      {% elsif status == 'not_for_sale' %}
+        <h3 class="notice-title">Product Not Currently Available</h3>
+        <p class="notice-text">We don't currently sell <strong>{{ product.title }}</strong>. 
+          {% if product.metafields.custom.alternative_product %}
+            We recommend the alternative product below.
+          {% else %}
+            We have some recommended alternatives below that may be suitable.
+          {% endif %}
+        </p>
+      {% endif %}
+      
+      {% if product.metafields.custom.alternative_product %}
+        <span class="alternative-badge">RECOMMENDED ALTERNATIVE</span>
+      {% endif %}
+      
+      <div>
+        <a href="#" class="archive-link" data-show-archived>View archived product page</a>
+      </div>
+    </div>
+  </div>
+  
+  <div id="product-container" data-current-product="{{ product.id }}">
+    {% if product.metafields.custom.alternative_product %}
+      {% comment %} Single alternative product {% endcomment %}
+      {% assign alternative_product = product.metafields.custom.alternative_product.value %}
+      <div id="alternative-product-container" class="alternative-product-container"
+           data-alternative-handle="{{ alternative_product.handle }}" 
+           data-alternative-id="{{ alternative_product.id }}"></div>
+    {% else %}
+      {% comment %} Multiple recommended products {% endcomment %}
+      <div id="recommended-products-container" data-product-id="{{ product.id }}">
+        <h2 class="recommended-heading">Recommended Alternatives</h2>
+        <div class="products-grid" id="recommended-products-grid">
+          <div class="loading-spinner">Loading recommendations...</div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      {% if product.metafields.custom.alternative_product %}
+        loadAlternativeProduct();
+      {% else %}
+        loadRecommendedProducts();
+      {% endif %}
+    });
+  </script>
+{% endif %}

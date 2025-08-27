@@ -1,0 +1,53 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "product-template-long-form",
+      "settings": {
+        "show_quantity_selector": true,
+        "show_variant_labels": true,
+        "show_vendor": true
+      }
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": true,
+        "show_vendor": true,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    },
+    "custom_liquid_6NndbQ": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org/\",\n  \"@type\": \"Product\",\n  \"name\": {{ product.title | json }},\n  \"url\": {{ shop.url | append: product.url | json }},\n  {%- if product.featured_media -%}\n    \"image\": [\n      {{ product.featured_media | img_url: product.featured_media.preview_image.width | prepend: \"https:\" | json }}\n    ],\n  {%- endif -%}\n  \"description\": {{ product.description | strip_html | json }},\n  {%- if current_variant.sku != blank -%}\n    \"sku\": {{ current_variant.sku | json }},\n  {%- endif -%}\n  \"brand\": {\n    \"@type\": \"Brand\",\n    \"name\": {{ product.vendor | json }}\n  },\n  {%- if product.metafields.global.gtin or current_variant.barcode != blank -%}\n    \"gtin\": {{ product.metafields.global.gtin | default: current_variant.barcode | json }},\n  {%- endif -%}\n  {%- if current_variant.sku != blank -%}\n    \"mpn\": {{ current_variant.sku | json }},\n  {%- endif -%}\n  \n  \"offers\": [\n    {%- for variant in product.variants -%}\n      {\n        \"@type\": \"Offer\",\n        \"price\": {{ variant.price | divided_by: 100.00 | json }},\n        \"priceCurrency\": {{ cart.currency.iso_code | json }},\n        \"availability\": \"https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}\",\n        \"url\": {{ shop.url | append: variant.url | json }},\n        \"sku\": {{ variant.sku | json }}\n      }{% unless forloop.last %},{% endunless %}\n    {%- endfor -%}\n  ]\n}\n</script>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "custom_liquid_6NndbQ"
+  ]
+}

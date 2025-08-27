@@ -1,0 +1,25 @@
+<div class="product-nav">
+  <ul>
+    <li onclick="scrollAndView('h1-anchor')">General</li>
+    <li onclick="scrollAndView('desc-anchor')">Description</li>
+    {% if product.metafields.global != blank %}
+      <li onclick="scrollAndView('tech-anchor')">Technical Specs</li>
+      {% endif %}
+    {% if product.metafields.custom.datasheets != blank or product.metafields.datasheets != blank %}
+      <li onclick="scrollAndView('datasheets-anchor')">Datasheets</li>
+    {% endif %}
+    <li onclick="scrollAndView('delivery-anchor')">Delivery Information</li>
+    <li onclick="scrollAndView('CarouselWidget')">Reviews</li>
+  </ul>
+</div>
+
+<style>
+    .header-wrapper{
+      box-shadow: none !important;
+    }
+
+  .mega-menu[open] .mega-menu__content {
+    transform: translateY(-54px) !important;
+    z-index: 2  !important;
+  }
+</style>

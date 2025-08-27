@@ -1,0 +1,16 @@
+{% comment %} Auto-generated dispatcher file {% endcomment %}
+{% render 'store-detection' %}
+
+{% if store_id == 'b4l' %}
+  {% render 'delivery-rates_b4l' %}
+{% elsif store_id == 'bso' %}
+  {% render 'delivery-rates_bso' %}
+{% elsif store_id == 'i4l' %}
+  {% render 'delivery-rates_i4l' %}
+{% elsif store_id == 'i4us' %}
+  {% render 'delivery-rates_i4us' %}
+{% elsif store_id == 'r4us' %}
+  {% render 'delivery-rates_r4us' %}
+{% elsif store_id == 't4l' %}
+  {% render 'delivery-rates_t4l' %}
+{% endif %}

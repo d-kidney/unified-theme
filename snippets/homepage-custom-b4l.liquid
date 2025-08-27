@@ -1,0 +1,59 @@
+{% comment %} Build4Less custom content sections {% endcomment %}
+
+{% comment %} App blocks section: 1742400946de711423 {% endcomment %}
+<div class="apps-section">
+  <!-- Reviews.io carousel app block -->
+  <!-- shopify://apps/reviews-io/blocks/reviewsio-card-carousel/92a082e5-b297-4e88-b428-ac96cbc505f9 -->
+</div>
+
+{% comment %} Custom liquid section: custom_liquid_7CefVV {% endcomment %}
+<div class="custom-liquid-section">
+<div class="what-we-do-section page-width">
+<h2>Why Buy From Us</h2>
+<div class="col-lg-6 what-we-do-text">
+<p><span>Build4Less is one of the largest and highest rated independent builders providers in the United Kingdom for both trade and DIY. We offer you a massive range of top rated building materials at consistently low prices.</span></p>
+
+<p><span>Our objective is very simple: The lowest priced construction materials and the best possible customer service.</span></p>
+
+<p><span>Johnpaul Manning, the founder of Build4Less, once struggled like thousands of other professionals in the construction industry to source suitable materials at affordable prices. He then decided it was time for a change. He established this building supplies company to meet all the needs for your building and construction projects. </span></p>
+
+<p><span>We have created a massive online store to provide you with all the building materials you need in one place at the best possible prices. We strive to provide a vast product offering and superb customer service that will keep you coming back time and time again. Build4less only chooses those materials that give a lasting value for your investment and also meet all required building regulations.</span></p>
+</div>
+<div class="col-lg-6">
+<div class="video-responsive"> <!-- (1) video wrapper -->
+<div class="youtube" data-embed="G7xLZVyaRrU">
+<!-- (2) the "play" button -->
+<img src="https://cdn.shopify.com/s/files/1/0222/7290/1216/files/sddefault_11zon_480x480.jpg?v=1637837566" width="559" height="419" alt="insulation4less the lowest priced insulation materials">
+<div class="play-button">
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{% comment %} Custom liquid section: custom_liquid_Ar8rfk {% endcomment %}
+<div class="custom-liquid-section">
+Vendor/Brand Navigation
+
+{% assign available_vendors = all_products | where: 'available', true | map: 'vendor' | uniq %}
+{% for vendor in available_vendors %}
+  <a href="/collections/all?vendor={{ vendor | url_encode }}">{{ vendor }}</a>
+{% endfor %}
+Price Tier Navigation
+
+<a href="/collections/all?price_min=0&price_max=50">Under $50</a>
+<a href="/collections/all?price_min=50&price_max=100">$50-$100</a>
+Recently Viewed/Purchased
+
+{% for order in customer.orders limit: 5 %}
+  {% for line_item in order.line_items %}
+    <a href="{{ line_item.product.url }}">
+      {{ line_item.title }}
+    </a>
+  {% endfor %}
+{% endfor %}
+</div>
+

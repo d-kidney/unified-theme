@@ -1,0 +1,18 @@
+               <div>TEST</div>
+                              {% for metafield_key in product.metafields.attribute %}
+      {% assign metafield_value = product.metafields.attribute[metafield_key] %}
+      <tr>
+        <td>{{ metafield_key }}</td>
+        <td>{{ metafield_value }}</td>
+      </tr>
+    {% endfor %}
+
+              TEST TEST TEST TEST TEST
+              {% for spec in product.metafields.attribute %}
+                 {{ spec.key }} TEST {{ spec.value }}
+                {% endfor %}{% schema %}
+  {
+    "name": "Block name",
+    "settings": []
+  }
+{% endschema %}

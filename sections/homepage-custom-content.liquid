@@ -1,0 +1,32 @@
+{% comment %} Homepage custom content - includes all custom liquid and app sections {% endcomment %}
+{% render 'store-detection' %}
+
+<div class="homepage-custom-content">
+  {% case store_id %}
+    {% when 'b4l' %}
+      {% render 'homepage-custom-b4l' %}
+    {% when 't4l' %}
+      {% render 'homepage-custom-t4l' %}
+    {% when 'bso' %}
+      {% if collections['building-supplies'] != blank %}
+        {% comment %} BSO has minimal custom content {% endcomment %}
+      {% endif %}
+    {% when 'i4l' %}
+      {% render 'homepage-custom-i4l' %}
+    {% when 'i4us' %}
+      {% render 'homepage-custom-i4us' %}
+    {% when 'r4us' %}
+      {% render 'homepage-custom-r4us' %}
+    {% else %}
+      {% comment %} No custom content for other stores {% endcomment %}
+  {% endcase %}
+</div>
+
+{% schema %}
+{
+  "name": "Homepage Custom Content",
+  "tag": "section",
+  "class": "homepage-custom-content",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,103 @@
+       .wbfu-container {
+            max-width: 900px;
+            margin: 60px auto;
+            background: #f3f3f3;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 14px 24px rgba(0, 0, 0, 0.13);
+            overflow: hidden;
+        }
+        
+        .wbfu-container .wbfu-header {
+            padding: 24px;
+            text-align: center;
+        }
+        
+        .table-wrapper {
+            padding: 0;
+            overflow-x: hiiden;
+        }
+        
+        .wbfu-container table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+          line-height: 1.35;
+        }
+        
+        .wbfu-container th {
+            background: #fff;
+            color: #000;
+            padding: 20px !important;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.1em;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+      .wbfu-container th img{
+        max-width: 180px;
+      }
+        
+        .wbfu-container th:first-child {
+            background: #f3f3f3;
+            width: 200px;
+        }
+        
+        .wbfu-container td {
+            padding: 18px 20px !important;
+            border-bottom: 1px solid #ecf0f1;
+            transition: all 0.3s ease;
+            font-size: 1em;
+        }
+        
+        .wbfu-container .wbfu-feature {
+            font-weight: 600;
+            color: #000;
+            background: #fff;
+        }
+        
+        .wbfu-container .our-company {
+            background: #e3fff0;
+            font-weight: 600;
+            color: #27ae60;
+            position: relative;
+        }
+        
+        .wbfu-container .our-company::after {
+            content: '✓';
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #27ae60;
+            font-size: 1.2em;
+            font-weight: bold;
+          padding-left:5px;
+        }
+        
+        .wbfu-container .other-stores {
+            background: #ffe3e3;
+            color: #c0392b;
+            font-weight: 500;
+        }
+        
+        
+        @media (max-width: 768px) {
+            .wbfu-container {
+                margin: 20px;
+                border-radius: 15px;
+            }
+
+            
+            .wbfu-container th,.wbfu-container td {
+                padding: 10px 15px !important;
+                font-size: 0.9em;
+            }
+
+                  
+        .wbfu-container th:first-child {
+            width: min-content;
+        }
+        }

@@ -1,0 +1,91 @@
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "custom_css": [
+        "@media screen and (max-width: 749px) {.collection-hero__title {margin-bottom: 0.2rem; }}"
+      ],
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09"
+      }
+    },
+    "subcategories": {
+      "type": "collection-subcategories",
+      "settings": {
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "custom_liquid_tD4H7X": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".coming-soon-banner {border: 5px solid #00c271; margin: 25px 0px; padding: 20px 20px; text-align: center; clear: both; float: left; width: 100%;}",
+        ".coming-soon-banner-heading {font-size: 2em; font-weight: 600; color: #101010;}",
+        ".coming-soon-banner p {font-weight: 400; font-size: 1em; padding: 8px 5px;}",
+        ".coming-soon {max-width: 1100px;}"
+      ],
+      "settings": {
+        "custom_liquid": "{% render 'store-detection' %}\n<div class=\"page-width coming-soon\">\n   <div class=\"coming-soon-banner\">\n      <span class=\"coming-soon-banner-heading\">Coming Soon!</span>\n      {% if store_id == 'i4us' or store_id == 'r4us' %}\n         <p>We appreciate your patience as we continue to grow our online product offering.</p>\n      {% else %}\n         <p>We appreciate your patience as we continue to grow our online product offering. In the meantime, please feel free to browse our related products below. Thank you for shopping with us!</p>\n      {% endif %}\n   </div>\n   {% unless store_id == 'i4us' or store_id == 'r4us' or store_id == 'bso' %}\n      <div id=\"Collection\">\n         <h2>But you might be interested in...</h2>\n         {% if store_id == 'b4l' or store_id == 't4l' %}\n            <span class=\"clerk\" data-template=\"@coming-soon-collection-recommendations\" data-keywords=\"{{ collection.title | escape }} {{ collection.description | escape }}\"></span>\n         {% elsif store_id == 'i4l' %}\n            <span class=\"clerk\" data-template=\"@coming-soon-recommendations\" data-keywords=\"{{ collection.title | escape }} {{ collection.description | escape }}\"></span>\n         {% endif %}\n      </div>\n   {% endunless %}\n</div>",
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "padding_top": 0,
+        "padding_bottom": 20
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "custom_css": [],
+      "settings": {
+        "products_per_page": 36,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": true,
+        "show_rating": false,
+        "quick_add": "none",
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 0,
+        "padding_bottom": 20
+      }
+    },
+    "collection_people_also_searched_for_Ka7tMg": {
+      "type": "collection-people-also-searched-for",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "collection_long_description_CcLXEC": {
+      "type": "collection-long-description",
+      "settings": {
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "custom_liquid_qg7QBa": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"http://schema.org\",\n  \"@type\": \"CollectionPage\",\n  \"name\": \"{{ collection.title | escape }}\",\n  \"url\": \"{{ shop.url }}{{ collection.url }}\",\n  \"description\": \"{{ page_description | escape }}\",\n  \"image\": \"{{ collection.products.first | img_url: 'large' }}\",\n  \"mainEntity\": {\n    \"@type\": \"OfferCatalog\",\n    \"name\": \"{{ collection.title | escape }}\",\n    \"itemListElement\": [\n      {% for product in collection.products limit: 10 %}\n      {\n        \"@type\": \"Product\",\n        \"name\": \"{{ product.title | escape }}\",\n        \"url\": \"{{ shop.url }}{{ product.url }}\",\n        \"image\": \"{{ product.featured_image | img_url: 'large' }}\",\n        \"offers\": {\n          \"@type\": \"Offer\",\n          \"price\": \"{{ product.price | divided_by: 100.0 }}\",\n          \"priceCurrency\": \"GBP\",\n          \"availability\": \"https://schema.org/InStock\"\n        }\n      }{% unless forloop.last %},{% endunless %}\n      {% endfor %}\n    ]\n  }\n}\n</script>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "subcategories",
+    "custom_liquid_tD4H7X",
+    "product-grid",
+    "collection_people_also_searched_for_Ka7tMg",
+    "collection_long_description_CcLXEC",
+    "custom_liquid_qg7QBa"
+  ]
+}

@@ -1,0 +1,82 @@
+{% comment %}
+  Renders enquiry icon with item count bubble
+
+  Usage:
+  {% render 'enquiry-icon-bubble' %}
+{% endcomment %}
+
+{% comment %}
+  Check if we have enquiry items stored in localStorage/sessionStorage
+  This is handled via inline script to prevent flash
+{% endcomment %}
+
+<span class="svg-wrapper">
+  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" class="icon icon-enquiry">
+    <path d="M6 2h8M6 6h8M6 10h8M6 14h8M3 2h1M3 6h1M3 10h1M3 14h1M3 18h14a2 2 0 002-2V4a2 2 0 00-2-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</span>
+
+<span class="visually-hidden">Enquiry</span>
+<div class="cart-count-bubble" id="enquiry-count-bubble">
+  <span aria-hidden="true" id="enquiry-count">0</span>
+  <span class="visually-hidden">Items in enquiry</span>
+</div>
+
+<style>
+  .header__icon--enquiry {
+    position: relative !important;
+    margin-right: 0 !important;
+  }
+  
+  /* Fix alignment issues with header icons */
+  .header__icons {
+    align-items: center !important;
+  }
+  
+  /* Handle both class names for the count bubble */
+  .header__icon--enquiry .cart-count-bubble,
+  .header__icon--enquiry .enquiry-count-bubble {
+    position: absolute !important;
+    bottom: 0.8rem !important;
+    left: 2.2rem !important;
+    right: auto !important;
+  }
+  
+  /* Ensure proper display when count is shown */
+  #enquiry-count-bubble {
+    display: none;
+  }
+  
+  #enquiry-count-bubble:not(:empty) {
+    display: flex;
+  }
+</style>
+
+<script>
+  // Immediately check localStorage for enquiry count to prevent flash
+  (function() {
+    try {
+      var storedCount = localStorage.getItem('enquiryCount');
+      var countBubble = document.getElementById('enquiry-count-bubble');
+      var headerIcon = document.getElementById('enquiry-icon-bubble');
+      var countElement = document.getElementById('enquiry-count');
+      
+      if (storedCount && countBubble && countElement) {
+        var count = parseInt(storedCount) || 0;
+        if (count > 0) {
+          countElement.textContent = count;
+          countBubble.style.display = 'flex';
+          headerIcon.style.display = 'flex';
+        } else {
+          countBubble.style.display = 'none';
+          headerIcon.style.display = 'none';
+        }
+      } else if (countBubble) {
+        // Hide by default if no stored count
+        countBubble.style.display = 'none';
+      }
+    } catch (e) {
+      // Fail silently
+    }
+  })();
+</script>

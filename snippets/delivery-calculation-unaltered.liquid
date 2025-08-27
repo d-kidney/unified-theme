@@ -1,0 +1,271 @@
+{% comment %}
+  Delivery Calculation Snippet
+  
+  A reusable component that calculates delivery costs and thresholds based on vendor data.
+  
+  Usage:
+  {% render 'delivery-calculation',
+    vendor_data: delivery_vendor,
+    group_quantity: quantity_value,
+    group_value: value_in_cents,
+    group_vendor_name: vendor_name,
+    display_type: 'cart' or 'product' or 'collection',
+    product: product (optional)
+  %}
+  
+  Parameters:
+  - vendor_data: The delivery vendor metaobject
+  - group_quantity: The quantity of items (for Per Item calculation)
+  - group_value: The value in cents (for Order Value calculation)
+  - group_vendor_name: The name of the vendor
+  - display_type: The context where this is being displayed ('cart', 'product', or 'collection')
+  - product: The product object (optional, used to check for custom item_type metafield)
+{% endcomment %}
+
+{% comment %}Determine item type from product metafield, vendor metafield, or default to "Item"{% endcomment %}
+{% assign item_type = "Item" %}
+{% if product != blank and product.metafields.custom.item_type != blank %}
+  {% assign item_type = product.metafields.custom.item_type %}
+{% elsif vendor_data.item_type != blank %}
+  {% assign item_type = vendor_data.item_type %}
+{% endif %}
+
+{% assign shipping_cost = 0 %}
+{% assign needed = 0 %}
+{% assign last_tier_ship_cost = 0 %}
+{% capture shipping_label %}Delivery calculated at checkout{% endcapture %}
+{% capture aov_message %}{% endcapture %}
+{% assign vendor_handle = group_vendor_name | handle %}
+{% capture collection_url %}/collections/all{% endcapture %}
+{% assign next_tier_found = false %}
+{% assign next_tier_from = 0 %}
+{% assign next_tier_cost = 0 %}
+
+{% if vendor_data != nil %}
+  {% if vendor_data.calculation_basis contains 'Flat Rate' %}
+    {% assign shipping_cost = vendor_data.base_price | plus: 0 %}
+    {% capture shipping_label %}Flat Rate Delivery{% endcapture %}
+    {% capture aov_message %}Add more {{ group_vendor_name }} products for no additional shipping charges{% endcapture %}
+    {% capture collection_url %}/collections/all?filter.p.m.custom.delivery_vendor={{ vendor_data.id }}{% endcapture %}
+  {% else %}
+    {% assign tier_cost_table_raw = vendor_data.tier_cost_table | remove: '[' | remove: ']' | split: '},' %}
+    {% assign first_tier_json = tier_cost_table_raw.first %}
+    {% assign first_tier_data = first_tier_json | append: '}' | remove: '{' %}
+    {% assign first_tier_parts = first_tier_data | split: ',' %}
+    {% assign first_tier_from = first_tier_parts[0] | split: ':' | last | plus: 0 %}
+    {% assign first_tier_cost = first_tier_parts[1] | split: ':' | last | plus: 0 %}
+    {% assign shipping_cost = first_tier_cost %}
+
+    {% assign last_tier = tier_cost_table_raw.last | append: '}' | remove: '{' | split: ',' %}
+    {% assign last_tier_from = last_tier[0] | split: ':' | last | plus: 0 %}
+    {% assign last_tier_ship_cost = last_tier[1] | split: ':' | last | plus: 0 %}
+
+    {% assign group_value_decimal = group_value | divided_by: 100.0 %}
+
+    {% for tier_json in tier_cost_table_raw %}
+      {% assign tier_data = tier_json | append: '}' | remove: '{' %}
+      {% assign tier_parts = tier_data | split: ',' %}
+      {% assign tier_from = tier_parts[0] | split: ':' | last | plus: 0 %}
+      {% assign tier_cost = tier_parts[1] | split: ':' | last | plus: 0 %}
+      {% case vendor_data.calculation_basis %}
+        {% when 'Order Value' %}
+          {% if group_value_decimal >= tier_from %}
+            {% assign shipping_cost = tier_cost %}
+          {% endif %}
+          {% if tier_from > group_value_decimal and next_tier_found == false %}
+            {% assign next_tier_from = tier_from %}
+            {% assign next_tier_cost = tier_cost %}
+            {% assign next_tier_found = true %}
+          {% endif %}
+        {% when 'Per Item' %}
+          {% if group_quantity >= tier_from %}
+            {% assign shipping_cost = tier_cost %}
+          {% endif %}
+          {% if tier_from > group_quantity and next_tier_found == false %}
+            {% assign next_tier_from = tier_from %}
+            {% assign next_tier_cost = tier_cost %}
+            {% assign next_tier_found = true %}
+          {% endif %}
+      {% endcase %}
+    {% endfor %}
+    {% case vendor_data.calculation_basis %}
+      {% when 'Order Value' %}
+        {% assign needed = last_tier_from | minus: group_value_decimal %}
+        {% capture shipping_label %}Delivery Based on Order Value{% endcapture %}
+      {% when 'Per Item' %}
+        {% assign needed = last_tier_from | minus: group_quantity %}
+        {% capture shipping_label %}Delivery Based on Quantity{% endcapture %}
+    {% endcase %}
+    {% if needed > 0 %}
+      {% if last_tier_ship_cost == 0 %}
+        {% capture aov_message %}
+          {% if vendor_data.calculation_basis == 'Per Item' %}
+            Add {{ needed }} more {{ item_type }}{% if needed > 1 %}s{% endif %} to qualify for free delivery
+          {% else %}
+            Add <span class="exc_vat_price">{{ needed | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ needed | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> more to qualify for free delivery
+          {% endif %}
+        {% endcapture %}
+      {% else %}
+        {% capture aov_message %}
+          {% if vendor_data.calculation_basis == 'Per Item' %}
+            Add {{ needed }} more {{ item_type }}{% if needed > 1 %}s{% endif %} for <span class="exc_vat_price">{{ last_tier_ship_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ last_tier_ship_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> delivery
+          {% else %}
+            Add <span class="exc_vat_price">{{ needed | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ needed | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> more for <span class="exc_vat_price">{{ last_tier_ship_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ last_tier_ship_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> delivery
+          {% endif %}
+        {% endcapture %}
+      {% endif %}
+    {% endif %}
+    {% capture collection_url %}/collections/all?filter.p.m.custom.delivery_vendor={{ vendor_data.id }}{% endcapture %}
+  {% endif %}
+{% endif %}
+
+{% case display_type %}
+  {% when 'cart' %}
+    <tr class="vendor-intro">
+      <td colspan="5" style="padding: 1em 0;">
+        <p>
+          {% if group_vendor_name != blank %}
+            <strong>{{ group_vendor_name }}</strong>
+            &nbsp;–&nbsp;
+          {% endif %}
+          
+          {% if vendor_data.calculation_basis contains 'Flat Rate' %}
+            <span class="exc_vat_price">{{ shipping_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ shipping_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> Flat Rate Delivery on {{ group_vendor_name }} products
+          {% elsif vendor_data.calculation_basis == 'Per Item' and tier_cost_table_raw.size > 1 %}
+            {% assign first_tier = tier_cost_table_raw.first | append: '}' | remove: '{' | split: ',' %}
+            {% assign first_tier_from = first_tier[0] | split: ':' | last | plus: 0 %}
+            {% assign first_tier_cost = first_tier[1] | split: ':' | last | plus: 0 %}
+            
+            {% assign second_tier = tier_cost_table_raw[1] | append: '}' | remove: '{' | split: ',' %}
+            {% assign second_tier_from = second_tier[0] | split: ':' | last | plus: 0 %}
+            {% assign first_tier_max = second_tier_from | minus: 1 %}
+            
+            {% if first_tier_from == 0 %}
+              {% assign first_tier_from = 1 %}
+            {% endif %}
+            
+            {% if first_tier_from == first_tier_max %}
+              {% if last_tier_ship_cost == 0 %}
+                <span class="exc_vat_price">{{ first_tier_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ first_tier_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> ({{ first_tier_from }} {{ item_type }}) to Free ({{ last_tier_from }}+ {{ item_type }}s)
+              {% else %}
+                <span class="exc_vat_price">{{ first_tier_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ first_tier_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> ({{ first_tier_from }} {{ item_type }}) to <span class="exc_vat_price">{{ last_tier_ship_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ last_tier_ship_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> ({{ last_tier_from }}+ {{ item_type }}s)
+              {% endif %}
+            {% else %}
+              {% if last_tier_ship_cost == 0 %}
+                <span class="exc_vat_price">{{ first_tier_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ first_tier_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> ({{ first_tier_from }}-{{ first_tier_max }} {{ item_type }}s) to Free ({{ last_tier_from }}+ {{ item_type }}s)
+              {% else %}
+                <span class="exc_vat_price">{{ first_tier_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ first_tier_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> ({{ first_tier_from }}-{{ first_tier_max }} {{ item_type }}s) to <span class="exc_vat_price">{{ last_tier_ship_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ last_tier_ship_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> ({{ last_tier_from }}+ {{ item_type }}s)
+              {% endif %}
+            {% endif %}
+          {% elsif vendor_data.calculation_basis == 'Per Item' %}
+            {% if group_quantity > 0 %}
+              <span class="exc_vat_price">{{ shipping_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ shipping_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> Delivery for {{ group_quantity }} {{ item_type }}{% if group_quantity > 1 %}s{% endif %}
+            {% else %}
+              Delivery cost based on quantity
+            {% endif %}
+          {% elsif vendor_data.calculation_basis == 'Order Value' %}
+            {% if last_tier_ship_cost == 0 %}
+              Free Delivery on Orders over <span class="exc_vat_price">{{ last_tier_from | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ last_tier_from | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> of {{ group_vendor_name }} products
+            {% else %}
+              <span class="exc_vat_price">{{ last_tier_ship_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ last_tier_ship_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> Delivery on Orders over <span class="exc_vat_price">{{ last_tier_from | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ last_tier_from | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> of {{ group_vendor_name }} products
+            {% endif %}
+          {% else %}
+            {{ shipping_label }}
+          {% endif %}
+          
+          &nbsp;–&nbsp;
+          {% comment %}
+          <a href="{{ collection_url }}" style="text-decoration:underline;">
+            View all eligible products
+          </a>
+          {% endcomment %}
+        </p>
+        
+        {% if vendor_data.calculation_basis == 'Per Item' and tier_cost_table_raw.size > 1 %}
+          {% if needed > 0 and last_tier_ship_cost == 0 %}
+            <p>Add {{ needed }} more {{ item_type }}{% if needed > 1 %}s{% endif %} for Free delivery on your {{ group_vendor_name }} order</p>
+          {% elsif needed > 0 %}
+            <p>Add {{ needed }} more {{ item_type }}{% if needed > 1 %}s{% endif %} for <span class="exc_vat_price">{{ last_tier_ship_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ last_tier_ship_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> delivery on your {{ group_vendor_name }} order</p>
+          {% endif %}
+        {% elsif aov_message != blank %}
+          <p>{{ aov_message }}</p>
+        {% endif %}
+      </td>
+    </tr>
+  
+  {% when 'product' %}
+    <div class="product-delivery-promotion">
+<img src="https://cdn.shopify.com/s/files/1/0250/6198/2261/files/pixperfect-2_480x480.png?v=1655883291" width="22px" height="22px" alt="delivery truck icon"/>
+      {% if vendor_data.calculation_basis contains 'Flat Rate' %}
+        <p><span class="exc_vat_price">{{ shipping_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ shipping_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> Flat Rate Delivery on {{ group_vendor_name }} products</p>
+      {% elsif vendor_data.calculation_basis == 'Order Value' %}
+        {% if next_tier_found %}
+          {% assign amount_needed = next_tier_from | minus: group_value_decimal %}
+          {% if next_tier_cost == 0 %}
+            <p>Add <span class="exc_vat_price">{{ amount_needed | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ amount_needed | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> more to qualify for FREE delivery on your {{ group_vendor_name }} order</p>
+          {% else %}
+            <p>Add <span class="exc_vat_price">{{ amount_needed | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ amount_needed | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> more to qualify for <span class="exc_vat_price">{{ next_tier_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ next_tier_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> delivery on your {{ group_vendor_name }} order</p>
+          {% endif %}
+        {% else %}
+          {% if last_tier_ship_cost == 0 and group_value_decimal >= last_tier_from %}
+            <p class="fd-l">Free Delivery on {{ group_vendor_name }} products</p>
+          {% elsif last_tier_ship_cost > 0 and group_value_decimal >= last_tier_from %}
+            <p><span class="exc_vat_price">{{ last_tier_ship_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ last_tier_ship_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> Delivery on {{ group_vendor_name }} products</p>
+          {% else %}
+            <p>Free delivery on {{ group_vendor_name }} orders over <span class="exc_vat_price">{{ last_tier_from | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ last_tier_from | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span></p>
+          {% endif %}
+        {% endif %}
+      {% elsif vendor_data.calculation_basis == 'Per Item' %}
+        {% assign first_tier = tier_cost_table_raw.first | append: '}' | remove: '{' | split: ',' %}
+        {% assign first_tier_from = first_tier[0] | split: ':' | last | plus: 0 %}
+        {% assign first_tier_cost = first_tier[1] | split: ':' | last | plus: 0 %}
+        
+        {% if next_tier_found %}
+          {% assign items_needed = next_tier_from | minus: group_quantity %}
+          {% if next_tier_cost == 0 %}
+            <p>Add {{ items_needed }} more {{ item_type }}{% if items_needed > 1 %}s{% endif %} to qualify for FREE delivery on your {{ group_vendor_name }} order</p>
+          {% else %}
+            <p>Add {{ items_needed }} more {{ item_type }}{% if items_needed > 1 %}s{% endif %} to qualify for <span class="exc_vat_price">{{ next_tier_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ next_tier_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> delivery on your {{ group_vendor_name }} order</p>
+          {% endif %}
+        {% else %}
+          <p>Delivery charges based on quantity:</p>
+          {% assign second_tier = tier_cost_table_raw[1] | append: '}' | remove: '{' | split: ',' %}
+          {% assign second_tier_from = second_tier[0] | split: ':' | last | plus: 0 %}
+          {% assign first_tier_max = second_tier_from | minus: 1 %}
+          
+          {% if first_tier_from == 0 %}
+            {% assign first_tier_from = 1 %}
+          {% endif %}
+          
+          {% if first_tier_from == first_tier_max %}
+            <p><span class="exc_vat_price">{{ first_tier_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ first_tier_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> delivery for {{ first_tier_from }} {{ item_type }}</p>
+          {% else %}
+            <p><span class="exc_vat_price">{{ first_tier_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ first_tier_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> delivery for {{ first_tier_from }}-{{ first_tier_max }} {{ item_type }}s</p>
+          {% endif %}
+          
+          {% if last_tier_ship_cost == 0 %}
+            <p>Free delivery for {{ last_tier_from }}+ {{ item_type }}s</p>
+          {% else %}
+            <p><span class="exc_vat_price">{{ last_tier_ship_cost | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ last_tier_ship_cost | times: 100 | times: 1.2 | money_without_trailing_zeros }}</span> delivery for {{ last_tier_from }}+ {{ item_type }}s</p>
+          {% endif %}
+        {% endif %}
+      {% endif %}
+    </div>
+  
+{% when 'collection' %}
+  <span class="delivery-badge"><img src="https://cdn.shopify.com/s/files/1/0250/6198/2261/files/pixperfect-2_480x480.png?v=1655883291" width="18px" height="18px" alt="delivery truck icon"/>Free Delivery across all products on orders over <span class="exc_vat_price">{{ 350 | times: 100 | money_without_trailing_zeros }}</span><span class="inc_vat_price">{{ 420 | times: 100 | money_without_trailing_zeros }}</span></span>
+  {% comment %}Only show free delivery badges{% endcomment %}
+  {% comment %}
+  {% if vendor_data.calculation_basis contains 'Free Delivery' %}
+    <span class="delivery-badge"><img src="https://cdn.shopify.com/s/files/1/0250/6198/2261/files/pixperfect-2_480x480.png?v=1655883291" width="18px" height="18px" alt="delivery truck icon"/><span>Free Delivery</span></span>
+  {% elsif vendor_data.calculation_basis == 'Order Value' and last_tier_ship_cost == 0 %}
+    {% if last_tier_from == 0 %}
+      <span class="delivery-badge"><img src="https://cdn.shopify.com/s/files/1/0250/6198/2261/files/pixperfect-2_480x480.png?v=1655883291" width="18px" height="18px" alt="delivery truck icon"/><span>Free Delivery</span></span>
+    {% else %}
+      <span class="delivery-badge"><img src="https://cdn.shopify.com/s/files/1/0250/6198/2261/files/pixperfect-2_480x480.png?v=1655883291" width="18px" height="18px" alt="delivery truck icon"/><span>Free Delivery over {{ last_tier_from }}</span></span>
+    {% endif %}
+  {% elsif vendor_data.calculation_basis == 'Per Item' and last_tier_ship_cost == 0 %}
+    <span class="delivery-badge"><img src="https://cdn.shopify.com/s/files/1/0250/6198/2261/files/pixperfect-2_480x480.png?v=1655883291" width="18px" height="18px" alt="delivery truck icon"/><span>Free Delivery Available</span></span>
+  {% endif %}
+  {% endcomment %}
+{% endcase %}

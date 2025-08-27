@@ -1,0 +1,285 @@
+{% comment %}
+  Renders a list of product's price (regular, sale)
+
+  Accepts:
+  - product: {Object} Product Liquid object (optional)
+  - placeholder: {Boolean} Renders a placeholder price (optional)
+  - use_variant: {Boolean} Renders selected or first variant price instead of overall product pricing (optional)
+  - custom_variant: {Object} A custom variant to use instead of overall product pricing (optional)
+  - show_badges: {Boolean} Renders 'Sale' and 'Sold Out' tags if the product matches the condition (optional)
+  - price_class: {String} Adds a price class to the price element (optional)
+  - show_compare_at_price: {Boolean} Renders the compare at price if the product matches the condition (optional)
+
+  Usage:
+  {% render 'price', product: product %}
+{% endcomment %}
+{%- liquid
+  if custom_variant
+      assign target = custom_variant
+  elsif use_variant
+    assign target = product_selected_or_first_available_variant
+  elsif placeholder
+    assign target = null
+  else
+    assign target = product
+  endif
+
+  assign compare_at_price = target_compare_at_price
+  assign price = target_price | default: 1999
+  assign price_min = product_price_min
+  assign price_max = product_price_max
+  assign available = target_available | default: false
+  assign money_price = price | money
+  assign inc_vat_money_price = price | times:1_2 | money
+  assign money_price_min = price_min | money
+  assign money_price_max = price_max | money
+  if settings_currency_code_enabled
+    assign money_price = price | money_with_currency
+    assign money_price_min = price_min | money_with_currency
+    assign money_price_max = price_max | money_with_currency
+  endif
+
+  if target == product and product_price_varies
+    assign money_price = 'products.product.price.from_price_html' | t: price: money_price
+  endif
+-%}
+
+{%- unless target == null and placeholder == null -%}
+  <div
+    class="
+      price
+      {%- if price_class %} {{ price_class }}{% endif -%}
+      {%- if available == false %} price--sold-out{% endif -%}
+      {%- if compare_at_price > price and product.quantity_price_breaks_configured? != true %} price--on-sale{% endif -%}
+      {%- if compare_at_price > price and product.quantity_price_breaks_configured? %} volume-pricing--sale-badge{% endif -%}
+      {%- if product.price_varies == false and product.compare_at_price_varies %} price--no-compare{% endif -%}
+      {%- if show_badges %} price--show-badge{% endif -%}
+    "
+  >
+    <div class="price__container">
+      {%- comment -%}
+        Explanation of description list:
+          - div.price__regular: Displayed when there are no variants on sale
+          - div.price__sale: Displayed when a variant is a sale
+      {%- endcomment -%}
+      <div class="price__regular">
+        {%- if product.quantity_price_breaks_configured? -%}
+          {%- if show_compare_at_price and compare_at_price -%}
+            {%- unless product.price_varies == false and product.compare_at_price_varies %}
+              <span class="visually-hidden visually-hidden--inline">
+                {{- 'products.product.price.regular_price' | t -}}
+              </span>
+              <span>
+                <s class="price-item price-item--regular variant-item__old-price exc_vat_price">
+                  {% if settings.currency_code_enabled %}
+                    {{ compare_at_price | money_with_currency }}
+                  {% else %}
+                    {{ compare_at_price | money }}
+                  {% endif %}
+                </s>
+                <s class="price-item price-item--regular variant-item__old-price inc_vat_price">
+                  {% if settings.currency_code_enabled %}
+                    {{ compare_at_price | times:1.2 | money_with_currency }}
+                  {% else %}
+                    {{ compare_at_price | times:1.2 | money }}
+                  {% endif %}
+                </s>
+              </span>
+            {%- endunless -%}
+          {%- endif -%}
+          <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+          <span class="price-item price-item--regular exc_vat_price">
+            {{-
+              'products.product.volume_pricing.price_range'
+              | t: minimum: money_price_min, maximum: money_price_max
+            -}}
+          </span>
+          <span class="price-item price-item--regular inc_vat_price">
+            {{-
+              'products.product.volume_pricing.price_range'
+              | t: minimum: money_price_min | times:1.2, maximum: money_price_max | times:1.2
+            -}}
+          </span>
+        {%- else -%}
+          <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+          <span class="price-item price-item--regular exc_vat_price">
+            {{ money_price }}
+          </span>
+          <span class="price-item price-item--regular inc_vat_price">
+            {{ inc_vat_money_price }}
+          </span>
+        {%- endif -%}
+      </div>
+      <div class="price__sale">
+        <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.sale_price' | t }}</span>
+        <span class="price-item price-item--sale price-item--last exc_vat_price">
+          {{ money_price }}
+        </span>
+        <span class="price-item price-item--sale price-item--last inc_vat_price">
+          {{ inc_vat_money_price }}
+        </span>
+        
+        {%- unless product.price_varies == false and product.compare_at_price_varies %}
+          <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
+          <span>
+            {% comment %} <span class="sale-og-price">was </span> {% endcomment %}
+            <s class="price-item price-item--regular exc_vat_price">
+              {% if settings.currency_code_enabled %}
+                {{ compare_at_price | money_with_currency }}
+              {% else %}
+                {{ compare_at_price | money }}
+              {% endif %}
+            </s>
+            <s class="price-item price-item--regular inc_vat_price">
+              {% if settings.currency_code_enabled %}
+                {{ compare_at_price | times:1.2 | money_with_currency }}
+              {% else %}
+                {{ compare_at_price | times:1.2 | money }}
+              {% endif %}
+            </s>
+
+          </span>
+        {%- endunless -%}
+        
+      </div>
+      <small class="unit-price caption{% if product.selected_or_first_available_variant.unit_price_measurement == nil %} hidden{% endif %}">
+        <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
+        <span class="price-item price-item--last">
+          <span>{{- product.selected_or_first_available_variant.unit_price | money -}}</span>
+          <span aria-hidden="true">/</span>
+          <span class="visually-hidden">&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span>
+          <span>
+            {%- if product.selected_or_first_available_variant.unit_price_measurement.reference_value != 1 -%}
+              {{- product.selected_or_first_available_variant.unit_price_measurement.reference_value -}}
+            {%- endif -%}
+            {{ product.selected_or_first_available_variant.unit_price_measurement.reference_unit }}
+          </span>
+        </span>
+      </small>
+    </div>
+
+     {%- liquid
+        assign selected_target = product.selected_or_first_available_variant
+    -%}
+    {% if context == 'collection' %}
+        {%- assign lowest_unit_price_exc_vat = null -%}
+        {%- assign lowest_unit_price_inc_vat = null -%}
+        {%- assign lowest_unit_label = '' -%}
+      
+        {% for variant in product.variants %}
+          {% unless variant.metafields.custom.call_to_enquire == true %}
+          {% assign price = variant.price | money_without_currency | replace: ',', '' | plus: 0 %}
+          {% assign unit_value = variant.metafields.custom.unit_pricing_value | remove: ' ' | plus: 0 %}
+          {% assign unit_label = variant.metafields.custom.unit_pricing_label | strip %}
+          {% if unit_value > 0 and unit_label != '' %}
+            {% assign unit_price_exc_vat = price | divided_by: unit_value %}
+            {% assign unit_price_inc_vat = price | divided_by: unit_value | times: 1.2 %}
+            {% if lowest_unit_price_exc_vat == null or unit_price_exc_vat < lowest_unit_price_exc_vat %}
+              {% assign lowest_unit_price_exc_vat = unit_price_exc_vat | round: 2 %}
+              {% assign lowest_unit_price_inc_vat = unit_price_inc_vat | round: 2 %}
+              {% assign lowest_unit_label = unit_label | replace: '[', '' | replace: ']', '' | replace: '"', '' %}
+            {% endif %}
+          {% endif %}
+          {% endunless %}
+        {% endfor %}
+
+        {%- assign lowest_m2_price_exc_vat = null -%}
+        {%- assign lowest_m2_price_inc_vat = null -%}
+        
+        {% for variant in product.variants %}
+          {% unless variant.metafields.custom.call_to_enquire == true %}
+          {% assign price = variant.price | money_without_currency | replace: ',', '' | plus: 0 %}
+          {% assign m2_coverage = variant.metafields.custom.m2_coverage | remove: ' ' | plus: 0 %}
+          {% if m2_coverage > 0 %}
+            {% assign m2_price_exc_vat = price | divided_by: m2_coverage %}
+            {% assign m2_price_inc_vat = price | divided_by: m2_coverage | times: 1.2 %}
+            {% if lowest_m2_price_exc_vat == null or m2_price_exc_vat < lowest_m2_price_exc_vat %}
+              {% assign lowest_m2_price_exc_vat = m2_price_exc_vat | round: 2 %}
+              {% assign lowest_m2_price_inc_vat = m2_price_inc_vat | round: 2 %}
+            {% endif %}
+          {% endif %}
+          {% endunless %}
+        {% endfor %}
+
+    {% endif %}
+
+    {% if template contains 'collection' or context == 'collection' %}
+      <div style="display:none;" class="secondary_price unit_pricing {% if lowest_unit_price_inc_vat and lowest_unit_price_exc_vat %}has-unit-pricing{% else %}{% endif %}">
+        {% if lowest_unit_price_exc_vat and lowest_unit_price_inc_vat %}
+          <div class="exc_vat_price">
+            £{{ lowest_unit_price_exc_vat | append: "00" | split: "." | first }}.{{ lowest_unit_price_exc_vat | append: "00" | split: "." | last | slice: 0, 2 }} <span>/ {{ lowest_unit_label  | replace: 'Per', '' | replace: 'per', '' }}</span>
+          </div>
+          <div class="inc_vat_price">
+            £{{ lowest_unit_price_inc_vat | append: "00" | split: "." | first }}.{{ lowest_unit_price_inc_vat | append: "00" | split: "." | last | slice: 0, 2 }} <span>/ {{ lowest_unit_label | replace: 'Per', '' | replace: 'per', '' }}</span>
+          </div>
+        {% endif %}
+      </div>
+
+      <div style="display:none;" class="secondary_price m2_pricing {% if lowest_m2_price_exc_vat and lowest_m2_price_inc_vat %}has-m2-coverage{% else %}{% endif %}">
+        {% if lowest_m2_price_exc_vat and lowest_m2_price_inc_vat %}
+        <div class="exc_vat_price">
+          £{{ lowest_m2_price_exc_vat | append: "00" | split: "." | first }}.{{ lowest_m2_price_exc_vat | append: "00" | split: "." | last | slice: 0, 2 }}
+          <span>/ m2</span>
+        </div>
+        <div class="inc_vat_price">
+          £{{ lowest_m2_price_inc_vat | append: "00" | split: "." | first }}.{{ lowest_m2_price_inc_vat | append: "00" | split: "." | last | slice: 0, 2 }}
+          <span>/ m2</span>
+        </div>
+        {% endif %}
+      </div>
+
+    {% endif %}
+     
+    {% if template contains 'product' or context == 'product' %}
+      <div style="display:none;" class="secondary_price unit_pricing {% if selected_target.metafields.custom.unit_pricing_label != blank and selected_target.metafields.custom.unit_pricing_value != blank %}has-unit-pricing{% else %}{% endif %}">
+      {%- liquid
+        assign price = selected_target.price
+        assign inc_vat_price = selected_target.price | times: 1.2 | money_without_currency | replace: ',', ''
+        assign exc_vat_price = selected_target.price | money_without_currency | replace: ',', ''
+    
+        assign unit_value = selected_target.metafields.custom.unit_pricing_value | remove: ' '
+        assign unit_label = selected_target.metafields.custom.unit_pricing_label | replace: '[', '' | replace: ']', '' | replace: '"', ''
+        assign unit_price_exc_vat = exc_vat_price | divided_by: unit_value | round: 2 
+        assign unit_price_inc_vat = inc_vat_price | divided_by: unit_value | round: 2 
+      -%}
+
+      
+      {% if unit_value != blank and unit_label != blank and unit_value != '0' %}
+        <div class="exc_vat_price">
+          £{{ unit_price_exc_vat | append: "00" | split: "." | first }}.{{ unit_price_exc_vat | append: "00" | split: "." | last | slice: 0, 2 }} <span> / {{ unit_label | replace: 'Per', '' | replace: 'per', '' }}</span>
+        </div>
+        <div class="inc_vat_price">
+          £{{ unit_price_inc_vat | append: "00" | split: "." | first }}.{{ unit_price_inc_vat | append: "00" | split: "." | last | slice: 0, 2 }} <span> / {{ unit_label | replace: 'Per', '' | replace: 'per', '' }}</span>
+        </div>
+      {% endif %}
+      </div>
+      <div style="display:none;" class="secondary_price m2_pricing {% if selected_target.metafields.custom.m2_coverage != blank %}has-m2-coverage{% else %}{% endif %}">
+      {%- liquid
+        assign inc_vat_price = selected_target.price | times:1.2  | money_without_currency | replace: ',', '' | plus: 0
+        assign exc_vat_price = selected_target.price | money_without_currency | replace: ',', '' | plus: 0
+        assign metafield_data = selected_target.metafields.custom.m2_coverage | remove: ' ' | plus: 0
+        assign m_exc_vat_price = exc_vat_price | divided_by: metafield_data | round: 2
+        assign m_inc_vat_price = inc_vat_price | divided_by: metafield_data | round: 2
+      -%}
+      <div class="exc_vat_price">
+        £{{ m_exc_vat_price | append: "00" | split: "." | first }}.{{ m_exc_vat_price | append: "00" | split: "." | last | slice: 0, 2 }}
+        <span>/ m2</span>
+      </div>
+      <div class="inc_vat_price">
+        £{{ m_inc_vat_price | append: "00" | split: "." | first }}.{{ m_inc_vat_price | append: "00" | split: "." | last | slice: 0, 2 }}
+        <span>/ m2</span>
+      </div>
+    </div>
+    {% endif %}
+    
+    {%- if show_badges -%}
+      <span class="badge price__badge-sale color-{{ settings.sale_badge_color_scheme }}">
+        {{ 'products.product.on_sale' | t }}
+      </span>
+
+      <span class="badge price__badge-sold-out color-{{ settings.sold_out_badge_color_scheme }}">
+        {{ 'products.product.sold_out' | t }}
+      </span>
+    {%- endif -%}
+  </div>
+{% endunless %}

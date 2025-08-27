@@ -1,0 +1,40 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "parent": "footer-group.json",
+  "context": {
+    "b2b": true
+  },
+  "sections": {
+    "custom_liquid_78rYJ": {
+      "type": "custom-liquid",
+      "disabled": false,
+      "settings": {
+        "custom_liquid": "<div class=\"page-width\">\n[nerdy-form:13463]\n</div>",
+        "color_scheme": "",
+        "header-3a395b4734cfab19f550f5bb0d9f94da": null,
+        "padding_top": 8,
+        "padding_bottom": 16
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "t:sections.custom-liquid.presets.name"
+    }
+  },
+  "order": [
+    "custom_liquid_78rYJ",
+    "newsletter_DmxVzf",
+    "custom_liquid_MRUVz6",
+    "custom_liquid_zaGBd3",
+    "custom_liquid_L6apVm",
+    "footer",
+    "custom_liquid_Kngzc8"
+  ]
+}

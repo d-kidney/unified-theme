@@ -1,0 +1,106 @@
+<style>
+   .notice-container {
+       margin: 20px 0;
+       max-width: 440px;
+   }
+   .notice-container .notice-message p {
+       margin-top: 12px;
+       margin-bottom: 7px;
+       line-height: 1.2;
+   }
+   .notice-content {
+       max-height: 130px;
+       overflow: hidden;
+       transition: max-height 0.85s ease-in-out, padding 0.85s ease-in-out;
+       background: #f3f3f3;
+       padding: 10px 20px;
+       position: relative;
+       border-top: 2px solid #3C5CAA;
+       border-right: 2px solid #3C5CAA;
+       border-left: 2px solid #3C5CAA;
+       border-radius: 5px 5px 0px 0px;
+       color: #283D70;
+   }
+   .notice-content.full-height {
+       border-bottom: 2px solid #3C5CAA;
+       border-radius: 5px 5px 5px 5px;
+   }
+   .notice-content.open {
+       max-height: 1500px;
+       padding: 10px 20px;
+   }
+   .notice-label {
+       display: flex;
+       align-items: center;
+       line-height: 1.4;
+   }
+   .notice-label svg {
+       margin-right: 8px;
+   }
+   .notice-label b {
+     font-size: 1.8rem;
+                   }
+  .notice-message{
+    line-height:1.45;
+  }
+   .notice-container .read-more {
+       background: #f3f3f3;
+       background: -moz-linear-gradient(top, #f3f3f3 20%, #a2acc5 100%);
+       background: -webkit-linear-gradient(top, #f3f3f3 20%, #a2acc5 100%);
+       background: linear-gradient(to bottom, #f3f3f3 20%, #a2acc5 100%);
+       border-bottom: 2px solid #3C5CAA;
+       border-top: none;
+       border-right: 2px solid #3C5CAA;
+       border-left: 2px solid #3C5CAA;
+       border-radius: 0px 0px 5px 5px;
+       color: #283D70;
+       padding: 5px 20px 7px 20px;
+       cursor: pointer;
+       display: none;
+       margin-top: 0px;
+       width: 100%;
+       text-align: center;
+       font-size: 16px;
+       transition: transform 0.3s ease-in-out;
+   }
+   .notice-container .read-more.open {
+       background: #f3f3f3;
+   }
+</style>
+
+<div class="notice-container">
+  <div class="notice-content" id="expandableContent">
+    <div class="notice-label">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="16" height="16" viewBox="0,0,256,256">
+        <g fill="#23386a" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal">
+            <g transform="scale(5.12,5.12)">
+                <path d="M25,2c-12.703,0 -23,10.297 -23,23c0,12.703 10.297,23 23,23c12.703,0 23,-10.297 23,-23c0,-12.703 -10.297,-23 -23,-23zM25,11c1.657,0 3,1.343 3,3c0,1.657 -1.343,3 -3,3c-1.657,0 -3,-1.343 -3,-3c0,-1.657 1.343,-3 3,-3zM29,38h-2h-4h-2v-2h2v-13h-2v-2h2h4v2v13h2z"></path>
+            </g>
+        </g>
+      </svg>
+      <b>Notice:</b>
+    </div>
+    <div class="notice-message">{{ product.metafields.custom.notice }}</div>
+  </div>
+  <button class="read-more" id="toggleButton" onclick="toggleContent()">Read More ▼</button>
+</div>
+
+<script>
+  function toggleContent() {
+      const content = document.getElementById("expandableContent");
+      const button = document.getElementById("toggleButton");
+      content.classList.toggle("open");
+      button.textContent = content.classList.contains("open") ? "Read Less ▲" : "Read More ▼";
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+      const content = document.getElementById("expandableContent");
+      const button = document.getElementById("toggleButton");
+
+      if (content.scrollHeight > 130) {
+          button.style.display = "block";
+      } else {
+          content.classList.add("full-height");
+      }
+  });
+</script>

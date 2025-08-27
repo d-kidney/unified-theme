@@ -1,0 +1,127 @@
+{% comment %} Insulation4Less slideshow content {% endcomment %}
+
+<div class="slideshow-wrapper">
+  <slideshow-component
+    class="slideshow"
+    data-layout="{{ 'grid' }}"
+    data-slide-height="{{ 'adapt_image' }}"
+    data-auto-rotate="{{ true }}"
+    data-change-speed="{{ 5 }}"
+  >
+    <div class="slideshow__slide">
+      {% if 'shopify://shop_images/I4L_HP_Celotex_Logo_Update_I4L_Homepage.png' != blank %}
+        <img src="{{ 'shopify://shop_images/I4L_HP_Celotex_Logo_Update_I4L_Homepage.png' | image_url }}" alt="Slide {{ 1 }}" loading="lazy">
+      {% endif %}
+      {% if '' != blank or '' != blank %}
+        <div class="slideshow__text-wrapper banner__content {{ 'top-left' }} {{ 'center' }}">
+          {% if '' != blank %}
+            <h2 class="{{ 'h1' }}">{{ '' }}</h2>
+          {% endif %}
+          {% if '' != blank %}
+            <div class="slideshow__subheading">{{ '' }}</div>
+          {% endif %}
+          {% if '' != blank %}
+            <a href="{{ '' }}" class="button {% if false %}button--secondary{% else %}button{% endif %}">
+              {{ '' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if 'shopify://collections/celotex-insulation' != blank %}
+        <a href="{{ 'shopify://collections/celotex-insulation' }}" class="slideshow__slide-link" aria-label="Slide link"></a>
+      {% endif %}
+    </div>
+    <div class="slideshow__slide">
+      {% if 'shopify://shop_images/HP_I4L_Rockwool_1.png' != blank %}
+        <img src="{{ 'shopify://shop_images/HP_I4L_Rockwool_1.png' | image_url }}" alt="Slide {{ 2 }}" loading="lazy">
+      {% endif %}
+      {% if '' != blank or '' != blank %}
+        <div class="slideshow__text-wrapper banner__content {{ 'middle-center' }} {{ 'center' }}">
+          {% if '' != blank %}
+            <h2 class="{{ 'hxxl' }}">{{ '' }}</h2>
+          {% endif %}
+          {% if '' != blank %}
+            <div class="slideshow__subheading">{{ '' }}</div>
+          {% endif %}
+          {% if '' != blank %}
+            <a href="{{ '' }}" class="button {% if false %}button--secondary{% else %}button{% endif %}">
+              {{ '' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if 'shopify://collections/rockwool' != blank %}
+        <a href="{{ 'shopify://collections/rockwool' }}" class="slideshow__slide-link" aria-label="Slide link"></a>
+      {% endif %}
+    </div>
+    <div class="slideshow__slide">
+      {% if 'shopify://shop_images/Kingspan_1_5f0229d9-b78a-4652-bac6-9f3d18f554f7.png' != blank %}
+        <img src="{{ 'shopify://shop_images/Kingspan_1_5f0229d9-b78a-4652-bac6-9f3d18f554f7.png' | image_url }}" alt="Slide {{ 3 }}" loading="lazy">
+      {% endif %}
+      {% if '' != blank or '' != blank %}
+        <div class="slideshow__text-wrapper banner__content {{ 'middle-center' }} {{ 'center' }}">
+          {% if '' != blank %}
+            <h2 class="{{ 'h1' }}">{{ '' }}</h2>
+          {% endif %}
+          {% if '' != blank %}
+            <div class="slideshow__subheading">{{ '' }}</div>
+          {% endif %}
+          {% if '' != blank %}
+            <a href="{{ '' }}" class="button {% if false %}button--secondary{% else %}button{% endif %}">
+              {{ '' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if 'shopify://collections/kingspan-insulation' != blank %}
+        <a href="{{ 'shopify://collections/kingspan-insulation' }}" class="slideshow__slide-link" aria-label="Slide link"></a>
+      {% endif %}
+    </div>
+    <div class="slideshow__slide">
+      {% if 'shopify://shop_images/Knauf_3a14e162-c0af-4e36-a8dc-8d3657b0af80.png' != blank %}
+        <img src="{{ 'shopify://shop_images/Knauf_3a14e162-c0af-4e36-a8dc-8d3657b0af80.png' | image_url }}" alt="Slide {{ 4 }}" loading="lazy">
+      {% endif %}
+      {% if '' != blank or '' != blank %}
+        <div class="slideshow__text-wrapper banner__content {{ 'middle-center' }} {{ 'center' }}">
+          {% if '' != blank %}
+            <h2 class="{{ 'h1' }}">{{ '' }}</h2>
+          {% endif %}
+          {% if '' != blank %}
+            <div class="slideshow__subheading">{{ '' }}</div>
+          {% endif %}
+          {% if '' != blank %}
+            <a href="{{ '' }}" class="button {% if false %}button--secondary{% else %}button{% endif %}">
+              {{ '' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if 'shopify://collections/knauf-cavity-wall' != blank %}
+        <a href="{{ 'shopify://collections/knauf-cavity-wall' }}" class="slideshow__slide-link" aria-label="Slide link"></a>
+      {% endif %}
+    </div>
+    <div class="slideshow__slide">
+      {% if 'shopify://shop_images/Sheepwool.png' != blank %}
+        <img src="{{ 'shopify://shop_images/Sheepwool.png' | image_url }}" alt="Slide {{ 5 }}" loading="lazy">
+      {% endif %}
+      {% if '' != blank or '' != blank %}
+        <div class="slideshow__text-wrapper banner__content {{ 'middle-center' }} {{ 'center' }}">
+          {% if '' != blank %}
+            <h2 class="{{ 'h1' }}">{{ '' }}</h2>
+          {% endif %}
+          {% if '' != blank %}
+            <div class="slideshow__subheading">{{ '' }}</div>
+          {% endif %}
+          {% if '' != blank %}
+            <a href="{{ '' }}" class="button {% if false %}button--secondary{% else %}button{% endif %}">
+              {{ '' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if 'shopify://collections/sheep-wool-insulation' != blank %}
+        <a href="{{ 'shopify://collections/sheep-wool-insulation' }}" class="slideshow__slide-link" aria-label="Slide link"></a>
+      {% endif %}
+    </div>
+  </slideshow-component>
+</div>

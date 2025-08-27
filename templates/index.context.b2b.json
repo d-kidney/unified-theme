@@ -1,0 +1,111 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "parent": "index.json",
+  "context": {
+    "b2b": true
+  },
+  "sections": {
+    "custom_liquid_A8EFY": {
+      "type": "custom-liquid",
+      "disabled": false,
+      "settings": {
+        "custom_liquid": "<style>\n.b2b-nav-grid{\n overflow:auto;\n  display: flex;\n      flex-wrap: wrap;\n      gap: 10px;\n}\n.b2b-nav-grid-item{\n  border:1px solid #ededed;\n  border-radius: 10px;\n   flex: 0 0 calc((100% - 20px) / 3); /* 3 items per row with 2 gaps of 10px */\n      box-sizing: border-box;\n  cursor: pointer;\n  display:flex;\npadding:4px 14px 4px 2px;\n}\n.b2b-nav-grid-item .svg-icon{\n  flex: 0 0 25%;\n  box-sizing: border-box;\ndisplay:flex;\n  justify-content: center;\n  align-items: center;\n}\n.b2b-nav-grid-item .svg-icon svg{\nmax-height:55px;\n}\n.b2b-nav-grid-item .text-content{\n  flex: 0 0 75%;\n  box-sizing: border-box;\n}\n\n.b2b-nav-grid-item h3{\n   margin-block-start: 5px;\n  margin-block-end: 2px;\n}\n.b2b-nav-grid-item p{\n  line-height: 1.2;\n  margin-block-start: 2px;\n  font-size:1.3rem;\n}\n\n.b2b-nav-grid-item:hover {\n      background-color: #f0f0f0;\n    }\n\n/* Style for anchor tags to match other grid items */\n.b2b-nav-grid a {\n  flex: 0 0 calc((100% - 20px) / 3);\n  text-decoration: none;\n  color: inherit;\n}\n\n   /* Mobile: 1 column */\n    @media (max-width: 767px) {\n.b2b-nav-grid-item {\n        flex: 0 0 100%;\n      }\n      \n.b2b-nav-grid a {\n        flex: 0 0 100%;\n      }\n    }\n</style>\n\n<div class=\"b2b-nav-grid page-width\">\n<a href=\"https://account.build4less.co.uk/orders\"> \n<div class=\"b2b-nav-grid-item\">\n<div class=\"svg-icon\">\n<svg fill=\"#000000\" width=\"64px\" height=\"64px\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M56,81.29a1.5,1.5,0,0,1-.45-2.93l16.46-5.15a1.5,1.5,0,0,1,.9,2.86L56.49,81.22A1.41,1.41,0,0,1,56,81.29Z\"></path><path d=\"M56,74.29a1.5,1.5,0,0,1-.45-2.93l10.53-3.29A1.5,1.5,0,1,1,67,70.93L56.49,74.22A1.41,1.41,0,0,1,56,74.29Z\"></path><path d=\"M23.32,54.08h0Z\"></path><path d=\"M23.26,30.08A.94.94,0,0,0,23,30a.05.05,0,0,0,0,0h.06A1.37,1.37,0,0,1,23.26,30.08Z\"></path><path d=\"M37.74,35.48a1.41,1.41,0,0,0-.37.8,1,1,0,0,1,.05-.3,1.59,1.59,0,0,1,.22-.43Z\"></path><path d=\"M89.37,28a.51.51,0,0,0,0-.17.84.84,0,0,0,0-.17,1.11,1.11,0,0,0-.07-.16,1.24,1.24,0,0,0-.31-.42L88.77,27a1.22,1.22,0,0,0-.29-.17l-.08,0-26.06-11L50.87,10.94l-.09,0a1.29,1.29,0,0,0-.26-.08,1.38,1.38,0,0,0-.64,0,1.29,1.29,0,0,0-.26.08l-.06,0-38,15.8h0a1.3,1.3,0,0,0-.26.14h0a.66.66,0,0,0-.15.14.24.24,0,0,0-.1.1,1.43,1.43,0,0,0-.34.6,1.34,1.34,0,0,0-.06.4V76.87A1.49,1.49,0,0,0,11.7,78.3L49.16,90h0l1.42.17L70,84.11h0l18.27-5.72a1.48,1.48,0,0,0,1-1.43V28.19A1.09,1.09,0,0,0,89.37,28ZM48.54,86.67l-34.9-10.9V30.14l7.28,2.28V52.66a1.51,1.51,0,0,0,1,1.42l.23.08.12,0h0l.1,0a1.09,1.09,0,0,0,.26,0h.11a.18.18,0,0,0,.1,0,.4.4,0,0,0,.15,0l.23-.07,0,0h0a.6.6,0,0,0,.15-.09.61.61,0,0,0,.16-.12l.08-.07,6.82-6,7,10.92.09.15a1.51,1.51,0,0,0,1,.68h.44a.28.28,0,0,0,.13,0,.19.19,0,0,0,.1,0l.12,0a1,1,0,0,0,.23-.12l0,0a1.24,1.24,0,0,0,.22-.18L40,59a1.09,1.09,0,0,0,.13-.17.94.94,0,0,0,.14-.26,1.31,1.31,0,0,0,.09-.28,1.53,1.53,0,0,0,0-.3V38.5l8.18,2.55ZM38.37,35l-.1.07-.53.4a1.41,1.41,0,0,0-.37.8,1.09,1.09,0,0,0,0,.18V52.88l-5.2-8.14a.25.25,0,0,0,0-.08,1,1,0,0,0-.13-.18,1.8,1.8,0,0,0-.21-.19.79.79,0,0,0-.23-.14l-.14-.07a.64.64,0,0,0-.18-.06L31,44a1.27,1.27,0,0,0-.39,0l-.21,0a1.19,1.19,0,0,0-.35.15l-.2.14,0,0-.12.11-5.83,5.16V32.81a.92.92,0,0,0,.27-.08l16.57-6.89,9.42,4.26Zm11.8,3.41-6.94-2.18,11.3-4.7.24-.13a1.24,1.24,0,0,0,.22-.18,1.39,1.39,0,0,0,.33-.46s0,0,0,0a1.13,1.13,0,0,0,.08-.24.15.15,0,0,0,0-.07,1.09,1.09,0,0,0,0-.26,1.47,1.47,0,0,0-.07-.46s0-.09-.05-.13a2,2,0,0,0-.1-.21l-.13-.18a1.26,1.26,0,0,0-.2-.2l-.07,0a.87.87,0,0,0-.26-.16L41.51,22.89h-.07a1.43,1.43,0,0,0-1.23,0L23.06,30a1.37,1.37,0,0,1,.2.13A.94.94,0,0,0,23,30a.05.05,0,0,0,0,0,.31.31,0,0,0-.13-.06l-6.33-2,33.66-14,11,4.63L83.52,28ZM86.38,75.85,69.16,81.24,51.54,86.75V41.13l34.84-10.9Z\"></path><path d=\"M23.26,30.08A.94.94,0,0,0,23,30h0A1.37,1.37,0,0,1,23.26,30.08Z\"></path><path d=\"M37.74,35.48a1.41,1.41,0,0,0-.37.8,1.09,1.09,0,0,0,0,.18v.27a1.46,1.46,0,0,1,.28-1.18Z\"></path><path d=\"M23.31,54.08h0Z\"></path></svg>\n\n</div>\n<div class=\"text-content\">\n<h3>My Orders</h3>\n<p>View order history, reorder, and access invoices.</p>\n</div>\n</div>\n</a>\n<a href=\"#\" class=\"open-chat-btn\">\n<div class=\"b2b-nav-grid-item\">\n<div class=\"svg-icon\">\n<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" role=\"img\" viewBox=\"0 0 64 64\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path stroke-width=\"2\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke=\"#202020\" fill=\"none\" d=\"M28.4 35.9a11 11 0 0 0 10.6 14h5.9L54 59v-9.5a11 11 0 0 0-3-21.6h-.7\" data-name=\"layer2\"></path>\n            <path stroke-width=\"2\" stroke-linejoin=\"round\" stroke-linecap=\"round\" stroke=\"#202020\" fill=\"none\" d=\"M37 5.9H17A15 15 0 0 0 12 35v11.9l11-11h14a15 15 0 0 0 0-30z\" data-name=\"layer1\"></path>\n          </svg>\n</div>\n<div class=\"text-content\">\n<h3>Sales Live Chat</h3>\n<p>Contact our sales team for product info/ technical advice.</p>\n</div>\n</div>\n</a>\n<a href=\"https://build4less.co.uk/pages/contact-us\">\n<div class=\"b2b-nav-grid-item\">\n<div class=\"svg-icon\">\n<svg xmlns:xlink=\"http://www.w3.org/1999/xlink\" role=\"img\" aria-describedby=\"desc\" aria-labelledby=\"title\" viewBox=\"0 0 64 64\" xmlns=\"http://www.w3.org/2000/svg\">\n            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" stroke-miterlimit=\"10\" stroke=\"#202020\" fill=\"none\" d=\"M36.4 51H3s0-6 7-8 9-4.4 9-6v-2a61.4 61.4 0 0 1-12-2c3.3-3.3 6-4.3 6-18 0-6 3.7-11.6 10-11.6s14 0 14 11.6c0 13.7 2.7 14.7 6 18a61.7 61.7 0 0 1-12 2v2c0 1.6 1.1 3.7 9 6 5.1 1.5 6.5 5.1 6.9 6.9\" data-name=\"layer2\"></path>\n            <path stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" stroke-miterlimit=\"10\" stroke=\"#202020\" fill=\"none\" d=\"M56 31c-1.4-.2-2 .9-2.5 1.5l-3.4 5.2a2.4 2.4 0 0 0 .6 3.3c1.4 1.2 2.9 2.2-2.6 7.7s-6 3.5-7.2 2.1a2.4 2.4 0 0 0-3.3-.6l-5.2 3.4c-.7.5-1.7 1.1-1.5 2.5a7.2 7.2 0 0 0 6.8 5c4.5 0 10-3.5 14.8-8.4S61 42.3 61 37.8a7.2 7.2 0 0 0-5-6.8z\" data-name=\"layer1\"></path>\n          </svg>\n</div>\n<div class=\"text-content\">\n<h3>Customer Services</h3>\n<p>Order related queries and cancellations/ returns.</p>\n</div>\n</div>\n</a>\n\n</div>",
+        "color_scheme": "",
+        "header-002de3c7bebf6051b31c3e3dd56bbf17": null,
+        "padding_top": 12,
+        "padding_bottom": 4
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "t:sections.custom-liquid.presets.name"
+    },
+    "featured_collection_aWGfr": {
+      "type": "featured-collection",
+      "disabled": false,
+      "settings": {
+        "title": "Bestsellers from your catalogue",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "all-products",
+        "products_to_show": 15,
+        "columns_desktop": 5,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "",
+        "header-df6e3b210e930b0b4e05841d4ab5707a": null,
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": true,
+        "show_rating": false,
+        "quick_add": "none",
+        "header-3bf38ff3efacd3a6556f0ec490cec125": null,
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "header-caa2595beab200d8fe7a2bfdbd3aba83": null,
+        "padding_top": 12,
+        "padding_bottom": 0
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "t:sections.featured-collection.presets.name"
+    },
+    "custom_liquid_wGrwJ": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "settings": {
+        "custom_liquid": "{% render 'b2b-header-mega-menu' %}",
+        "color_scheme": "",
+        "header-5fe51e5b794b18c56bb64f8129a364f4": null,
+        "padding_top": 40,
+        "padding_bottom": 52
+      },
+      "blocks": {},
+      "block_order": [],
+      "name": "t:sections.custom-liquid.presets.name"
+    },
+    "slideshow_Ldw3Vi": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    },
+    "collection_list_dYRQta": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    },
+    "featured_collection": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    },
+    "custom_liquid_7CefVV": {
+      "disabled": true,
+      "settings": {},
+      "blocks": {}
+    }
+  },
+  "order": [
+    "custom_liquid_A8EFY",
+    "featured_collection_aWGfr",
+    "custom_liquid_wGrwJ",
+    "slideshow_Ldw3Vi",
+    "collection_list_dYRQta",
+    "featured_collection",
+    "1742400946de711423",
+    "custom_liquid_7CefVV",
+    "custom_liquid_Ar8rfk"
+  ]
+}

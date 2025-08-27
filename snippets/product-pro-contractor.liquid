@@ -1,0 +1,8 @@
+{% comment %} Auto-generated dispatcher file {% endcomment %}
+{% render 'store-detection' %}
+
+{% if store_id == 'i4us' %}
+  {% render 'product-pro-contractor_i4us' %}
+{% elsif store_id == 'r4us' %}
+  {% render 'product-pro-contractor_r4us' %}
+{% endif %}

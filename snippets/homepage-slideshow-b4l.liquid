@@ -1,0 +1,104 @@
+{% comment %} Build4Less slideshow content {% endcomment %}
+
+<div class="slideshow-wrapper">
+  <slideshow-component
+    class="slideshow"
+    data-layout="{{ 'grid' }}"
+    data-slide-height="{{ 'adapt_image' }}"
+    data-auto-rotate="{{ true }}"
+    data-change-speed="{{ 5 }}"
+  >
+    <div class="slideshow__slide">
+      {% if 'shopify://shop_images/B4L_Limited_Time_Offer_3.png' != blank %}
+        <img src="{{ 'shopify://shop_images/B4L_Limited_Time_Offer_3.png' | image_url }}" alt="Slide {{ 1 }}" loading="lazy">
+      {% endif %}
+      {% if '' != blank or '' != blank %}
+        <div class="slideshow__text-wrapper banner__content {{ 'middle-center' }} {{ 'center' }}">
+          {% if '' != blank %}
+            <h2 class="{{ 'h0' }}">{{ '' }}</h2>
+          {% endif %}
+          {% if '' != blank %}
+            <div class="slideshow__subheading">{{ '' }}</div>
+          {% endif %}
+          {% if '' != blank %}
+            <a href="{{ '' }}" class="button {% if false %}button--secondary{% else %}button{% endif %}">
+              {{ '' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if 'shopify://collections' != blank %}
+        <a href="{{ 'shopify://collections' }}" class="slideshow__slide-link" aria-label="Slide link"></a>
+      {% endif %}
+    </div>
+    <div class="slideshow__slide">
+      {% if 'shopify://shop_images/Ice_bath_2.png' != blank %}
+        <img src="{{ 'shopify://shop_images/Ice_bath_2.png' | image_url }}" alt="Slide {{ 2 }}" loading="lazy">
+      {% endif %}
+      {% if '' != blank or '' != blank %}
+        <div class="slideshow__text-wrapper banner__content {{ 'middle-center' }} {{ 'center' }}">
+          {% if '' != blank %}
+            <h2 class="{{ 'hxxl' }}">{{ '' }}</h2>
+          {% endif %}
+          {% if '' != blank %}
+            <div class="slideshow__subheading">{{ '' }}</div>
+          {% endif %}
+          {% if '' != blank %}
+            <a href="{{ '' }}" class="button {% if false %}button--secondary{% else %}button{% endif %}">
+              {{ '' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if 'shopify://products/ice-bath' != blank %}
+        <a href="{{ 'shopify://products/ice-bath' }}" class="slideshow__slide-link" aria-label="Slide link"></a>
+      {% endif %}
+    </div>
+    <div class="slideshow__slide">
+      {% if 'shopify://shop_images/B4L_Hp_Paulmann_Sale_1.png' != blank %}
+        <img src="{{ 'shopify://shop_images/B4L_Hp_Paulmann_Sale_1.png' | image_url }}" alt="Slide {{ 3 }}" loading="lazy">
+      {% endif %}
+      {% if '' != blank or '' != blank %}
+        <div class="slideshow__text-wrapper banner__content {{ 'middle-center' }} {{ 'center' }}">
+          {% if '' != blank %}
+            <h2 class="{{ 'h1' }}">{{ '' }}</h2>
+          {% endif %}
+          {% if '' != blank %}
+            <div class="slideshow__subheading">{{ '' }}</div>
+          {% endif %}
+          {% if '' != blank %}
+            <a href="{{ '' }}" class="button {% if false %}button--secondary{% else %}button{% endif %}">
+              {{ '' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if 'https://build4less.co.uk/collections/on-sale?sort_by=manual&filter.p.vendor=Paulmann' != blank %}
+        <a href="{{ 'https://build4less.co.uk/collections/on-sale?sort_by=manual&filter.p.vendor=Paulmann' }}" class="slideshow__slide-link" aria-label="Slide link"></a>
+      {% endif %}
+    </div>
+    <div class="slideshow__slide">
+      {% if 'shopify://shop_images/Kitchen.png' != blank %}
+        <img src="{{ 'shopify://shop_images/Kitchen.png' | image_url }}" alt="Slide {{ 4 }}" loading="lazy">
+      {% endif %}
+      {% if '' != blank or '' != blank %}
+        <div class="slideshow__text-wrapper banner__content {{ 'middle-center' }} {{ 'center' }}">
+          {% if '' != blank %}
+            <h2 class="{{ 'h1' }}">{{ '' }}</h2>
+          {% endif %}
+          {% if '' != blank %}
+            <div class="slideshow__subheading">{{ '' }}</div>
+          {% endif %}
+          {% if '' != blank %}
+            <a href="{{ '' }}" class="button {% if false %}button--secondary{% else %}button{% endif %}">
+              {{ '' }}
+            </a>
+          {% endif %}
+        </div>
+      {% endif %}
+      {% if 'shopify://collections/kitchens' != blank %}
+        <a href="{{ 'shopify://collections/kitchens' }}" class="slideshow__slide-link" aria-label="Slide link"></a>
+      {% endif %}
+    </div>
+  </slideshow-component>
+</div>

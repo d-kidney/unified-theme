@@ -1,0 +1,44 @@
+{% comment %}
+  Shows inline notice for unavailable variants when not all variants are unavailable
+  
+  Accepts:
+  - variant: Current variant object
+  - variant_status: The variant's availability status
+  - product: Product object
+{% endcomment %}
+
+<div class="variant-unavailable-notice" 
+     data-variant-notice 
+     data-variant-id="{{ variant.id }}"
+     style="{% unless variant_status == 'discontinued' or variant_status == 'not_for_sale' %}display: none;{% endunless %}">
+  
+  <div class="notice-content">
+    {% if variant_status == 'discontinued' %}
+      <p class="notice-text">
+        <strong>This variant is discontinued</strong>
+        {% if variant.metafields.custom.alternative_product %}
+          - <a href="#" data-show-variant-alternatives>Click here to view alternative(s)</a>
+        {% else %}
+          - Please <a href="/pages/contact-us">email us</a> for alternatives
+        {% endif %}
+      </p>
+    {% elsif variant_status == 'not_for_sale' %}
+      <p class="notice-text">
+        <strong>We don't sell this variant</strong>
+        {% if variant.metafields.custom.alternative_product %}
+          - <a href="#" data-show-variant-alternatives>Click here to view alternative(s)</a>
+        {% else %}
+          - Please <a href="/pages/contact-us">email us</a> for alternatives
+        {% endif %}
+      </p>
+    {% endif %}
+  </div>
+</div>
+
+{% comment %} Container for variant-specific alternatives {% endcomment %}
+<div class="variant-alternatives-container" 
+     data-variant-alternatives 
+     data-variant-id="{{ variant.id }}"
+     style="display: none;">
+  <!-- Populated by JavaScript when alternatives are requested -->
+</div>

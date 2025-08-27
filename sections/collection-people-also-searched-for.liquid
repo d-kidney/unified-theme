@@ -1,0 +1,39 @@
+{% if collection.metafields.custom.people_also_searched_for %}
+          <div class="also-searched-container page-width">
+  {% render 'collection-people-also-searched-for' %}
+          </div>
+  {% endif %}
+
+{% schema %}
+{
+  "name": "People Also Searched For",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "People Also Searched For"
+    }
+  ]
+}
+{% endschema %}

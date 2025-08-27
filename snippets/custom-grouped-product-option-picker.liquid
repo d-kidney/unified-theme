@@ -1,0 +1,258 @@
+{% render 'store-detection' %}
+
+{% comment %}
+  Renders a custom grouped product interface for Dawn 2.0 theme
+  
+  Accepts:
+  - product: {Object} Product Liquid object (required)
+  
+  Usage:
+  {% render 'custom-grouped-product-option-picker', product: product %}
+{% endcomment %}
+
+{% if store_id == 'i4l' or store_id == 'i4us' or store_id == 'r4us' %}
+  {{ 'component-product-variant-picker_i4l_i4us_r4us.css' | asset_url | stylesheet_tag }}
+{% elsif store_id == 'b4l' or store_id == 't4l' %}
+  {{ 'component-product-variant-picker_b4l_t4l.css' | asset_url | stylesheet_tag }}
+{% elsif store_id == 'bso' %}
+  {{ 'component-product-variant-picker_bso.css' | asset_url | stylesheet_tag }}
+{% endif %}
+{{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
+{{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+{{ 'custom-grouped-product-option-picker.js' | asset_url | script_tag }}
+
+{% liquid
+  assign custom_grouped_product = product.metafields.custom.custom_grouped_product.value
+  assign parent_product = custom_grouped_product.grouped_parent.value
+  assign child_products = custom_grouped_product.child_products.value
+  assign is_parent_product = false
+  if product.id == parent_product.id
+    assign is_parent_product = true
+  endif
+  
+  assign option1_name = parent_product.metafields.custom.option1_name
+  assign option2_name = parent_product.metafields.custom.option2_name
+  assign option3_name = parent_product.metafields.custom.option3_name
+  
+  assign has_option2 = false
+  assign has_option3 = false
+  if option2_name != blank
+    assign has_option2 = true
+  endif
+  if option3_name != blank
+    assign has_option3 = true
+  endif
+%}
+
+<variant-selects 
+  id="variant-selects-{{ section.id }}" 
+  data-section="{{ section.id }}"
+  data-update-url="false"
+  class="custom-grouped-product no-js-hidden"
+  data-prevent-default-navigation="true">
+  {% if option1_name != blank %}
+    {% assign option1_values = child_products | map: 'metafields' | map: 'custom' | map: 'option1_value' | uniq %}
+    {% if option1_values.size > 0 and option1_values.first != blank %}
+      <fieldset class="js product-form__input product-form__input--pill">
+        <legend class="form__label">{{ option1_name }}</legend>
+        {% for option1_value in option1_values %}
+          {% if option1_value != blank %}
+            {% if option2_name == blank %}
+              {% for child_product in child_products %}
+                {% if child_product.metafields.custom.option1_value == option1_value %}
+                  {% assign is_selected = false %}
+                  {% if product.metafields.custom.option1_value == option1_value %}
+                    {% assign is_selected = true %}
+                  {% endif %}
+                  
+                  <input 
+                    type="radio" 
+                    id="template--custom-grouped-product__{{ product.id }}-1-{{ forloop.index0 }}" 
+                    name="{{ option1_name }}-1"
+                    value="{{ option1_value }}"
+                    form="product-form-template--custom-grouped-product__{{ product.id }}"
+                    {% if is_selected %}checked{% endif %}
+                    data-product-url="{{ child_product.url }}"
+                    data-option-value-id="{{ child_product.id }}"
+                    data-variant-id="{{ child_product.selected_or_first_available_variant.id }}"
+                    data-option-position="1"
+                    data-option-value="{{ option1_value }}"
+                  >
+                  <label for="template--custom-grouped-product__{{ product.id }}-1-{{ forloop.index0 }}">
+                    <a href="{{ child_product.url }}" class="accessible-product-link">{{ option1_value }}</a>
+                    <span class="visually-hidden label-unavailable">Variant sold out or unavailable</span>
+                  </label>
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% else %}
+              <input 
+                type="radio" 
+                id="template--custom-grouped-product__{{ product.id }}-1-{{ forloop.index0 }}" 
+                name="{{ option1_name }}-1"
+                value="{{ option1_value }}"
+                form="product-form-template--custom-grouped-product__{{ product.id }}"
+                {% if product.metafields.custom.option1_value == option1_value %}checked{% endif %}
+                data-option-value-id="{{ forloop.index0 }}"
+                data-option-position="1"
+                data-option-value="{{ option1_value }}"
+              >
+              <label for="template--custom-grouped-product__{{ product.id }}-1-{{ forloop.index0 }}">
+                {{ option1_value }}
+                <span class="visually-hidden label-unavailable">Variant sold out or unavailable</span>
+              </label>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </fieldset>
+    {% endif %}
+  {% endif %}
+
+  {% if option2_name != blank %}
+    {% assign option2_values = child_products | map: 'metafields' | map: 'custom' | map: 'option2_value' | uniq %}
+    {% if option2_values.size > 0 and option2_values.first != blank %}
+      {% assign has_option2 = true %}
+      <fieldset class="js product-form__input product-form__input--pill option2-fieldset" {% if product.metafields.custom.option1_value == blank %}style="display: none;"{% endif %}>
+        <legend class="form__label">{{ option2_name }}</legend>
+        <div class="option-prompt" {% if product.metafields.custom.option1_value != blank %}style="display: none;"{% endif %}>
+          Select a {{ option1_name }} to view available options
+        </div>
+        
+        {% for option2_value in option2_values %}
+          {% if option2_value != blank %}
+            {% if option3_name == blank %}
+              {% for child_product in child_products %}
+                {% if child_product.metafields.custom.option2_value == option2_value %}
+                  {% assign is_selected = false %}
+                  {% if product.metafields.custom.option2_value == option2_value %}
+                    {% assign is_selected = true %}
+                  {% endif %}
+                  
+                  <input 
+                    type="radio" 
+                    id="template--custom-grouped-product__{{ product.id }}-2-{{ forloop.index0 }}" 
+                    name="{{ option2_name }}-2"
+                    value="{{ option2_value }}"
+                    form="product-form-template--custom-grouped-product__{{ product.id }}"
+                    {% if is_selected %}checked{% endif %}
+                    data-product-url="{{ child_product.url }}"
+                    data-option-value-id="{{ child_product.id }}"
+                    data-variant-id="{{ child_product.selected_or_first_available_variant.id }}"
+                    data-option1-value="{{ child_product.metafields.custom.option1_value }}"
+                    data-option-position="2"
+                    data-option-value="{{ option2_value }}"
+                  >
+                  <label for="template--custom-grouped-product__{{ product.id }}-2-{{ forloop.index0 }}">
+                    <a href="{{ child_product.url }}" class="accessible-product-link">{{ option2_value }}</a>
+                    <span class="visually-hidden label-unavailable">Variant sold out or unavailable</span>
+                  </label>
+                  {% break %}
+                {% endif %}
+              {% endfor %}
+            {% else %}
+              <input 
+                type="radio" 
+                id="template--custom-grouped-product__{{ product.id }}-2-{{ forloop.index0 }}" 
+                name="{{ option2_name }}-2"
+                value="{{ option2_value }}"
+                form="product-form-template--custom-grouped-product__{{ product.id }}"
+                {% if product.metafields.custom.option2_value == option2_value %}checked{% endif %}
+                data-option-value-id="{{ forloop.index0 }}"
+                data-option-position="2"
+                data-option-value="{{ option2_value }}"
+              >
+              <label for="template--custom-grouped-product__{{ product.id }}-2-{{ forloop.index0 }}">
+                {{ option2_value }}
+                <span class="visually-hidden label-unavailable">Variant sold out or unavailable</span>
+              </label>
+            {% endif %}
+          {% endif %}
+        {% endfor %}
+      </fieldset>
+    {% endif %}
+  {% endif %}
+
+  {% if option3_name != blank %}
+    {% assign option3_values = child_products | map: 'metafields' | map: 'custom' | map: 'option3_value' | uniq %}
+    {% if option3_values.size > 0 and option3_values.first != blank %}
+      {% assign has_option3 = true %}
+      <fieldset class="js product-form__input product-form__input--pill option3-fieldset" {% if product.metafields.custom.option2_value == blank %}style="display: none;"{% endif %}>
+        <legend class="form__label">{{ option3_name }}</legend>
+        <div class="option-prompt" {% if product.metafields.custom.option2_value != blank %}style="display: none;"{% endif %}>
+          Select a {{ option2_name }} to view available options
+        </div>
+        
+        {% for child_product in child_products %}
+          {% assign option1_value = child_product.metafields.custom.option1_value %}
+          {% assign option2_value = child_product.metafields.custom.option2_value %}
+          {% assign option3_value = child_product.metafields.custom.option3_value %}
+          {% if option3_value != blank %}
+            {% assign is_selected = false %}
+            {% if product.metafields.custom.option3_value == option3_value and product.metafields.custom.option1_value == option1_value and product.metafields.custom.option2_value == option2_value %}
+              {% assign is_selected = true %}
+            {% endif %}
+            
+            <input 
+              type="radio" 
+              id="template--custom-grouped-product__{{ product.id }}-3-{{ forloop.index0 }}" 
+              name="{{ option3_name }}-3"
+              value="{{ option3_value }}"
+              form="product-form-template--custom-grouped-product__{{ product.id }}"
+              {% if is_selected %}checked{% endif %}
+              data-product-url="{{ child_product.url }}"
+              data-option-value-id="{{ child_product.id }}"
+              data-variant-id="{{ child_product.selected_or_first_available_variant.id }}"
+              data-option1-value="{{ option1_value }}"
+              data-option2-value="{{ option2_value }}"
+              data-option-position="3"
+              data-option-value="{{ option3_value }}"
+            >
+            <label for="template--custom-grouped-product__{{ product.id }}-3-{{ forloop.index0 }}">
+              <a href="{{ child_product.url }}" class="accessible-product-link">{{ option3_value }}</a>
+              <span class="visually-hidden label-unavailable">Variant sold out or unavailable</span>
+            </label>
+          {% endif %}
+        {% endfor %}
+      </fieldset>
+    {% endif %}
+  {% endif %}
+  <script type="application/json" data-selected-variant>
+    {% if is_parent_product %}
+      {% assign selected_child = child_products | first %}
+    {% else %}
+      {% assign selected_child = product %}
+    {% endif %}
+    
+    {% capture variant_json %}
+      {
+        "id": {{ selected_child.id | json }},
+        "title": {{ selected_child.title | json }},
+        "option1": {{ selected_child.metafields.custom.option1_value | json }},
+        "option2": {{ selected_child.metafields.custom.option2_value | json }},
+        "option3": {{ selected_child.metafields.custom.option3_value | json }},
+        "sku": {{ selected_child.sku | json }},
+        "requires_shipping": {{ selected_child.requires_shipping | json }},
+        "taxable": {{ selected_child.taxable | json }},
+        "featured_image": {{ selected_child.featured_image | json }},
+        "available": {{ selected_child.available | json }},
+        "name": {{ selected_child.title | json }},
+        "public_title": {{ selected_child.metafields.custom.option1_value | json }},
+        "options": [
+          {{ selected_child.metafields.custom.option1_value | json }},
+          {{ selected_child.metafields.custom.option2_value | json }},
+          {{ selected_child.metafields.custom.option3_value | json }}
+        ],
+        "price": {{ selected_child.price | json }},
+        "weight": {{ selected_child.weight | json }},
+        "compare_at_price": {{ selected_child.compare_at_price | json }},
+        "inventory_management": {{ selected_child.inventory_management | json }},
+        "barcode": {{ selected_child.barcode | json }},
+        "featured_media": {{ selected_child.featured_media | json }},
+        "requires_selling_plan": false,
+        "selling_plan_allocations": [],
+        "quantity_rule": {"min":1,"max":null,"increment":1}
+      }
+    {% endcapture %}
+    {{ variant_json | strip_newlines | strip }}
+  </script>
+</variant-selects>

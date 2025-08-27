@@ -1,0 +1,155 @@
+{% comment %} Homepage slideshow with store-specific content {% endcomment %}
+{% render 'store-detection' %}
+
+{%- style -%}
+  .slideshow-{{ section.id }} {
+    display: block;
+  }
+{%- endstyle -%}
+
+<div class="slideshow-wrapper">
+  {% comment %} Load store-specific slideshow content {% endcomment %}
+  
+  {% if store_id == 'b4l' %}
+    {% comment %} Build4Less slideshow content {% endcomment %}
+    {% render 'homepage-slideshow-b4l' %}
+    
+  {% elsif store_id == 't4l' %}
+    {% comment %} Tiles4Less slideshow content {% endcomment %}
+    {% render 'homepage-slideshow-t4l' %}
+    
+  {% elsif store_id == 'bso' %}
+    {% comment %} BSO slideshow content {% endcomment %}
+    {% render 'homepage-slideshow-bso' %}
+    
+  {% elsif store_id == 'i4l' %}
+    {% comment %} Insulation4Less slideshow content {% endcomment %}
+    {% render 'homepage-slideshow-i4l' %}
+    
+  {% elsif store_id == 'i4us' %}
+    {% comment %} Insulation4US slideshow content {% endcomment %}
+    {% render 'homepage-slideshow-i4us' %}
+    
+  {% elsif store_id == 'r4us' %}
+    {% comment %} Roofing4US slideshow content {% endcomment %}
+    {% render 'homepage-slideshow-r4us' %}
+    
+  {% else %}
+    {% comment %} Fallback slideshow content {% endcomment %}
+    {% comment %} Section 'slideshow' removed - sections cannot render other sections {% endcomment %}
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Homepage Slideshow",
+  "tag": "section",
+  "class": "homepage-slideshow",
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "full_bleed",
+          "label": "Full width"
+        },
+        {
+          "value": "grid",
+          "label": "Grid"
+        }
+      ],
+      "default": "grid",
+      "label": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "slide_height",
+      "options": [
+        {
+          "value": "adapt_image",
+          "label": "Adapt to first image"
+        },
+        {
+          "value": "small",
+          "label": "Small"
+        },
+        {
+          "value": "medium",
+          "label": "Medium"
+        },
+        {
+          "value": "large",
+          "label": "Large"
+        }
+      ],
+      "default": "adapt_image",
+      "label": "Slide height"
+    },
+    {
+      "type": "select",
+      "id": "slider_visual",
+      "options": [
+        {
+          "value": "dots",
+          "label": "Dots"
+        },
+        {
+          "value": "counter",
+          "label": "Counter"
+        },
+        {
+          "value": "numbers",
+          "label": "Numbers"
+        }
+      ],
+      "default": "dots",
+      "label": "Slider visual"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "Auto-rotate slides",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Change slides every",
+      "default": 5
+    },
+    {
+      "type": "select",
+      "id": "image_behavior",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "ambient",
+          "label": "Ambient"
+        }
+      ],
+      "default": "none",
+      "label": "Image behavior"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_text_below",
+      "label": "Show text below image on mobile",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "accessibility_info",
+      "label": "Slideshow accessibility description",
+      "default": "Slideshow of various promotions"
+    }
+  ]
+}
+{% endschema %}
