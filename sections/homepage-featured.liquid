@@ -57,12 +57,12 @@
             <li class="grid__item">
               {% render 'card-product',
                 card_product: product,
-                media_aspect_ratio: section_settings_image_ratio,
-                image_shape: section_settings_image_shape,
-                show_secondary_image: section_settings_show_secondary_image,
-                show_vendor: section_settings_show_vendor,
-                show_rating: section_settings_show_rating,
-                show_quick_add: section_settings_quick_add
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
+                show_secondary_image: section.settings.show_secondary_image,
+                show_vendor: section.settings.show_vendor,
+                show_rating: section.settings.show_rating,
+                show_quick_add: section.settings.quick_add
               %}
             </li>
           {% endfor %}

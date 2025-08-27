@@ -63,11 +63,11 @@
                 data-selected-value
                 class="dropdown-swatch"
               >
-                {% render 'swatch', swatch: option_selected_value_swatch, shape: block_settings_swatch_shape %}
+                {% render 'swatch', swatch: option_selected_value_swatch, shape: block_settings.swatch_shape %}
               </span>
             {%- endif -%}
             <select
-              id="Option-{{ section_id }}-{{ forloop_index0 }}"
+              id="Option-{{ section_id }}-{{ forloop.index0 }}"
               class="select__select"
               name="options[{{ option_name | escape }}]"
               form="{{ product_form_id }}"

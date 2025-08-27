@@ -14,12 +14,12 @@
   {%- if product != blank -%}
     {%- liquid
       assign gift_card_recipient_feature_active = false
-      if block_settings_show_gift_card_recipient and product_gift_card?
+      if block_settings.show_gift_card_recipient and product_gift_card?
         assign gift_card_recipient_feature_active = true
       endif
 
       assign show_dynamic_checkout = false
-      if block_settings_show_dynamic_checkout and gift_card_recipient_feature_active == false
+      if block_settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
         assign show_dynamic_checkout = true
       endif
     -%}

@@ -120,28 +120,28 @@
           >
             {% render 'card-product',
               card_product: product,
-              media_aspect_ratio: section_settings_image_ratio,
-              image_shape: section_settings_image_shape,
-              show_secondary_image: section_settings_show_secondary_image,
-              show_vendor: section_settings_show_vendor,
-              show_rating: section_settings_show_rating,
+              media_aspect_ratio: section.settings.image_ratio,
+              image_shape: section.settings.image_shape,
+              show_secondary_image: section.settings.show_secondary_image,
+              show_vendor: section.settings.show_vendor,
+              show_rating: section.settings.show_rating,
               skip_styles: skip_card_product_styles,
               section_id: section_id,
-              quick_add: section_settings_quick_add
+              quick_add: section.settings.quick_add
             %}
           </li>
           {%- assign skip_card_product_styles = true -%}
         {%- else -%}
-          {%- for i in (1__section_settings_columns_desktop) -%}
+          {%- for i in (1..section.settings.columns_desktop) -%}
             <li
-              class="grid__item{% if settings_animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-              {% if settings_animations_reveal_on_scroll %}
+              class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}
                 data-cascade
-                style="--animation-order: {{ forloop_index }};"
+                style="--animation-order: {{ forloop.index }};"
               {% endif %}
             >
               {% liquid
-                assign ridx = forloop_rindex
+                assign ridx = forloop.rindex
                 case ridx
                   when 5
                     assign ridx = 1
@@ -151,9 +151,9 @@
               %}
               {%- assign placeholder_image = 'product-apparel-' | append: ridx -%}
               {% render 'card-product',
-                show_vendor: section_settings_show_vendor,
-                media_aspect_ratio: section_settings_image_ratio,
-                image_shape: section_settings_image_shape,
+                show_vendor: section.settings.show_vendor,
+                media_aspect_ratio: section.settings.image_ratio,
+                image_shape: section.settings.image_shape,
                 placeholder_image: placeholder_image
               %}
             </li>
