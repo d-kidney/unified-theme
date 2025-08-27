@@ -6,16 +6,91 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- * 
- * NOTE: This unified homepage template uses dynamic sections
- * that load store-specific content via Liquid conditionals.
- * Each section handles its own store detection and content loading.
- * ------------------------------------------------------------
  */
 {
   "sections": {
-    "homepage_slideshow": {
-      "type": "homepage-slideshow",
+    "slideshow_Ldw3Vi": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_twAKnw": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Rmax.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/rmax-polyiso",
+            "button_style_secondary": false,
+            "box_align": "top-left",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_3pqbGK": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Gallina.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/polycarbonate-sheets",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_NEQBE6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Owens_corning.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/owens-corning",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_D7eP9M": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Fakro.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/fakro-attic-ladder",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_twAKnw",
+        "slide_3pqbGK",
+        "slide_NEQBE6",
+        "slide_D7eP9M"
+      ],
       "settings": {
         "layout": "grid",
         "slide_height": "adapt_image",
@@ -27,8 +102,97 @@
         "accessibility_info": "Slideshow of various promotions"
       }
     },
-    "homepage_collections": {
-      "type": "homepage-collections",
+    "collection_list_dYRQta": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_EFeFBF": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "rigid-insulation"
+          }
+        },
+        "featured_collection_XJxyr8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "mineral-wool"
+          }
+        },
+        "featured_collection_7c9CVd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "radiant-barrier"
+          }
+        },
+        "featured_collection_GJWEE4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "spray-foam"
+          }
+        },
+        "featured_collection_GfYimd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "insulation-blowing-machines"
+          }
+        },
+        "featured_collection_LrAqE3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fiberglass"
+          }
+        },
+        "featured_collection_HeY9mk": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "ac-units-dehumidifiers"
+          }
+        },
+        "featured_collection_TEUc6T": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "polycarbonate-sheets"
+          }
+        },
+        "featured_collection_3qncG4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "eco-friendly-insulation"
+          }
+        },
+        "featured_collection_7Bet9X": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "basement-insulation"
+          }
+        },
+        "featured_collection_XchqnB": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "fakro-attic-ladder"
+          }
+        },
+        "featured_collection_jCFQj7": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "roofing-membranes"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_EFeFBF",
+        "featured_collection_XJxyr8",
+        "featured_collection_7c9CVd",
+        "featured_collection_GJWEE4",
+        "featured_collection_GfYimd",
+        "featured_collection_LrAqE3",
+        "featured_collection_HeY9mk",
+        "featured_collection_TEUc6T",
+        "featured_collection_3qncG4",
+        "featured_collection_7Bet9X",
+        "featured_collection_XchqnB",
+        "featured_collection_jCFQj7"
+      ],
+      "custom_css": [],
       "settings": {
         "title": "Popular Categories",
         "heading_size": "h1",
@@ -42,21 +206,22 @@
         "padding_bottom": 20
       }
     },
-    "homepage_featured": {
-      "type": "homepage-featured",
+    "featured_collection": {
+      "type": "featured-collection",
       "settings": {
         "title": "Popular products",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
+        "collection": "bestsellers",
         "products_to_show": 10,
         "columns_desktop": 5,
         "full_width": false,
         "show_view_all": false,
         "view_all_style": "solid",
         "enable_desktop_slider": false,
-        "color_scheme": "",
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -69,20 +234,260 @@
         "padding_bottom": 20
       }
     },
-    "homepage_custom_content": {
-      "type": "homepage-custom-content",
-      "settings": {}
+    "custom_liquid_cJF6Gw": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".ibs-text {padding: 25px 0 0 0;}",
+        "@media only screen and (min-width: 900px) {.ibs-text {padding: 65px 25px 0 25px; }}",
+        ".ibs-brochure-con {overflow: hidden; float: none;}",
+        ".ibs-brochure-con img {width: 100%;}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div class=\"ibs-brochure-con col-12 col-xs-12 page-width\">\n<div class=\"ibs-img col-xs-12 col-md-5\">\n<img src=\"https://cdn.shopify.com/s/files/1/0420/1073/8840/files/IBS-Las-Vegas-2025---4US-Group-Brochure_84862540-0e15-46fb-b673-5d865c838d89.png?v=1741202461\" alt=\"ibs brochure cover\">\n</div>\n<div class=\"ibs-text col-xs-12 col-md-7\">\n<h2>Browse Our IBS Las Vegas 2025 Brochure</h2>\n<p>Missed us at the event? or fancy taking another look at our brochure? Don't worry, we have added it here so you can do just that!</p>\n<a href=\"/pages/ibs-las-vegas-2025-4us-group-brochure\" class=\"button\" target=\"_blank\">View Brochure</a>\n<p></p>\n</div>\n</div>",
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "padding_top": 8,
+        "padding_bottom": 16
+      }
     },
-    "homepage_reviews": {
-      "type": "homepage-reviews",
-      "settings": {}
+    "collection_list_kriNgn": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_dPHd8A": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "owens-corning"
+          }
+        },
+        "featured_collection_i9CKnq": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "rmax-polyiso"
+          }
+        },
+        "featured_collection_mNtHLM": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "hunter-polyiso"
+          }
+        },
+        "featured_collection_B8TU6C": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "knauf-insulation"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_dPHd8A",
+        "featured_collection_i9CKnq",
+        "featured_collection_mNtHLM",
+        "featured_collection_B8TU6C"
+      ],
+      "settings": {
+        "title": "Popular Brands",
+        "heading_size": "h1",
+        "image_ratio": "square",
+        "columns_desktop": 4,
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "show_view_all": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_liquid_zXh3rN": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".home-r-value-guide-section {overflow: hidden; width: 100%;}",
+        ".home-r-value-guide-section .play-button:empty {display: block;}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<div class=\"home-r-value-guide-section container page-width\">\n\n<h2 class=\"h2 text-center\">Choosing the right R-Value for your project</h2>\n\n\n<div class=\"col-lg-6 rvg-video\">\n\n<div class=\"youtube\" data-embed=\"qUgFoovSnTs\"> \n \n    <!-- (2) the \"play\" button -->\n    <div class=\"play-button\"></div> \n     \n\n </div>\n</div>\n\n<div class=\"col-lg-6 rvg-text\">\n<p>Installing Insulation is a great way of lowering your heating an cooling costs while improving the comfort of your home.\n  However shopping for insulation can quickly become overwhelming when you are confronted with so many complicated technical terms that you may not be familiar with.\n  One of the main technical terms associated with insulation is R-Value.</p>\n<p>\n \n  </p>\n<p>In this Guide by Insulation4US we are going to break down and explain everything you will need to know when choosing the right R-Value for your building project.</p>\n\n  <a href=\"/pages/insulation-r-value-guide-choosing-the-right-r-value\"><button type=\"button\" class=\"button\">Read More</button></a>\n</div>\n\n</div>",
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "1749045980f9dcef70": {
+      "type": "apps",
+      "blocks": {
+        "reviews_io_reviewsio_card_carousel_eWeHB9": {
+          "type": "shopify://apps/reviews-io/blocks/reviewsio-card-carousel/92a082e5-b297-4e88-b428-ac96cbc505f9",
+          "settings": {
+            "star": "#e0162b",
+            "review_type": "company",
+            "reviews_shown": 20,
+            "header_bg_colour": "#003068",
+            "header_colour": "#ffffff",
+            "header_star_colour": "#e0162b",
+            "heading_text_colour": "#0e1311",
+            "heading_font": "poppins_n4",
+            "body_text_colour": "#0e1311",
+            "badge_icon_colour": "#000000",
+            "badge_text_colour": "#0e1311",
+            "bg_start_colour": "#f3f3f3",
+            "bg_end_colour": "#f3f3f3",
+            "item_border_width": "0px",
+            "item_border_colour": "#f2f2f2",
+            "item_border_radius": "0px",
+            "item_shadow_size": "10px",
+            "item_shadow_colour": "#f2f2f2",
+            "enable_rich_snippets": true,
+            "disable_same_customer": false,
+            "logo_colour": "var(--logo-inverted)"
+          }
+        }
+      },
+      "block_order": [
+        "reviews_io_reviewsio_card_carousel_eWeHB9"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "rich_text_7EdHLC": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_H8hyzB": {
+          "type": "heading",
+          "settings": {
+            "heading": "Why buy from us?",
+            "heading_size": "h2"
+          }
+        },
+        "text_d3h6kh": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Why choose Insulation4US? Because we make getting insulation materials fast, easy, and affordable anywhere in the U.S. We have partnered with leading brands like <a href=\"/collections/owens-corning\" title=\"Owens Corning insulation\">Owens Corning</a>, <a href=\"/collections/hunter-polyiso\" title=\"Hunter panels\">Hunter</a>, <a href=\"/collections/knauf-insulation\" title=\"Knauf Insulation\">Knauf</a>, and <a href=\"/collections/johns-manville\" title=\"Johns Manville\">Johns Manville</a> to give you reliable products at competitive prices.</p><p> Our nationwide distribution network means most orders ship fast, keeping your projects on schedule. Whether you are insulating a home, commercial building, or industrial space, our extensive selection has you covered with <a href=\"/collections/fiberglass\" title=\"Fiberglass insulation\">fiberglass batts</a>, <a href=\"/collections/spray-foam-kits\" title=\"Spray foam insulation kit\">spray foam kits</a>, <a href=\"/collections/rigid-insulation\" title=\"Rigid foam board insulation\">rigid boards</a>, <a href=\"/collections/mineral-wool\" title=\"Mineral wool insulation\">mineral wool</a>, <a href=\"/collections/vapor-barrier\" title=\"Vapor Barrier\">vapor barriers</a>, and more. We keep our inventory ready so you are never left waiting for essential supplies. </p><p>Our knowledgeable customer service team understands the insulation industry inside and out, offering practical guidance to help you choose the right product for every application. </p><p>At Insulation4US, we believe in clear communication, dependable delivery, and fair pricing. When you buy from us, you get more than insulation. You get a partner committed to making your project run smoother from start to finish.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "heading_H8hyzB",
+        "text_d3h6kh"
+      ],
+      "name": "t:sections.rich-text.presets.name",
+      "settings": {
+        "desktop_content_position": "center",
+        "content_alignment": "center",
+        "color_scheme": "",
+        "full_width": false,
+        "padding_top": 24,
+        "padding_bottom": 36
+      }
+    },
+    "featured_blog_gwawCD": {
+      "type": "featured-blog",
+      "name": "t:sections.featured-blog.presets.name",
+      "settings": {
+        "heading": "Latest Guides & News",
+        "heading_size": "h1",
+        "blog": "guides-and-news",
+        "post_limit": 3,
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_image": true,
+        "show_date": false,
+        "show_author": false,
+        "show_view_all": true,
+        "padding_top": 24,
+        "padding_bottom": 8
+      }
+    },
+    "slideshow_QdAFy3": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_qdnqBR": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/I4US-Home-greenguard-banner_opt.jpg",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/kingspan-greenguard",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": true,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_qdnqBR"
+      ],
+      "disabled": true,
+      "custom_css": [
+        ".slideshow__text-wrapper {display: none;}"
+      ],
+      "name": "t:sections.slideshow.presets.name",
+      "settings": {
+        "layout": "grid",
+        "slide_height": "adapt_image",
+        "slider_visual": "counter",
+        "auto_rotate": false,
+        "change_slides_speed": 9,
+        "image_behavior": "none",
+        "show_text_below": true,
+        "accessibility_info": "Slideshow about our brand"
+      }
+    },
+    "1742400946de711423": {
+      "type": "apps",
+      "blocks": {
+        "reviews_io_reviewsio_card_carousel_CaNgxN": {
+          "type": "shopify://apps/reviews-io/blocks/reviewsio-card-carousel/92a082e5-b297-4e88-b428-ac96cbc505f9",
+          "settings": {
+            "star": "#3cbb91",
+            "review_type": "company, product",
+            "reviews_shown": 20,
+            "header_bg_colour": "#545454",
+            "header_colour": "#ffffff",
+            "header_star_colour": "#3cbb91",
+            "heading_text_colour": "#0e1311",
+            "heading_font": "helvetica_n4",
+            "body_text_colour": "#0e1311",
+            "badge_icon_colour": "#3cbb91",
+            "badge_text_colour": "#0e1311",
+            "bg_start_colour": "#f3f3f3",
+            "bg_end_colour": "#f3f3f3",
+            "item_border_width": "0px",
+            "item_border_colour": "#000000",
+            "item_border_radius": "5px",
+            "item_shadow_size": "0px",
+            "item_shadow_colour": "#000000",
+            "enable_rich_snippets": true,
+            "disable_same_customer": true,
+            "logo_colour": "var(--logo-inverted)"
+          }
+        }
+      },
+      "block_order": [
+        "reviews_io_reviewsio_card_carousel_CaNgxN"
+      ],
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
     }
   },
   "order": [
-    "homepage_slideshow",
-    "homepage_collections",
-    "homepage_featured",
-    "homepage_custom_content",
-    "homepage_reviews"
+    "slideshow_Ldw3Vi",
+    "collection_list_dYRQta",
+    "featured_collection",
+    "custom_liquid_cJF6Gw",
+    "collection_list_kriNgn",
+    "custom_liquid_zXh3rN",
+    "1749045980f9dcef70",
+    "rich_text_7EdHLC",
+    "featured_blog_gwawCD",
+    "slideshow_QdAFy3",
+    "1742400946de711423"
   ]
 }
