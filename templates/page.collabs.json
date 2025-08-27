@@ -6,27 +6,22 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- * 
- * NOTE: This is the minimal version used by all stores.
- * Build4Less has the Shopify Collabs app configured with this block:
- * 
- * "blocks": {
- *   "collabs_block": {
- *     "type": "shopify://apps/collabs/blocks/application-page/54758706-9f25-4fa9-a553-64720a4c998b",
- *     "settings": {
- *       "heading": "Join the Build4less community"
- *     }
- *   }
- * },
- * "block_order": ["collabs_block"]
- * 
- * To enable: Add the blocks section above to the collabs section if the Collabs app is installed.
- * ------------------------------------------------------------
  */
 {
   "sections": {
     "collabs": {
       "type": "apps",
+      "blocks": {
+        "f3b50e73-b225-48be-b3fd-c33867157955": {
+          "type": "shopify://apps/collabs/blocks/application-page/54758706-9f25-4fa9-a553-64720a4c998b",
+          "settings": {
+            "heading": "Join the Build4less community"
+          }
+        }
+      },
+      "block_order": [
+        "f3b50e73-b225-48be-b3fd-c33867157955"
+      ],
       "settings": {}
     }
   },
