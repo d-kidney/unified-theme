@@ -6,35 +6,194 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- * 
- * NOTE: This unified homepage template uses dynamic sections
- * that load store-specific content via Liquid conditionals.
- * Each section handles its own store detection and content loading.
- * ------------------------------------------------------------
  */
 {
   "sections": {
-    "homepage_slideshow": {
-      "type": "homepage-slideshow",
+    "slideshow_Ldw3Vi": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_twAKnw": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/T4L_Free_Delivery_1.png",
+            "heading": "",
+            "heading_size": "h0",
+            "subheading": "",
+            "button_label": "",
+            "link": "#",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_3pqbGK": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Bathroom_Products.png",
+            "heading": "",
+            "heading_size": "hxxl",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/bathroom-products",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_NEQBE6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Kitchen_Tiles.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/kitchen-tiles",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_a49tCF": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Metro_Tiles.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/metro-tiles",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_tFGpAc": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Vinyl_TIles.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/lvt-flooring",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_xrXYJg": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Outdoor-min.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/outdoor-tiles",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-1",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_twAKnw",
+        "slide_3pqbGK",
+        "slide_NEQBE6",
+        "slide_a49tCF",
+        "slide_tFGpAc",
+        "slide_xrXYJg"
+      ],
       "settings": {
-        "layout": "grid",
-        "slide_height": "adapt_image",
+        "layout": "full_bleed",
+        "slide_height": "medium",
         "slider_visual": "dots",
         "auto_rotate": true,
         "change_slides_speed": 5,
         "image_behavior": "none",
-        "show_text_below": true,
+        "show_text_below": false,
         "accessibility_info": "Slideshow of various promotions"
       }
     },
-    "homepage_collections": {
-      "type": "homepage-collections",
+    "collection_list_dYRQta": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_EFeFBF": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bathroom-floor-tiles"
+          }
+        },
+        "featured_collection_XJxyr8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "kitchen-wall-tiles"
+          }
+        },
+        "featured_collection_7c9CVd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "porcelain-tiles"
+          }
+        },
+        "featured_collection_GJWEE4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "mosaic-floor-tiles"
+          }
+        },
+        "featured_collection_GfYimd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "ceramic-floor-tiles"
+          }
+        },
+        "featured_collection_LrAqE3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bathroom-products"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_EFeFBF",
+        "featured_collection_XJxyr8",
+        "featured_collection_7c9CVd",
+        "featured_collection_GJWEE4",
+        "featured_collection_GfYimd",
+        "featured_collection_LrAqE3"
+      ],
       "settings": {
         "title": "Popular Categories",
         "heading_size": "h1",
         "image_ratio": "square",
         "columns_desktop": 6,
-        "color_scheme": "",
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
         "show_view_all": false,
         "columns_mobile": "2",
         "swipe_on_mobile": false,
@@ -42,21 +201,35 @@
         "padding_bottom": 20
       }
     },
-    "homepage_featured": {
-      "type": "homepage-featured",
+    "custom_liquid_VFP783": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".hp-banner {width: 100%;}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<a href=\"https://tiles4less.co.uk/collections/wood-effect-tiles\">\n<img src=\"https://tiles4less.co.uk/cdn/shop/files/T4L_Wood_Effects_Floor_TIles.png?v=1738443970\" alt=\"wood effect floor tiles\" class=\"hp-banner small-hide\">\n</a>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
       "settings": {
         "title": "Popular products",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
+        "collection": "bestsellers",
         "products_to_show": 10,
-        "columns_desktop": 5,
+        "columns_desktop": 3,
         "full_width": false,
         "show_view_all": false,
         "view_all_style": "solid",
         "enable_desktop_slider": false,
-        "color_scheme": "",
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -69,20 +242,37 @@
         "padding_bottom": 20
       }
     },
-    "homepage_custom_content": {
-      "type": "homepage-custom-content",
-      "settings": {}
+    "custom_liquid_r9aTPW": {
+      "type": "custom-liquid",
+      "custom_css": [],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Customer Reviews</title>\n    <style>\n       \n        .review-container {\n            background: #ffffff;\n            border: 1px solid #e5e7eb;\n            border-radius: 16px;\n            padding: 40px;\n            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);\n            width: 100%;\n            max-width: 400px;\n            text-align: center;\n            transition: transform 0.3s ease;\n            margin: 0 auto;\n        }\n\n        .review-container:hover {\n            transform: translateY(-2px);\n            box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);\n        }\n\n        .review-header {\n            margin-bottom: 30px;\n        }\n\n        .review-title {\n            font-size: 28px;\n            font-weight: 600;\n            color: #1f2937;\n            margin-bottom: 8px;\n        }\n\n        .review-subtitle {\n            font-size: 16px;\n            color: #6b7280;\n            font-weight: 400;\n        }\n\n        .stars-container {\n            display: flex;\n            justify-content: center;\n            gap: 6px;\n            margin: 25px 0;\n        }\n\n        .star {\n            width: 32px;\n            height: 32px;\n            background: #10b981;\n            border-radius: 6px;\n            display: flex;\n            align-items: center;\n            justify-content: center;\n            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n        }\n\n        .star.empty {\n            background: #e5e7eb;\n        }\n\n        .star svg {\n            width: 16px;\n            height: 16px;\n            fill: white;\n        }\n\n        .star.half-star {\n            background: #e5e7eb;\n            position: relative;\n            overflow: hidden;\n        }\n\n        .star.half-star::before {\n            content: '';\n            position: absolute;\n            top: 0;\n            left: 0;\n            width: 50%;\n            height: 100%;\n            background: #10b981;\n            border-radius: 6px 0 0 6px;\n            z-index: 1;\n        }\n\n        .star.half-star svg {\n            position: relative;\n            z-index: 2;\n        }\n\n        .rating-info {\n            margin: 20px 0;\n        }\n\n        .rating-score {\n            font-size: 24px;\n            font-weight: 700;\n            color: #1f2937;\n            margin-bottom: 5px;\n        }\n\n        .rating-details {\n            font-size: 17px;\n            font-weight: 600;\n            color: #242627;\n        }\n\n        .review-snippet {\n            background: #f9fafb;\n            border: 1px solid #e5e7eb;\n            border-radius: 12px;\n            padding: 20px;\n            margin: 25px 0;\n            text-align: left;\n            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;\n            opacity: 1;\n            transform: translateY(0);\nmin-height:300px;\n        }\n\n        .review-snippet.fade-out {\n            opacity: 0;\n            transform: translateY(-10px);\n        }\n\n        .review-snippet.fade-in {\n            opacity: 1;\n            transform: translateY(0);\n        }\n\n        .review-text {\n            font-size: 16px;\n            color: #374151;\n            line-height: 1.6;\n            font-style: italic;\n            margin-bottom: 12px;\n            white-space: pre-line;\n        }\n\n        .review-author {\n            font-size: 14px;\n            color: #6b7280;\n            font-weight: 600;\n        }\n\n        .progress-indicator {\n            display: flex !important;\n            justify-content: center;\n            gap: 8px;\n            margin-top: 15px;\n            visibility: visible;\n        }\n\n        .progress-dot {\n            width: 8px;\n            height: 8px;\n            border-radius: 50%;\n            background: #e5e7eb;\n            transition: background-color 0.3s ease;\n            cursor: pointer;\n            display: block;\n        }\n\n        .progress-dot.active {\n            background: #10b981;\n        }\n\n        .cta-link {\n            display: inline-block;\n            background: #242627;\n            color: white;\n            text-decoration: none;\n            padding: 12px 30px;\n            border-radius: 8px;\n            font-size: 14px;\n            font-weight: 600;\n            margin-top: 25px;\n            transition: all 0.3s ease;\n            text-transform: uppercase;\n            letter-spacing: 0.5px;\n        }\n\n        .cta-link:hover {\n            background: #111827;\n            transform: translateY(-1px);\n            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);\n        }\n\n        /* Desktop Responsive Design */\n        @media (min-width: 768px) {\n            .review-container {\n                max-width: 600px;\n                padding: 50px;\n            }\n\n            .review-content {\n                display: grid;\n                grid-template-columns: 1fr 1fr;\n                gap: 40px;\n                align-items: start;\n            }\n\n            .review-left {\n                text-align: center;\n            }\n\n            .review-right {\n                text-align: left;\n            }\n\n            .review-snippet {\n                margin: 0 0 25px 0;\nmin-height:220px;\n            }\n\n            .review-header {\n                grid-column: 1 / -1;\n                text-align: center;\n                margin-bottom: 40px;\n            }\n\n            .progress-indicator {\n                grid-column: 1 / -1;\n                justify-self: center;\n                margin-top: 20px;\n            }\n\n            .cta-link {\n                grid-column: 1 / -1;\n                align-self: center;\n                justify-self: center;\n                margin-top: 30px;\n            }\n        }\n\n        @media (min-width: 1024px) {\n            .review-container {\n                max-width: 1300px;\n                padding: 20px 60px 60px;\n            }\n\n            .star {\n                width: 36px;\n                height: 36px;\n            }\n\n            .star svg {\n                width: 28px;\n                height: 28px;\n            }\n        }\n\n        @media (max-width: 480px) {\n            .review-container {\n                padding: 30px 20px;\n            }\n            \n            .star {\n                width: 28px;\n                height: 28px;\n            }\n\n            .star svg {\n                width: 22px;\n                height: 22px;\n            }\n            \n            .review-title {\n                font-size: 24px;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"review-container\">\n        <div class=\"review-header\">\n            <h1 class=\"review-title\">Customer Reviews</h1>            \n        </div>\n\n        <div class=\"review-content\">\n            <div class=\"review-left\">\n                <div class=\"stars-container\">\n                    <div class=\"star\">\n                        <svg viewBox=\"0 0 24 24\">\n                            <polygon points=\"12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26\"/>\n                        </svg>\n                    </div>\n                    <div class=\"star\">\n                        <svg viewBox=\"0 0 24 24\">\n                            <polygon points=\"12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26\"/>\n                        </svg>\n                    </div>\n                    <div class=\"star\">\n                        <svg viewBox=\"0 0 24 24\">\n                            <polygon points=\"12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26\"/>\n                        </svg>\n                    </div>\n                    <div class=\"star\">\n                        <svg viewBox=\"0 0 24 24\">\n                            <polygon points=\"12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26\"/>\n                        </svg>\n                    </div>\n                    <div class=\"star half-star\">\n                        <svg viewBox=\"0 0 24 24\">\n                            <polygon points=\"12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26\"/>\n                        </svg>\n                    </div>\n                </div>\n\n                <div class=\"rating-info\">\n                    <div class=\"rating-score\">4.2 out of 5</div>\n                    <div class=\"rating-details\">Rated Excellent</div>\n                </div>\n            </div>\n\n            <div class=\"review-right\">\n                <div class=\"review-snippet\" id=\"reviewSnippet\">\n                    <div class=\"review-text\">\"Tried to find 690 x 240 tiles to match old broken ones, and Tiles4Less were very helpful on the phone, locating the right tiles. That was on a Thursday, and the tiles arrived early Monday morning.\"</div>\n                    <div class=\"review-author\">— Sarah M.</div>\n                </div>\n                \n                <div class=\"progress-indicator\" id=\"progressIndicator\">\n                    <div class=\"progress-dot active\" onclick=\"goToReview(0)\"></div>\n                    <div class=\"progress-dot\" onclick=\"goToReview(1)\"></div>\n                    <div class=\"progress-dot\" onclick=\"goToReview(2)\"></div>\n                    <div class=\"progress-dot\" onclick=\"goToReview(3)\"></div>\n                    <div class=\"progress-dot\" onclick=\"goToReview(4)\"></div>\n                    <div class=\"progress-dot\" onclick=\"goToReview(5)\"></div>\n                    <div class=\"progress-dot\" onclick=\"goToReview(6)\"></div>\n                </div>\n            </div>\n        </div>\n\n        <a href=\"/pages/reviews\" class=\"cta-link\">View All Reviews</a>\n    </div>\n\n    <script>\n        const reviewSnippets = [\n            {\n                text: \"Tried to find 690 x 240 tiles to match old broken ones, and Tiles4Less were very helpful on the phone, locating the right tiles. That was on a Thursday, and the tiles arrived early Monday morning.\",\n                author: \"Sarah M.\"\n            },\n            {\n                text: \"Very fast feedback on queries and good price.\\n\\nRyan Hill there was great at sending samples, the order process and support on queries.\",\n                author: \"Michael Ryan\"\n            },\n            {\n                text: \"Great service! Very easy to order online, great communications and quick delivery. Tiles came perfectly packaged and delivery was flawless. Would highly recommend.\",\n                author: \"JWilliam\"\n            },\n            {\n                text: \"After I placed my order, I contacted the company about a specific delivery request, and they responded quickly and positively. The tiles came quickly, through the agency of a company local to me, and were as described.\",\n                author: \"Catherine Tailby\"\n            },\n            {\n                text: \"Online order for Indian sandstone patio slabs. Ordered online after a few questions answered by Darren over the telephone and by email. He was very helpful. Product arrived (on three pallets) within only a few days, delivery driver very personable and helpful.\",\n                author: \"Amanda T.\"\n            },\n            {\n                text: \"The slabs had been very well packaged in wooden crates, plastic bound on wooden pallets. Excellent quality slabs purchased to lay a patio. No hesitation in recommending this company.\",\n                author: \"Robert H.\"\n            },\n            {\n                text: \"Superb service and extremely helpful. Will definitely be using Tiles4less on our next refurb.\",\n                author: \"Julie Culhane\"\n            }\n        ];\n\n        let currentReviewIndex = 0;\n        let cyclingInterval;\n\n        function updateProgressIndicator() {\n            const dots = document.querySelectorAll('.progress-dot');\n            dots.forEach((dot, index) => {\n                dot.classList.toggle('active', index === currentReviewIndex);\n            });\n        }\n\n        function updateReview(reviewIndex) {\n            const review = reviewSnippets[reviewIndex];\n            const reviewContainer = document.getElementById('reviewSnippet');\n            \n            // Fade out current review\n            reviewContainer.classList.remove('fade-in');\n            reviewContainer.classList.add('fade-out');\n            \n            setTimeout(() => {\n                reviewContainer.innerHTML = \n                    '<div class=\"review-text\">\"' + review.text + '\"</div>' +\n                    '<div class=\"review-author\">— ' + review.author + '</div>';\n                \n                // Fade in new review\n                reviewContainer.classList.remove('fade-out');\n                reviewContainer.classList.add('fade-in');\n                \n                updateProgressIndicator();\n            }, 250);\n        }\n\n        function cycleToNextReview() {\n            currentReviewIndex = (currentReviewIndex + 1) % reviewSnippets.length;\n            updateReview(currentReviewIndex);\n        }\n\n        function goToReview(index) {\n            if (index !== currentReviewIndex) {\n                currentReviewIndex = index;\n                updateReview(currentReviewIndex);\n                // Reset the cycling timer\n                stopCycling();\n                startCycling();\n            }\n        }\n\n        function startCycling() {\n            // Clear any existing interval first\n            stopCycling();\n            cyclingInterval = setInterval(cycleToNextReview, 10000);\n        }\n\n        function stopCycling() {\n            if (cyclingInterval) {\n                clearInterval(cyclingInterval);\n                cyclingInterval = null;\n            }\n        }\n\n        // Initialize on page load\n        document.addEventListener('DOMContentLoaded', function() {\n            console.log('DOM loaded, initializing reviews...');\n            updateProgressIndicator();\n            startCycling();\n            \n            // Pause cycling when user hovers over the review container\n            const reviewContainer = document.querySelector('.review-container');\n            if (reviewContainer) {\n                reviewContainer.addEventListener('mouseenter', stopCycling);\n                reviewContainer.addEventListener('mouseleave', startCycling);\n            }\n        });\n\n        // Handle page visibility changes to pause/resume cycling\n        document.addEventListener('visibilitychange', function() {\n            if (document.hidden) {\n                stopCycling();\n            } else {\n                startCycling();\n            }\n        });\n    </script>\n</body>\n</html>",
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "padding_top": 12,
+        "padding_bottom": 40
+      }
     },
-    "homepage_reviews": {
-      "type": "homepage-reviews",
-      "settings": {}
+    "custom_liquid_MV8JeQ": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".hp-banner {width: 100%;}"
+      ],
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "<a href=\"https://tiles4less.co.uk/products/marble-white-tiles-honed-finish\">\n<img src=\"https://tiles4less.co.uk/cdn/shop/files/Medicea_Marble.png?v=1738443010\" alt=\"marble white tiles\" class=\"hp-banner small-hide\">\n</a>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
     }
   },
   "order": [
-    "homepage_slideshow",
-    "homepage_collections",
-    "homepage_featured",
-    "homepage_custom_content",
-    "homepage_reviews"
+    "slideshow_Ldw3Vi",
+    "collection_list_dYRQta",
+    "custom_liquid_VFP783",
+    "featured_collection",
+    "custom_liquid_r9aTPW",
+    "custom_liquid_MV8JeQ"
   ]
 }
