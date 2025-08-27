@@ -13,9 +13,19 @@
   "sections": {
     "custom_liquid_jKfxR8": {
       "type": "custom-liquid",
-      "custom_css": [],
+      "custom_css": [
+        "p,a {color: #fff; margin: 0;}",
+        ".top-bar {min-height: 28px;}",
+        ".top-bar-left {float: left;}",
+        ".top-bar-right {float: right;}",
+        ".top-bar.large-up-hide {text-align: center;}",
+        ".top-bar.large-up-hide a {font-size: 1.25rem; /*padding: 5px;*/ text-decoration: none;}",
+        " /*.top-bar.large-up-hide a:first-child {border-right: 1px solid #293b7d;}",
+        "*/.top-bar.large-up-hide a:nth-child(2) {padding-right: 5px;}",
+        ".top-bar.large-up-hide {display: flex; align-items: center; justify-content: space-between; padding: 0px 20px;}"
+      ],
       "settings": {
-        "custom_liquid": "{% render 'header-top-bar' %}",
+        "custom_liquid": "<div class=\"top-bar large-up-hide\">\n<a href=\"tel:02039362839\">✆ Call us</a>\n<a href=\"/pages/contact-us\">✉ Email us</a>\n<div class=\"vat_toggle toggle_btn\">\n  <span>Ex. VAT</span><input type=\"checkbox\" checked=\"true\" class=\"vatToggle\"><span>Inc. VAT</span>\n</div>\n\n</div>\n\n\n<div class=\"top-bar page-width small-hide medium-hide\">\n\n<div class=\"top-bar-left\"><p><span class=\"num-h\">✆ Call us at <a href=\"tel:02039362839\">020 3936 2839</a></span><span class=\"divider-h\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class=\"email-h\"><a href=\"/pages/contact-us\">✉ Email us</a></span> </p>\n</div>\n<div class=\"top-bar-right\">\n<div class=\"vat_toggle toggle_btn\">\n          <span>Ex. VAT</span><input type=\"checkbox\" checked=\"true\" class=\"vatToggle\"><span>Inc. VAT</span>\n</div>\n<a href=\"/pages/trade-account-sign-up\">★ Create a trade account</a>\n\n</div>",
         "color_scheme": "scheme-5",
         "padding_top": 4,
         "padding_bottom": 4
@@ -25,13 +35,13 @@
       "type": "header",
       "custom_css": [
         ".header-wrapper {box-shadow: inset 0px 0px 0px 1px #ededed;}",
-        "@media screen and (max-width: 768px) {.header__heading-logo {width: 120px; } .header__icon--cart {margin-right: -1.5rem; margin-left: 0.75rem; }}",
+        "@media screen and (max-width: 768px) {.header__heading-logo {width: 50px; } .header__icon--cart {margin-right: -1.5rem; margin-left: 0.75rem; }}",
         "@media screen and (min-width: 769px) {}"
       ],
       "settings": {
         "logo_position": "top-left",
         "menu": "main-menu",
-        "menu_type_desktop": "dropdown",
+        "menu_type_desktop": "mega",
         "sticky_header_type": "on-scroll-up",
         "show_line_separator": false,
         "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
