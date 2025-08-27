@@ -6,16 +6,91 @@
  * or related systems. Please exercise caution as any changes
  * made to this file may be overwritten.
  * ------------------------------------------------------------
- * 
- * NOTE: This unified homepage template uses dynamic sections
- * that load store-specific content via Liquid conditionals.
- * Each section handles its own store detection and content loading.
- * ------------------------------------------------------------
  */
 {
   "sections": {
-    "homepage_slideshow": {
-      "type": "homepage-slideshow",
+    "slideshow_Ldw3Vi": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_twAKnw": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/B4L_Limited_Time_Offer_3.png",
+            "heading": "",
+            "heading_size": "h0",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_3pqbGK": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Ice_bath_2.png",
+            "heading": "",
+            "heading_size": "hxxl",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://products/ice-bath",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_NEQBE6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/B4L_Hp_Paulmann_Sale_1.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "https://build4less.co.uk/collections/on-sale?sort_by=manual&filter.p.vendor=Paulmann",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        },
+        "slide_a49tCF": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/Kitchen.png",
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/kitchens",
+            "button_style_secondary": false,
+            "box_align": "middle-center",
+            "show_text_box": false,
+            "text_alignment": "center",
+            "image_overlay_opacity": 0,
+            "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+            "text_alignment_mobile": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_twAKnw",
+        "slide_3pqbGK",
+        "slide_NEQBE6",
+        "slide_a49tCF"
+      ],
       "settings": {
         "layout": "grid",
         "slide_height": "adapt_image",
@@ -27,8 +102,54 @@
         "accessibility_info": "Slideshow of various promotions"
       }
     },
-    "homepage_collections": {
-      "type": "homepage-collections",
+    "collection_list_dYRQta": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_EFeFBF": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "doors"
+          }
+        },
+        "featured_collection_XJxyr8": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "bathrooms"
+          }
+        },
+        "featured_collection_7c9CVd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "decking"
+          }
+        },
+        "featured_collection_GJWEE4": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "pressure-washers"
+          }
+        },
+        "featured_collection_GfYimd": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "roofing"
+          }
+        },
+        "featured_collection_LrAqE3": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "cladding-boards"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_EFeFBF",
+        "featured_collection_XJxyr8",
+        "featured_collection_7c9CVd",
+        "featured_collection_GJWEE4",
+        "featured_collection_GfYimd",
+        "featured_collection_LrAqE3"
+      ],
       "settings": {
         "title": "Popular Categories",
         "heading_size": "h1",
@@ -42,21 +163,22 @@
         "padding_bottom": 20
       }
     },
-    "homepage_featured": {
-      "type": "homepage-featured",
+    "featured_collection": {
+      "type": "featured-collection",
       "settings": {
         "title": "Popular products",
         "heading_size": "h1",
         "description": "",
         "show_description": false,
         "description_style": "body",
+        "collection": "bestsellers",
         "products_to_show": 10,
         "columns_desktop": 5,
         "full_width": false,
         "show_view_all": false,
         "view_all_style": "solid",
         "enable_desktop_slider": false,
-        "color_scheme": "",
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
@@ -69,20 +191,74 @@
         "padding_bottom": 20
       }
     },
-    "homepage_custom_content": {
-      "type": "homepage-custom-content",
-      "settings": {}
+    "1742400946de711423": {
+      "type": "apps",
+      "blocks": {
+        "reviews_io_reviewsio_card_carousel_CaNgxN": {
+          "type": "shopify://apps/reviews-io/blocks/reviewsio-card-carousel/92a082e5-b297-4e88-b428-ac96cbc505f9",
+          "settings": {
+            "star": "#3cbb91",
+            "review_type": "company",
+            "reviews_shown": 20,
+            "header_bg_colour": "#545454",
+            "header_colour": "#ffffff",
+            "header_star_colour": "#3cbb91",
+            "heading_text_colour": "#0e1311",
+            "heading_font": "helvetica_n4",
+            "body_text_colour": "#0e1311",
+            "badge_icon_colour": "#3cbb91",
+            "badge_text_colour": "#0e1311",
+            "bg_start_colour": "#f3f3f3",
+            "bg_end_colour": "#f3f3f3",
+            "item_border_width": "0px",
+            "item_border_colour": "#000000",
+            "item_border_radius": "5px",
+            "item_shadow_size": "0px",
+            "item_shadow_colour": "#000000",
+            "enable_rich_snippets": true,
+            "disable_same_customer": true,
+            "logo_colour": "var(--logo-inverted)"
+          }
+        }
+      },
+      "block_order": [
+        "reviews_io_reviewsio_card_carousel_CaNgxN"
+      ],
+      "settings": {
+        "include_margins": true
+      }
     },
-    "homepage_reviews": {
-      "type": "homepage-reviews",
-      "settings": {}
+    "custom_liquid_7CefVV": {
+      "type": "custom-liquid",
+      "custom_css": [
+        ".what-we-do-section {background: #f3f3f3; overflow: auto; padding: 20px 30px; border-radius: 14px;}",
+        ".what-we-do-section h2 {text-align: center; padding-bottom: 20px; font-size: 2.75rem;}"
+      ],
+      "settings": {
+        "custom_liquid": "<div class=\"what-we-do-section page-width\">\n<h2>Why Buy From Us</h2>\n<div class=\"col-lg-6 what-we-do-text\">\n<p><span>Build4Less is one of the largest and highest rated independent builders providers in the United Kingdom for both trade and DIY. We offer you a massive range of top rated building materials at consistently low prices.</span></p>\n\n<p><span>Our objective is very simple: The lowest priced construction materials and the best possible customer service.</span></p>\n\n<p><span>Johnpaul Manning, the founder of Build4Less, once struggled like thousands of other professionals in the construction industry to source suitable materials at affordable prices. He then decided it was time for a change. He established this building supplies company to meet all the needs for your building and construction projects. </span></p>\n\n<p><span>We have created a massive online store to provide you with all the building materials you need in one place at the best possible prices. We strive to provide a vast product offering and superb customer service that will keep you coming back time and time again. Build4less only chooses those materials that give a lasting value for your investment and also meet all required building regulations.</span></p>\n</div>\n<div class=\"col-lg-6\">\n<div class=\"video-responsive\"> <!-- (1) video wrapper -->\n<div class=\"youtube\" data-embed=\"G7xLZVyaRrU\">\n<!-- (2) the \"play\" button -->\n<img src=\"https://cdn.shopify.com/s/files/1/0222/7290/1216/files/sddefault_11zon_480x480.jpg?v=1637837566\" width=\"559\" height=\"419\" alt=\"insulation4less the lowest priced insulation materials\">\n<div class=\"play-button\">\n\n</div>\n\n</div>\n</div>\n</div>\n</div>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "custom_liquid_Ar8rfk": {
+      "type": "custom-liquid",
+      "disabled": true,
+      "name": "t:sections.custom-liquid.presets.name",
+      "settings": {
+        "custom_liquid": "Vendor/Brand Navigation\n\n{% assign available_vendors = all_products | where: 'available_to_customer', true | map: 'vendor' | uniq %}\n{% for vendor in available_vendors %}\n  <a href=\"/collections/all?vendor={{ vendor }}\">{{ vendor }}</a>\n{% endfor %}\nPrice Tier Navigation\n\n<a href=\"/collections/all?price_min=0&price_max=50\">Under $50</a>\n<a href=\"/collections/all?price_min=50&price_max=100\">$50-$100</a>\nRecently Viewed/Purchased\n\n{% for order in customer.orders limit: 5 %}\n  {% for line_item in order.line_items %}\n    <a href=\"{{ line_item.product.url }}\">\n      {{ line_item.title }}\n    </a>\n  {% endfor %}\n{% endfor %}",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
     }
   },
   "order": [
-    "homepage_slideshow",
-    "homepage_collections",
-    "homepage_featured",
-    "homepage_custom_content",
-    "homepage_reviews"
+    "slideshow_Ldw3Vi",
+    "collection_list_dYRQta",
+    "featured_collection",
+    "1742400946de711423",
+    "custom_liquid_7CefVV",
+    "custom_liquid_Ar8rfk"
   ]
 }
