@@ -2,11 +2,11 @@
 {% render 'store-detection' %}
 
 {% if store_id == 'b4l' %}
-  {% render 'main-collection-product-grid_b4l' %}
+  {% render 'sections/main-collection-product-grid_b4l' %}
 {% elsif store_id == 'bso' %}
-  {% render 'main-collection-product-grid_bso' %}
+  {% render 'sections/main-collection-product-grid_bso' %}
 {% elsif store_id == 'i4l' or store_id == 'i4us' or store_id == 'r4us' %}
-  {% render 'main-collection-product-grid_i4l_i4us_r4us' %}
+  {% render 'sections/main-collection-product-grid_i4l_i4us_r4us' %}
 {% elsif store_id == 't4l' %}
-  {% render 'main-collection-product-grid_t4l' %}
+  {% render 'sections/main-collection-product-grid_t4l' %}
 {% endif %}

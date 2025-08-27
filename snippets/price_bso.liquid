@@ -33,7 +33,7 @@
   assign inc_vat_money_price = price | times:1_2 | money
   assign money_price_min = price_min | money
   assign money_price_max = price_max | money
-  if settings_currency_code_enabled
+  if settings.currency_code_enabled
     assign money_price = price | money_with_currency
     assign money_price_min = price_min | money_with_currency
     assign money_price_max = price_max | money_with_currency

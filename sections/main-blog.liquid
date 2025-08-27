@@ -3,7 +3,7 @@
 {% if store_id == 'b4l' or store_id == 'bso' or store_id == 'i4l' or store_id == 't4l' %}
   {{ 'component-article-card_b4l_bso_i4l_t4l.css' | asset_url | stylesheet_tag }}
 {% elsif store_id == 'i4us' or store_id == 'r4us' %}
-  {{ 'component-article-card.i4us_r4us.css' | asset_url | stylesheet_tag }}
+  {{ 'component-article-card_i4us_r4us.css' | asset_url | stylesheet_tag }}
 {% endif %}
 {% if store_id == 'b4l' or store_id == 'bso' or store_id == 'i4l' or store_id == 'i4us' or store_id == 'r4us' %}
   {{ 'component-card_b4l_bso_i4l_i4us_r4us.css' | asset_url | stylesheet_tag }}
@@ -43,11 +43,11 @@
         >
           {%- render 'article-card',
             article: article,
-            media_height: section_settings_image_height,
+            media_height: section.settings.image_height,
             media_aspect_ratio: article_image_aspect_ratio,
-            show_image: section_settings_show_image,
-            show_date: section_settings_show_date,
-            show_author: section_settings_show_author,
+            show_image: section.settings.show_image,
+            show_date: section.settings.show_date,
+            show_author: section.settings.show_author,
             show_excerpt: true
           -%}
         </div>

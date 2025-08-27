@@ -1,0 +1,1434 @@
+{% comment %}
+  Product Template Section - temporarily used to display a long form product page for ice baths
+{% endcomment %}
+
+<style>
+
+  .hero-gradient {
+    background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0.4) 100%);
+  }
+  .noise-overlay {
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxmaWx0ZXIgaWQ9ImYxIj48ZmVUdXJidWxlbmNlIHR5cGU9ImZyYWN0YWxOb2lzZSIgYmFzZUZyZXF1ZW5jeT0iLjAyIiBudW1PY3RhdmVzPSIzIi8+PC9maWx0ZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNmMSkiIG9wYWNpdHk9IjAuMSIvPjwvc3ZnPg==');
+  }
+  .hero-heading {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  .btn-primary {
+    background-color: rgb(37, 99, 235);
+    transition: all 0.2s;
+  }
+  .btn-primary:hover {
+    background-color: rgb(29, 78, 216);
+    transform: scale(1.05);
+  }
+  .btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  .section {
+    padding: 8rem 0;
+  }
+  .section--gray {
+    background-color: rgb(249, 250, 251);
+  }
+  .section--white {
+    background-color: white;
+  }
+  .container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+  .heading-lg {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: rgb(17, 24, 39);
+    margin-bottom: 1.5rem;
+  }
+  .heading-md {
+    font-size: 2rem;
+    font-weight: 700;
+    color: rgb(17, 24, 39);
+    margin-bottom: 1.5rem;
+  }
+  .heading-sm {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: rgb(17, 24, 39);
+    margin-bottom: 0.5rem;
+  }
+  .text-body-lg {
+    font-size: 1.25rem;
+    color: rgb(75, 85, 99);
+    line-height: 1.75;
+  }
+  .text-body {
+    color: rgb(75, 85, 99);
+    line-height: 1.6;
+  }
+  .text-body-sm {
+    font-size: 0.875rem;
+    color: rgb(75, 85, 99);
+  }
+  .text-italic {
+    font-style: italic;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+  }
+  .card--gray {
+    background: rgb(249, 250, 251);
+  }
+  .card--feature {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  .feature-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .feature-icon--blue {
+    background: rgb(239, 246, 255);
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+    align-items: center;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 4rem 0;
+  }
+  .gallery-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+  }
+    .recovery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4rem;
+  }
+  .specs-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  .setup-step {
+    position: relative;
+    padding-top: 3rem;
+  }
+  .setup-step__number {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2.5rem;
+    height: 2.5rem;
+    background: rgb(37, 99, 235);
+    color: white;
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+  .setup-step__icon {
+    margin-top: 1.5rem;
+  }
+  .testimonial {
+    border-left: 4px solid rgb(37, 99, 235);
+    padding-left: 1.5rem;
+    margin: 2rem 0;
+  }
+  .testimonial-author {
+    color: rgb(75, 85, 99);
+    font-weight: 500;
+    margin-top: 0.75rem;
+  }
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .trust-badge {
+    text-align: center;
+  }
+  .trust-badge-title {
+    font-weight: 600;
+    margin: 1rem 0 0.5rem;
+  }
+  .trust-badge-text {
+    color: rgb(75, 85, 99);
+    font-size: 0.875rem;
+  }
+
+  /* Responsive improvements */
+  @media (max-width: 768px) {
+    .hero-heading {
+      font-size: 2.5rem;
+    }
+    .hero-content {
+      padding: 4rem 1.5rem !important;
+    }
+    .hero-grid {
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
+    }
+    .hero-buttons {
+      flex-direction: column !important;
+    }
+    .hero-stats {
+      grid-template-columns: 1fr !important;
+      gap: 1.5rem !important;
+    }
+    .product-image {
+      max-width: 100% !important;
+      margin-top: 2rem;
+    }
+    .product-grid,
+    .gallery-grid,
+    .feature-grid,
+    .specs-grid,
+    .trust-grid {
+      grid-template-columns: 1fr;
+    }
+    .recovery-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .recovery-item {
+      margin-bottom: 2rem;
+    }
+    .section {
+      padding: 4rem 0;
+    }
+    .heading-lg {
+      font-size: 2rem;
+    }
+    .heading-md {
+      font-size: 1.75rem;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .hero-heading {
+      font-size: 3rem;
+    }
+    .hero-content {
+      padding: 6rem 2rem;
+    }
+    .hero-grid {
+      gap: 4rem;
+    }
+    .hero-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    .hero-heading {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+
+
+<div class="product-template" style="font-family: system-ui, -apple-system, sans-serif;">
+  <!-- Hero Section -->
+  <div style="position: relative; min-height: 100vh;">
+    <!-- Background Image -->
+    <div style="position: absolute; inset: 0;">
+      <img
+        src="https://cdn.midjourney.com/7ace8435-7b64-467d-ba18-6498e0915134/0_0.png"
+        alt="Snowy mountain landscape"
+        style="width: 100%; height: 100%; object-fit: cover;"
+      />
+      <div class="hero-gradient" style="position: absolute; inset: 0;"></div>
+    </div>
+
+    <div class="noise-overlay" style="position: absolute; inset: 0; opacity: 0.3; mix-blend-mode: overlay;"></div>
+
+    <div class="hero-content" style="position: relative; max-width: 90rem; margin: 0 auto; padding: 8rem 2rem;">
+      <div class="hero-grid" style="display: grid; grid-template-columns: 3fr 2fr; gap: 6rem; align-items: center;">
+        <!-- Text Content -->
+        <div style="display: flex; flex-direction: column; gap: 3.5rem; max-width: 44rem;">
+          <div style="display: flex; flex-direction: column; gap: 2.5rem;">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(96, 165, 250)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+              <span style="color: rgb(96, 165, 250); font-weight: 500; letter-spacing: 0.025em;">Change your Life, One Dip at a Time</span>
+            </div>
+            
+            <h1 class="hero-heading" style="color: white; margin: 0;">
+              Finally, A Cold Plunge That Fits Your Life (Not The Other Way Around)
+            </h1>
+
+            <blockquote style="margin: 0;">
+              <p style="font-size: clamp(1.25rem, 2vw, 1.5rem); color: rgb(229, 231, 235); font-weight: 300; font-style: italic; line-height: 1.5; margin: 0;">
+                "Getting in is the hardest part... but that post-plunge feeling is incredible. I feel more alive, energized, and somehow calmer at the same time."
+              </p>
+            </blockquote>
+          </div>
+
+          <!-- Price Display -->
+<div style="
+  background: linear-gradient(90deg, rgba(37, 99, 235, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%); 
+  backdrop-filter: blur(8px); 
+  border-radius: 1rem; 
+  padding: 1.5rem;
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid rgb(37, 99, 235);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+">
+  <div style="display: flex; flex-direction: column;">
+    <span style="color: white; font-size: 0.875rem; opacity: 0.9; margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em;">Today's Special Price:</span>
+    
+    <!-- VAT Toggle Compatible Price Display -->
+    <div style="display: flex; align-items: baseline; gap: 0.75rem;">
+      <!-- Ex VAT Price -->
+      <span class="exvatm" style="color: white; font-size: 2rem; font-weight: 700;">
+        £{{ product.price | money_without_currency }}
+        <span style="font-size: 0.9rem; font-weight: 500;">ex VAT</span>
+      </span>
+      
+      <!-- Inc VAT Price -->
+      <span class="incvatm" style="color: white; font-size: 2rem; font-weight: 700;">
+        £{{ product.price | times: 1.2 | money_without_currency }}
+        <span style="font-size: 0.9rem; font-weight: 500;">inc VAT</span>
+      </span>
+      
+      <!-- Crossed out "original" price - using same VAT calculation as selected price -->
+      <span class="exvatm" style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; text-decoration: line-through;">
+        £{{ product.price | times: 1.25 | money_without_currency }}
+      </span>
+      <span class="incvatm" style="color: rgba(255, 255, 255, 0.7); font-size: 1rem; text-decoration: line-through;">
+        £{{ product.price | times: 1.5 | money_without_currency }}
+      </span>
+    </div>
+    
+    <span style="color: rgba(255, 255, 255, 0.8); font-size: 0.75rem; margin-top: 0.25rem;">Free UK Shipping</span>
+  </div>
+  
+  <div style="
+    background: rgba(22, 163, 74, 0.2); 
+    color: rgb(134, 239, 172); 
+    font-weight: 600; 
+    padding: 0.5rem 1rem; 
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    animation: pulse 2s infinite;
+  ">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 8v4l3 3"/>
+      <circle cx="12" cy="12" r="10"/>
+    </svg>
+    Limited Time Offer
+  </div>
+</div>
+
+          <form method="post" action="/cart/add" style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
+            
+            {% if product.has_only_default_variant %}
+              <input type="hidden" name="quantity" value="1" />
+            {% else %}
+              <select name="id" id="ProductSelect-{{ section.id }}" style="width: 100%; padding: 0.75rem; border-radius: 0.75rem; border: 1px solid rgb(209, 213, 219);">
+                {% for variant in product.variants %}
+                  <option value="{{ variant.id }}"
+                    {% if variant == product.selected_or_first_available_variant %} selected="selected"{% endif %}>
+                    {{ variant.title }} - {{ variant.price | money }}
+                  </option>
+                {% endfor %}
+              </select>
+            {% endif %}
+
+            <div class="hero-buttons" style="display: flex; gap: 1.25rem;">
+              <a href="#cart-section" class="btn-primary" style="flex: 2; display: inline-flex; align-items: center; justify-content: center; padding: 1.25rem 2rem; color: white; font-weight: 600; border-radius: 9999px; text-decoration: none;">
+                Add to Cart
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.75rem;">
+                  <path d="M5 12h14"/>
+                  <path d="m12 5 7 7-7 7"/>
+                </svg>
+              </a>
+              
+              <button type="button" class="btn-secondary" style="flex: 1; display: inline-flex; align-items: center; justify-content: center; padding: 1.25rem 2rem; color: white; font-weight: 600; border-radius: 9999px;" onclick="window.scrollTo({top: document.querySelector('.section--white').offsetTop, behavior: 'smooth'})">
+                See More
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.75rem;">
+                  <path d="M7 13l5 5 5-5"/>
+                  <path d="M7 6l5 5 5-5"/>
+                </svg>
+              </button>
+            </div>
+          </form>
+
+          <div class="hero-stats" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;">
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 3.5rem; height: 3.5rem; border-radius: 9999px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+              </div>
+              <span style="color: rgba(255, 255, 255, 0.9); font-weight: 500;">UK stock - no long waits</span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 3.5rem; height: 3.5rem; border-radius: 9999px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
+                  <line x1="16" y1="8" x2="2" y2="22"/>
+                  <line x1="17.5" y1="15" x2="9" y2="15"/>
+                </svg>
+              </div>
+              <span style="color: rgba(255, 255, 255, 0.9); font-weight: 500;">15+ years of excellence</span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 3.5rem; height: 3.5rem; border-radius: 9999px; background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <span style="color: rgba(255, 255, 255, 0.9); font-weight: 500;">4.6/5 from 1,689 reviews</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product Image -->
+        <div class="product-image" style="position: relative;">
+          <div style="position: absolute; inset: -2rem; background: rgba(59, 130, 246, 0.2); border-radius: 9999px; filter: blur(24px);"></div>
+          {% for image in product.images %}
+            {% if forloop.first %}
+              <img
+                src="{{ image | img_url: 'large' }}"
+                alt="{{ image.alt | escape }}"
+                style="position: relative; width: 100%; max-width: 32rem; margin: 0 auto; filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));"
+              />
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+                      
+
+<!-- What's Included Section -->
+<div class="section section--white">
+    <div class="container">
+        <h2 class="heading-lg text-center">What's Included in Your B4L Ice Bath Package</h2>
+        <p class="text-body-lg text-center" style="max-width: 42rem; margin: 0 auto 4rem;">
+            Everything you need to start your cold therapy journey, thoughtfully designed for easy setup and storage.
+        </p>
+
+        <div class="product-grid">
+            <div class="card">
+                <div style="display: flex; flex-direction: column; gap: 2rem;">
+                    <div>
+                        <img src="https://cdn.shopify.com/s/files/1/0222/7290/1216/files/Ice_bath_Box_rectangle.png?v=1739528112" alt="Core Components" style="width: 100%; border-radius: 0.5rem; margin-bottom: 1.5rem;"/>
+                        <h4 style="font-weight: 600; margin-bottom: 1rem;">Core Components</h4>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: rgb(75, 85, 99);">
+                            <li>Professional-grade ice bath tub</li>
+                            <li>6 heavy-duty support legs</li>
+                            <li>High-efficiency hand pump</li>
+                            <li>Digital thermometer</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: rgb(249, 250, 251); padding: 1.5rem; border-radius: 0.5rem;">
+                        <h4 style="font-weight: 600; margin-bottom: 1rem;">Technical Specifications</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <li style="display: flex; gap: 0.5rem; align-items: center;">
+                                <span style="width: 0.375rem; height: 0.375rem; background: rgb(37, 99, 235); border-radius: 9999px;"></span>
+                                <span>Dimensions: 85cm diameter × 75cm height (when inflated)</span>
+                            </li>
+                            <li style="display: flex; gap: 0.5rem; align-items: center;">
+                                <span style="width: 0.375rem; height: 0.375rem; background: rgb(37, 99, 235); border-radius: 9999px;"></span>
+                                <span>Premium 0.35mm PVC inner layer (non-phthalate, 7P certified)</span>
+                            </li>
+                            <li style="display: flex; gap: 0.5rem; align-items: center;">
+                                <span style="width: 0.375rem; height: 0.375rem; background: rgb(37, 99, 235); border-radius: 9999px;"></span>
+                                <span>Reinforced 0.58mm laminated outer layer with pearl foam core</span>
+                            </li>
+                            <li style="display: flex; gap: 0.5rem; align-items: center;">
+                                <span style="width: 0.375rem; height: 0.375rem; background: rgb(37, 99, 235); border-radius: 9999px;"></span>
+                                <span>Compact storage: 66.5 × 35.5 × 10cm when packed</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <blockquote class="testimonial">
+                        <p class="text-body-lg text-italic">"The build quality is exceptional. This isn't just another inflatable tub - it's professional grade equipment."</p>
+                        <footer class="testimonial-author"></footer>
+                    </blockquote>
+                </div>
+            </div>
+
+            <div class="card">
+                <div style="display: flex; flex-direction: column; gap: 2rem;">
+                    <div>
+                        <img src="https://cdn.shopify.com/s/files/1/0222/7290/1216/files/Ice_Bath_Kit_Contents.png?v=1739375643" alt="Essential Accessories" style="width: 100%; border-radius: 0.5rem; margin-bottom: 1.5rem;"/>
+                        <h4 style="font-weight: 600; margin-bottom: 1rem;">Essential Accessories</h4>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: rgb(75, 85, 99);">
+                            <li>Quick-drain hose system</li>
+                            <li>Emergency repair kit</li>
+                            <li>Comprehensive user manual</li>
+                            <li>Premium storage bag</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: rgb(249, 250, 251); padding: 1.5rem; border-radius: 0.5rem;">
+                        <h4 style="font-weight: 600; margin-bottom: 1rem;">Package Contents</h4>
+                        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.75rem;">
+                            <li style="display: flex; gap: 0.5rem; align-items: center;">
+                                <span style="width: 0.375rem; height: 0.375rem; background: rgb(37, 99, 235); border-radius: 9999px;"></span>
+                                <span>1 × Ice bath tub with branded side wall printing</span>
+                            </li>
+                            <li style="display: flex; gap: 0.5rem; align-items: center;">
+                                <span style="width: 0.375rem; height: 0.375rem; background: rgb(37, 99, 235); border-radius: 9999px;"></span>
+                                <span>Complete setup kit with pump and support legs</span>
+                            </li>
+                            <li style="display: flex; gap: 0.5rem; align-items: center;">
+                                <span style="width: 0.375rem; height: 0.375rem; background: rgb(37, 99, 235); border-radius: 9999px;"></span>
+                                <span>All maintenance tools and accessories included</span>
+                            </li>
+                            <li style="display: flex; gap: 0.5rem; align-items: center;">
+                                <span style="width: 0.375rem; height: 0.375rem; background: rgb(37, 99, 235); border-radius: 9999px;"></span>
+                                <span>Premium storage bag and instruction manual</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <blockquote class="testimonial">
+                        <p class="text-body-lg text-italic">"Everything you need is included. The attention to detail in the accessories makes the whole experience seamless."</p>
+                        <footer class="testimonial-author"></footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                      
+
+
+
+                      
+ <div class="section section--gray">
+  <div class="container">
+    <h2 class="heading-lg text-center">Real Recovery, Real Results</h2>
+    <p class="text-body-lg text-center" style="max-width: 42rem; margin: 0 auto 4rem;">
+      Experience the transformative power of cold therapy, backed by real users seeing real results.
+    </p>
+    
+    <div class="recovery-grid">
+      <div class="recovery-item" style="display: flex; flex-direction: column; gap: 3rem;">
+        <!-- First Column Content -->
+        <div style="display: flex; gap: 1.5rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+          </svg>
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <h3 style="font-size: 1.5rem; font-weight: 600; color: rgb(17, 24, 39);">
+              "My sleep has completely transformed"
+            </h3>
+            <p style="font-size: 1.125rem; color: rgb(75, 85, 99); line-height: 1.7;">
+              Users report falling asleep faster and staying asleep longer. The natural sleep regulation from regular cold therapy has been a game-changer for many of our users.
+            </p>
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: 1.5rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+          </svg>
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <h3 style="font-size: 1.5rem; font-weight: 600; color: rgb(17, 24, 39);">
+              "Post-workout soreness is significantly reduced"
+            </h3>
+            <p style="font-size: 1.125rem; color: rgb(75, 85, 99); line-height: 1.7;">
+              Experience faster recovery between training sessions. Athletes and fitness enthusiasts are seeing dramatic improvements in their recovery times.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="recovery-item" style="display: flex; flex-direction: column; gap: 3rem;">
+        <!-- Second Column Content -->
+        <div style="display: flex; gap: 1.5rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+          </svg>
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <h3 style="font-size: 1.5rem; font-weight: 600; color: rgb(17, 24, 39);">
+              "The mental clarity is unlike anything else"
+            </h3>
+            <p style="font-size: 1.125rem; color: rgb(75, 85, 99); line-height: 1.7;">
+              Start your day with enhanced focus and alertness. Many users report improved concentration and mental performance throughout their day.
+            </p>
+          </div>
+        </div>
+        
+        <div style="display: flex; gap: 1.5rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+          </svg>
+          <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+            <h3 style="font-size: 1.5rem; font-weight: 600; color: rgb(17, 24, 39);">
+              "It's my daily reset button"
+            </h3>
+            <p style="font-size: 1.125rem; color: rgb(75, 85, 99); line-height: 1.7;">
+              Find your moment of peace and rejuvenation. Users report significant reductions in daily stress and anxiety levels.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- Personal Experience Integration -->
+      <div style="background: rgb(249, 250, 251); padding: 6rem 1.5rem; margin-top: 4rem; border-radius: 1rem;">
+        <div style="max-width: 48rem; margin: 0 auto;">
+          <p style="font-size: 1.5rem; color: rgb(55, 65, 81); line-height: 1.75; text-align: center; font-weight: 300;">
+            Imagine stepping into your garden, taking a deep breath, and immersing yourself in crisp, cold water. Within minutes, you're experiencing that unique rush of energy that only cold water therapy can provide.
+          </p>
+        </div>
+      </div>
+
+      <div class="product-grid" style="margin-top: 4rem;">
+        <blockquote class="card">
+          <p class="text-body-lg text-italic">
+            "I used to drive 1.5 hours to the Welsh mountains for a cold dip. Now I just step into my garden. It's changed everything."
+          </p>
+          <footer class="text-body"></footer>
+        </blockquote>
+        <blockquote class="card">
+          <p class="text-body-lg text-italic">
+            "After a grueling workout or a long day at the desk, nothing beats the feeling of that first cold plunge. The tension just melts away."
+          </p>
+          <footer class="text-body"></footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Trust Badges Section -->
+  <div style="background: white; padding: 8rem 1.5rem;">
+    <div style="max-width: 80rem; margin: 0 auto;">
+          <h2 class="heading-lg text-center">Backed by Build4Less: Your Trusted UK Retailer</h2>
+      <p class="text-body-lg text-center" style="max-width: 42rem; margin: 0 auto 4rem;">
+        When you purchase from us, you're buying from an established UK business with over 15 years of excellence in customer service.
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 3rem; margin-bottom: 6rem;">
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+          </svg>
+          <div style="font-weight: 600; font-size: 1.25rem;">UK Stock</div>
+          <div style="color: rgb(75, 85, 99);">Fast Local Delivery</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <div style="font-weight: 600; font-size: 1.25rem;">4.6/5 Rating</div>
+          <div style="color: rgb(75, 85, 99);">From 1,689+ verified reviews</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <div style="font-weight: 600; font-size: 1.25rem;">UK Based</div>
+          <div style="color: rgb(75, 85, 99);">Local Support</div>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.75rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="7"/>
+            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/>
+          </svg>
+          <div style="font-weight: 600; font-size: 1.25rem;">Trading Since 2008</div>
+          <div style="color: rgb(75, 85, 99);">Trusted UK Business</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+              <!-- 5. Simple Setup Section -->
+  <div class="section section--white">
+    <div class="container">
+      <div class="text-center">
+        <h2 class="heading-lg">Simple Setup, Lasting Benefits</h2>
+        <p class="text-body-lg" style="max-width: 42rem; margin: 0 auto;">
+          Getting started with your B4L Ice Bath is effortless. Three simple steps to transform your daily routine.
+        </p>
+      </div>
+
+      <!-- Steps Grid -->
+      <div class="feature-grid">
+        <!-- Step 1 -->
+        <div class="setup-step">
+          <div class="setup-step__number">1</div>
+          <div class="card text-center">
+            <div class="heading-sm">Unpack</div>
+            <p class="text-body">Arrives compact in one box</p>
+            <div class="setup-step__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                <path d="m3.3 7 8.7 5 8.7-5"/>
+                <path d="M12 22V12"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="setup-step">
+          <div class="setup-step__number">2</div>
+          <div class="card text-center">
+            <div class="heading-sm">Setup</div>
+            <p class="text-body">Ready in under 10 minutes</p>
+            <div class="setup-step__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="setup-step">
+          <div class="setup-step__number">3</div>
+          <div class="card text-center">
+            <div class="heading-sm">Enjoy</div>
+            <p class="text-body">Start your cold therapy journey</p>
+            <div class="setup-step__icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Setup Testimonial -->
+      <div class="text-center" style="margin-top: 4rem;">
+        <blockquote class="text-body-lg text-italic">
+          "Set mine up in under 10 minutes. Now it's my favorite part of the garden - and my daily routine."
+        </blockquote>
+        <div class="text-body-sm" style="color: rgb(107, 114, 128);">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Combined User Types and Community Section -->
+  <div class="section section--gray">
+    <div class="container">
+      <h2 class="heading-lg text-center">From Athletes to Office Workers</h2>
+      
+      <div class="gallery-grid">
+        <!-- Athlete Card -->
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=400&h=300&q=80"
+            alt="Athlete using Ice Bath"
+            class="gallery-image"
+          />
+          <div style="padding: 1rem;">
+            <p class="text-body">
+              Our community ranges from gym enthusiasts managing intense training schedules...
+            </p>
+          </div>
+        </div>
+
+        <!-- Office Worker Card -->
+        <div class="card">
+          <img
+            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&h=300&q=80"
+            alt="Office worker using Ice Bath"
+            class="gallery-image"
+          />
+          <div style="padding: 1rem;">
+            <p class="text-body">
+              ...to people battling daily stress and chronic pain...
+            </p>
+          </div>
+        </div>
+
+        <!-- Morning Routine Card -->
+        <div class="card">
+          <img
+            src="https://cdn.midjourney.com/03345143-90f8-4aff-bbed-2066a92c4695/0_0.png?auto=format&fit=crop&w=400&h=300&q=80"
+            alt="Morning routine with Ice Bath"
+            class="gallery-image"
+          />
+          <div style="padding: 1rem;">
+            <p class="text-body">
+              They all share one thing: they can't imagine starting their day any other way now.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <h3 class="heading-md">A Community of Support</h3>
+        <p class="text-body" style="max-width: 42rem; margin: 0 auto 2rem;">
+          When you get an B4L Ice Bath, you're joining thousands of others who've discovered the power of cold water therapy. Share experiences, get tips, and connect with others on their journey.
+        </p>
+        <blockquote class="card" style="max-width: 42rem; margin: 0 auto;">
+          <p class="text-body-lg text-italic">
+            "I was skeptical at first, but the benefits are real. Now my whole family uses it - we even have friendly competitions about who can stay in longest!"
+          </p>
+          <footer class="text-body"></footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. FAQ Section -->
+  <div class="section section--white">
+    <div class="container">
+      <div class="text-center" style="max-width: 42rem; margin: 0 auto 4rem;">
+        <h2 class="heading-lg">Your Questions, Answered</h2>
+        <p class="text-body-lg">
+          Our customers often ask these questions about their B4L Ice Bath experience.
+        </p>
+      </div>
+
+      <div class="specs-grid">
+        <!-- Question 1 -->
+        <div class="card">
+          <div class="card--feature">
+            <div class="feature-icon feature-icon--blue">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                <line x1="9" y1="9" x2="9.01" y2="9"/>
+                <line x1="15" y1="9" x2="15.01" y2="9"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="heading-sm">Will I fit comfortably?</h3>
+              <blockquote class="testimonial">
+                <p class="text-body">"I'm 6'2" and have plenty of room to sit cross-legged. The water comes up to my shoulders perfectly."</p>
+                <footer class="testimonial-author"></footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="card">
+          <div class="card--feature">
+            <div class="feature-icon feature-icon--blue">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 2a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v2H2V2Z"/>
+                <path d="M20 20a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8h16v12Z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="heading-sm">How cold does it get?</h3>
+              <blockquote class="testimonial">
+                <p class="text-body">"In winter, it naturally stays around 12°C. In summer, I add some ice to keep it cool. Either way, you get that amazing cold plunge feeling."</p>
+                <footer class="testimonial-author"></footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="card">
+          <div class="card--feature">
+            <div class="feature-icon feature-icon--blue">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                <path d="M12 8v4"/>
+                <path d="M12 16h.01"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="heading-sm">Is it hard to maintain?</h3>
+              <blockquote class="testimonial">
+                <p class="text-body">"Change the water every couple weeks, add some ice when needed. That's pretty much it. The thermal cover keeps leaves and debris out."</p>
+                <footer class="testimonial-author"></footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="card">
+          <div class="card--feature">
+            <div class="feature-icon feature-icon--blue">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="heading-sm">What about winter use?</h3>
+              <blockquote class="testimonial">
+                <p class="text-body">"The thermal cover maintains temperature perfectly, even in winter. I actually find the contrast more invigorating during the colder months!"</p>
+                <footer class="testimonial-author"></footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Objection Handling -->
+  <div class="section section--gray">
+    <div class="container">
+      <div style="text-align: center; max-width: 48rem; margin: 0 auto 4rem;">
+        <h2 class="heading-lg">Why Choose B4L Ice Bath?</h2>
+        <p class="text-body-lg">
+          We understand you might have questions. Here's some user answers to common concerns about cold therapy and at-home ice baths.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem;">
+        <!-- Price Objection -->
+        <div class="card">
+          <div style="display: flex; items-start; gap: 1.5rem;">
+            <div style="width: 4rem; height: 4rem; border-radius: 9999px; background: rgb(239, 246, 255); display: flex; align-items: center; justify-center; flex-shrink: 0;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="1" x2="12" y2="23"/>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div>
+                <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">"Is it worth the investment?"</h3>
+                <p style="color: rgb(75, 85, 99); margin: 0;">
+                  At just £{{ product.price | times: 1.2 | money_without_currency }}, B4L Ice Bath offers incredible value compared to alternatives:
+                </p>
+              </div>
+              
+              <ul style="display: flex; flex-direction: column; gap: 1rem; color: rgb(75, 85, 99); margin: 0; padding: 0; list-style: none;">
+                <li style="display: flex; align-items: center; gap: 0.75rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(34, 197, 94)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>Spa visits (£40-80 per session)</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: 0.75rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(34, 197, 94)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>Gym memberships with cold plunge (£80+ monthly)</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: 0.75rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(34, 197, 94)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>Traditional ice baths (£25+ in ice per session)</span>
+                </li>
+              </ul>
+              
+              <blockquote style="border-left: 4px solid rgb(37, 99, 235); padding-left: 1.5rem; font-style: italic; color: rgb(75, 85, 99); margin: 0;">
+                <p style="margin-bottom: 0.75rem;">"The B4L Ice Bath pays for itself after just a few uses. Best wellness investment I've made."</p>
+                <footer style="font-size: 0.875rem; font-weight: 500;"></footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+        <!-- Space & Setup -->
+        <div class="card">
+          <div style="display: flex; items-start; gap: 1.5rem;">
+            <div style="width: 4rem; height: 4rem; border-radius: 9999px; background: rgb(239, 246, 255); display: flex; align-items: center; justify-center; flex-shrink: 0;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="1" y="3" width="15" height="13"/>
+                <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                <circle cx="5.5" cy="18.5" r="2.5"/>
+                <circle cx="18.5" cy="18.5" r="2.5"/>
+              </svg>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div>
+                <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">"I don't have space for a permanent setup..."</h3>
+                <p style="color: rgb(75, 85, 99); margin: 0;">
+                  B4L Ice Bath's innovative design makes it perfect for any living situation:
+                </p>
+              </div>
+              
+              <ul style="display: flex; flex-direction: column; gap: 1rem; color: rgb(75, 85, 99); margin: 0; padding: 0; list-style: none;">
+                <li style="display: flex; align-items: center; gap: 0.75rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(34, 197, 94)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>Compact 85cm (33") diameter footprint when in use</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: 0.75rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(34, 197, 94)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>Folds down to just 66.5 x 35.5 x 10cm (26" x 14" x 4") for storage</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: 0.75rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(34, 197, 94)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>No permanent plumbing required - easy drain system with included hose</span>
+                </li>
+              </ul>
+              
+              <blockquote style="border-left: 4px solid rgb(37, 99, 235); padding-left: 1.5rem; font-style: italic; color: rgb(75, 85, 99); margin: 0;">
+                <p style="margin-bottom: 0.75rem;">"I live in a small apartment and was worried about space. The B4L Ice Bath's portability is a game-changer - I set it up on my balcony when needed."</p>
+                <footer style="font-size: 0.875rem; font-weight: 500;"></footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+        <!-- Effectiveness -->
+        <div class="card">
+          <div style="display: flex; items-start; gap: 1.5rem;">
+            <div style="width: 4rem; height: 4rem; border-radius: 9999px; background: rgb(239, 246, 255); display: flex; align-items: center; justify-center; flex-shrink: 0;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div>
+                <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">"Does it really work as well as traditional methods?"</h3>
+                <p style="color: rgb(75, 85, 99); margin: 0;">
+                  Our ice bath is designed with convenience and reliability in mind:
+                </p>
+              </div>
+              
+              <div style="background: rgb(239, 246, 255); padding: 1.5rem; border-radius: 1rem;">
+                <h4 style="font-weight: 600; font-size: 1.25rem; margin-bottom: 1rem;">Key Features:</h4>
+                <ul style="display: flex; flex-direction: column; gap: 1rem; color: rgb(75, 85, 99); margin: 0; padding: 0; list-style: none;">
+                  <li style="display: flex; align-items: center; gap: 0.75rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(34, 197, 94)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span>Included thermometer for temperature monitoring</span>
+                  </li>
+                  <li style="display: flex; align-items: center; gap: 0.75rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(34, 197, 94)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span>Durable, waterproof materials</span>
+                  </li>
+                  <li style="display: flex; align-items: center; gap: 0.75rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(34, 197, 94)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <polyline points="20 6 9 17 4 12"/>
+                    </svg>
+                    <span>Portable and easy to set up</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <blockquote style="border-left: 4px solid rgb(37, 99, 235); padding-left: 1.5rem; font-style: italic; color: rgb(75, 85, 99); margin: 0;">
+                <p style="margin-bottom: 0.75rem;">"The setup was straightforward, and I appreciate being able to check the water temperature before getting in. Perfect for my post-workout routine."</p>
+                <footer style="font-size: 0.875rem; font-weight: 500;"></footer>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+        <!-- Safety & Support -->
+        <div class="card">
+          <div style="display: flex; items-start; gap: 1.5rem;">
+            <div style="width: 4rem; height: 4rem; border-radius: 9999px; background: rgb(239, 246, 255); display: flex; align-items: center; justify-center; flex-shrink: 0;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+              </svg>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+              <div>
+                <h3 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem;">"What if I need help or something goes wrong?"</h3>
+                <p style="color: rgb(75, 85, 99); margin: 0;">
+                  Your success and safety are our top priorities:
+                </p>
+              </div>
+              
+              <ul style="display: flex; flex-direction: column; gap: 1rem; color: rgb(75, 85, 99); margin: 0; padding: 0; list-style: none;">
+                <li style="display: flex; align-items: center; gap: 0.75rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(34, 197, 94)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>UK-based customer support team</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: 0.75rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(34, 197, 94)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>Comprehensive setup guide included</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: 0.75rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(34, 197, 94)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>Fast response times to customer inquiries</span>
+                </li>
+                <li style="display: flex; align-items: center; gap: 0.75rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(34, 197, 94)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                  <span>4.6/5 customer satisfaction rating from 1,689 reviews</span>
+                </li>
+              </ul>
+              
+              <div style="display: flex; items-center; gap: 1.5rem; font-size: 0.875rem; color: rgb(75, 85, 99);">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                  <span>1hr avg. response time</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                  </svg>
+                  <span>4.9/5 support rating</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Delivery Section -->
+<div class="section section--gray">
+  <div class="container">
+    <div style="max-width: 48rem; margin: 0 auto; text-align: center;">
+      <h2 class="heading-lg">Fast, Free UK Delivery</h2>
+      <p class="text-body-lg" style="margin-bottom: 3rem;">
+        No long waits or overseas shipping - get your ice bath delivered quickly from our UK warehouse
+      </p>
+    </div>
+
+    <div class="recovery-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; align-items: center;">
+      <!-- Delivery Info -->
+      <div class="card">
+        <div style="display: flex; flex-direction: column; gap: 2rem;">
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+              <div style="width: 3rem; height: 3rem; border-radius: 9999px; background: rgb(239, 246, 255); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M5 12h14"/>
+                  <path d="M12 5l7 7-7 7"/>
+                </svg>
+              </div>
+              <div>
+                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.25rem;">Fast UK Delivery</h3>
+                <p style="color: rgb(75, 85, 99); margin: 0;">Ships from our UK warehouse within 1-2 working days</p>
+              </div>
+            </li>
+            <li style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+              <div style="width: 3rem; height: 3rem; border-radius: 9999px; background: rgb(239, 246, 255); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7"/>
+                  <polyline points="16 5 22 5 22 11"/>
+                  <line x1="22" y1="5" x2="12" y2="15"/>
+                </svg>
+              </div>
+              <div>
+                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.25rem;">Free Delivery</h3>
+                <p style="color: rgb(75, 85, 99); margin: 0;">Complimentary shipping to all UK addresses</p>
+              </div>
+            </li>
+            <li style="display: flex; align-items: center; gap: 1rem;">
+              <div style="width: 3rem; height: 3rem; border-radius: 9999px; background: rgb(239, 246, 255); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 0.25rem;">Secure Packaging</h3>
+                <p style="color: rgb(75, 85, 99); margin: 0;">Carefully packaged for safe transit</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Customer Quote -->
+      <div class="card" style="background: rgb(249, 250, 251);">
+        <blockquote style="display: flex; flex-direction: column; gap: 1.5rem;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 24 24" fill="rgb(37, 99, 235)" style="opacity: 0.2;">
+            <path d="M10 11H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1zm10 0h-6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1zM10 21H4a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1zm10 0h-6a1 1 0 0 1-1-1v-6a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1z"/>
+          </svg>
+          
+          <p style="font-size: 1.25rem; color: rgb(17, 24, 39); line-height: 1.75; font-style: italic;">
+            "After looking at various options online, I chose this one because of the UK stock and delivery. Ordered and it arrived next day which was a real treat as I was excitedly counting down the sleeps!"
+          </p>
+          
+          <footer style="display: flex; align-items: center; gap: 1rem;">
+            <div style="width: 3rem; height: 3rem; border-radius: 9999px; background: white; display: flex; align-items: center; justify-content: center;">
+
+            </div>
+            <div>
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</div>
+
+                  
+<!-- Buy Box Section -->
+<div class="section section--white">
+  <div class="container">
+    <div style="text-align: center;">
+      <h3 style="font-size: 2rem; font-weight: 700; margin-bottom: 2rem;">Start Your Cold Therapy Journey Today</h3>
+      
+<!-- Buy Box Section -->
+<div id="cart-section" style="max-width: 36rem; margin: 0 auto; padding: 2rem;">
+  <!-- Price Section -->
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <div class="price-display" style="font-size: 1.875rem; font-weight: 700;">
+        <span class="exvatm">£{{ product.price | money_without_currency }} ex Vat</span>
+        <span class="incvatm">£{{ product.price | times: 1.2 | money_without_currency }} inc Vat</span>
+      </div>
+    {% if product.available %}
+      <div style="display: flex; items-center; gap: 0.25rem; color: rgb(22, 163, 74);">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+        <span style="font-size: 0.875rem; font-weight: 500;">In Stock</span>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- Free Delivery -->
+  <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: rgb(75, 85, 99);">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="1" y="3" width="15" height="13"/>
+      <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+      <circle cx="5.5" cy="18.5" r="2.5"/>
+      <circle cx="18.5" cy="18.5" r="2.5"/>
+    </svg>
+    <span>Free UK Delivery</span>
+  </div>
+
+  <!-- Trust Badges -->
+  <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem;">
+    <div style="display: flex; align-items: center; gap: 0.75rem; background-color: rgb(239, 246, 255); padding: 0.75rem; border-radius: 0.5rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1" y="3" width="15" height="13"/>
+        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+        <circle cx="5.5" cy="18.5" r="2.5"/>
+        <circle cx="18.5" cy="18.5" r="2.5"/>
+      </svg>
+      <div>
+        <p style="font-weight: 600; color: rgb(17, 24, 39); margin: 0;">Fast UK Delivery</p>
+        <p style="color: rgb(75, 85, 99); margin: 0; font-size: 0.875rem;">From our UK warehouse</p>
+      </div>
+    </div>
+    
+    <div style="display: flex; align-items: center; gap: 0.75rem; background-color: rgb(239, 246, 255); padding: 0.75rem; border-radius: 0.5rem;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgb(37, 99, 235)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+        <circle cx="12" cy="10" r="3"/>
+      </svg>
+      <div>
+        <p style="font-weight: 600; color: rgb(17, 24, 39); margin: 0;">UK-Based Support</p>
+        <p style="color: rgb(75, 85, 99); margin: 0; font-size: 0.875rem;">Here to help</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add to Cart Form -->
+  <form method="post" action="/cart/add" id="product-form">
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" />
+    
+    <!-- Quantity Selector -->
+    <div style="margin-bottom: 1.5rem;">
+      <label style="font-size: 0.875rem; font-weight: 500; color: rgb(55, 65, 81); display: block; margin-bottom: 0.5rem;">
+        Quantity:
+      </label>
+      <div style="display: inline-flex; align-items: stretch; border: 1px solid rgb(209, 213, 219); border-radius: 0.375rem;">
+        <button 
+          type="button"
+          onclick="decrementQuantity()"
+          style="width: 2.5rem; display: inline-flex; align-items: center; justify-content: center; background: none; border: none; border-right: 1px solid rgb(209, 213, 219); cursor: pointer;"
+        >
+          -
+        </button>
+        <input 
+          type="text" 
+          id="quantity" 
+          name="quantity" 
+          value="1"
+          style="width: 3rem; text-align: center; border: none; -moz-appearance: textfield;"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '');"
+        >
+        <button 
+          type="button"
+          onclick="incrementQuantity()"
+          style="width: 2.5rem; display: inline-flex; align-items: center; justify-content: center; background: none; border: none; border-left: 1px solid rgb(209, 213, 219); cursor: pointer;"
+        >
+          +
+        </button>
+      </div>
+    </div>
+
+    <!-- Add to Cart Button -->
+    {% if product.available %}
+      <button 
+        type="submit"
+        style="
+          width: 100%;
+          background-color: rgb(37, 99, 235);
+          color: white;
+          padding: 1rem;
+          border-radius: 9999px;
+          font-weight: 600;
+          font-size: 1rem;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.2s;
+          margin-bottom: 1rem;
+        "
+        onmouseover="this.style.backgroundColor='rgb(29, 78, 216)'"
+        onmouseout="this.style.backgroundColor='rgb(37, 99, 235)'"
+      >
+        Add to Cart
+      </button>
+    {% else %}
+      <button 
+        disabled 
+        style="
+          width: 100%;
+          background-color: rgb(156, 163, 175);
+          color: white;
+          padding: 1rem;
+          border-radius: 9999px;
+          font-weight: 600;
+          cursor: not-allowed;
+          margin-bottom: 1rem;
+        "
+      >
+        Sold Out
+      </button>
+    {% endif %}
+  </form>
+
+  <!-- Reviews -->
+  <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    </svg>
+    <span style="color: rgb(75, 85, 99); font-size: 0.875rem;">4.6/5 from 1,689 verified reviews</span>
+  </div>
+
+  <!-- Trust Messages -->
+  <div style="border-top: 1px solid rgb(229, 231, 235); padding-top: 1rem; text-align: center;">
+    <p style="font-size: 0.75rem; color: rgb(107, 114, 128);">
+      Fast UK delivery • Established since 2008 • 4.6/5 from 1,689 reviews
+    </p>
+  </div>
+</div>
+
+<!-- Product Gallery Section -->
+{% if product.images.size > 1 %}
+<div class="section section--white">
+  <div class="container">
+    <h2 class="heading-lg text-center">Product Gallery</h2>
+    <div class="gallery-grid">
+      {% for image in product.images %}
+        <img 
+          src="{{ image | img_url: 'large' }}" 
+          alt="{{ image.alt | escape }}" 
+          class="gallery-image gallery-enlarge-trigger"
+          data-large="{{ image | img_url: 'master' }}" />
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Enlarged Image -->
+<div id="imageModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>
+{% endif %}
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('product-form');
+    const quantityInput = document.getElementById('quantity');
+
+    // Prevent form submission on button clicks
+    form.addEventListener('click', function(e) {
+      if (e.target.type === 'button') {
+        e.preventDefault();
+      }
+    });
+
+    // Handle increment button
+    form.querySelector('button[onclick="incrementQuantity()"]').addEventListener('click', function(e) {
+      e.preventDefault();
+      const currentValue = parseInt(quantityInput.value) || 1;
+      quantityInput.value = currentValue + 1;
+    });
+
+    // Handle decrement button
+    form.querySelector('button[onclick="decrementQuantity()"]').addEventListener('click', function(e) {
+      e.preventDefault();
+      const currentValue = parseInt(quantityInput.value) || 1;
+      if (currentValue > 1) {
+        quantityInput.value = currentValue - 1;
+      }
+    });
+
+    // Ensure quantity is always at least 1
+    quantityInput.addEventListener('change', function() {
+      const value = parseInt(this.value) || 1;
+      this.value = Math.max(1, value);
+    });
+  });
+</script>

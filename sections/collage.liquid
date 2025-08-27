@@ -100,7 +100,7 @@
             {%- when 'product' -%}
               {%- assign placeholder_image = 'product-apparel-' | append: placeholder_image_index -%}
               {% render 'card-product',
-                card_product: block_settings_product,
+                card_product: block_settings.product,
                 media_aspect_ratio: 'adapt',
                 show_secondary_image: block.settings.second_image,
                 extend_height: true,
