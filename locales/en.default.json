@@ -591,15 +591,6 @@
     },
     "orders": {
       "buy_again": "Reorder"
-    },
-    "payment_methods": {
-      "store_credit": {
-        "details_modal": {
-          "events": {
-            "tax_finalization": "VAT finalization "
-          }
-        }
-      }
     }
   }
 }
