@@ -23,17 +23,17 @@
           "type": "title",
           "settings": {}
         },
-        "sku": {
+        "sku_9jyaGa": {
           "type": "sku",
           "settings": {
             "text_style": "body"
           }
         },
-        "product_star_rating": {
+        "product_star_rating_CECxc9": {
           "type": "product_star_rating",
           "settings": {}
         },
-        "delivery_text": {
+        "delivery_text_6kJjdh": {
           "type": "delivery_text",
           "settings": {}
         },
@@ -52,7 +52,7 @@
           "type": "quantity_selector",
           "settings": {}
         },
-        "in_stock_label": {
+        "in_stock_label_ef8m7B": {
           "type": "in_stock_label",
           "settings": {}
         },
@@ -63,7 +63,7 @@
             "show_gift_card_recipient": false
           }
         },
-        "klarna_messaging": {
+        "klarna_on_site_messaging_app_block_FYWH7a": {
           "type": "shopify://apps/klarna-on-site-messaging/blocks/app-block/b95936a9-74b6-4a95-8103-6a1b6459c25e",
           "settings": {
             "data_key": "credit-promotion-auto-size",
@@ -73,11 +73,11 @@
             "messagePrefix": ""
           }
         },
-        "product_pro_contractor": {
+        "product_pro_contractor_hqaeqD": {
           "type": "product_pro_contractor",
           "settings": {}
         },
-        "icon_with_text": {
+        "icon_with_text_Wq8CDm": {
           "type": "icon-with-text",
           "settings": {
             "layout": "vertical",
@@ -89,21 +89,9 @@
             "heading_3": "Flexible delivery options"
           }
         },
-        "reviews_nugget": {
+        "reviews_nugget_Q3GrFy": {
           "type": "reviews_nugget",
           "settings": {}
-        },
-        "delivery_banner_b4l": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div class=\"del-promo-container\">\n<img src=\"https://cdn.shopify.com/s/files/1/0222/7290/1216/files/400_Ex_Vat_ae641013-07e0-4c99-ab32-c05849cd944b.png?v=1748522786\" class=\"exc_vat_price\"  style=\"width:100%; max-width:440px;\">\n\n<img src=\"https://cdn.shopify.com/s/files/1/0222/7290/1216/files/480_Inc_Vat_2.png?v=1748522786\" class=\"inc_vat_price\"  style=\"width:100%; max-width:440px;\">\n</div>"
-          }
-        },
-        "delivery_banner_bso": {
-          "type": "custom_liquid",
-          "settings": {
-            "custom_liquid": "<div class=\"del-promo-container\">\n<img src=\"https://cdn.shopify.com/s/files/1/0222/7290/1216/files/BSO_350_Ex_Vat.png?v=1744627887\" class=\"exc_vat_price\" style=\"width:100%; max-width:440px;\">\n\n<img src=\"https://cdn.shopify.com/s/files/1/0222/7290/1216/files/BSO_Inc_Vat.png?v=1744627887\" class=\"inc_vat_price\" style=\"width:100%; max-width:440px;\">\n</div>"
-          }
         },
         "description": {
           "type": "description",
@@ -115,49 +103,209 @@
             "share_label": "Share"
           }
         }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "sku_9jyaGa",
+        "product_star_rating_CECxc9",
+        "delivery_text_6kJjdh",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "in_stock_label_ef8m7B",
+        "buy_buttons",
+        "klarna_on_site_messaging_app_block_FYWH7a",
+        "product_pro_contractor_hqaeqD",
+        "icon_with_text_Wq8CDm",
+        "reviews_nugget_Q3GrFy",
+        "description",
+        "share"
+      ],
+      "custom_css": [
+        ".product__sku {margin: -1.75rem 0 1rem; font-size: 1.25rem;}",
+        ".product__tax.caption {display: none;}",
+        "more-payment-options-link {display: none;}",
+        ".product__column-sticky {position: relative;}"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-289aa3fd-ef69-4e7d-817f-ad25d3266a09",
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
+        "media_position": "left",
+        "image_zoom": "hover",
+        "mobile_thumbnails": "show",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 0,
+        "padding_bottom": 12
       }
     },
-    "product-why-buy-from-us": {
+    "174239827428cb2159": {
+      "type": "apps",
+      "blocks": {
+        "reviews_io_reviewsio_card_carousel_3aPw4y": {
+          "type": "shopify://apps/reviews-io/blocks/reviewsio-card-carousel/92a082e5-b297-4e88-b428-ac96cbc505f9",
+          "settings": {
+            "star": "#ffca00",
+            "review_type": "company",
+            "reviews_shown": 30,
+            "header_bg_colour": "#5f5f5f",
+            "header_colour": "#ffffff",
+            "header_star_colour": "#ffca00",
+            "heading_text_colour": "#0e1311",
+            "heading_font": "itc_franklin_gothic_n4",
+            "body_text_colour": "#0e1311",
+            "badge_icon_colour": "#3cbb91",
+            "badge_text_colour": "#0e1311",
+            "bg_start_colour": "#f3f3f3",
+            "bg_end_colour": "#f3f3f3",
+            "item_border_width": "0px",
+            "item_border_colour": "#000000",
+            "item_border_radius": "5px",
+            "item_shadow_size": "0px",
+            "item_shadow_colour": "#000000",
+            "enable_rich_snippets": true,
+            "disable_same_customer": true,
+            "logo_colour": "var(--logo-inverted)"
+          }
+        }
+      },
+      "block_order": [
+        "reviews_io_reviewsio_card_carousel_3aPw4y"
+      ],
+      "custom_css": [],
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "collapsible_content_YtGc7C": {
+      "type": "collapsible-content",
+      "blocks": {
+        "collapsible_row_dyT3AM": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can you help me pick the right insulation for my project?",
+            "icon": "none",
+            "row_content": "<p>Yes, of course! <br/><br/>Our team is ready to assist you with any questions and queries you may have.<br/><br/>Just reach out to us via any of the following methods:<br/><br/>Call us: <a href=\"tel:786-224-0029\" title=\"tel:786-224-0029\">786-224-0029</a><br/>Email us: <a href=\"mailto:sales@4us-group.com\" target=\"_blank\" title=\"mailto:sales@4us-group.com\">sales@4us-group.com</a><br/>or click the Livechat tab at the bottom of your screen.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_NRTHVR": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "How do I track my order?",
+            "icon": "none",
+            "row_content": "<p>As soon as your order is dispatched, you'll receive a dispatch email with delivery dates and details for your order.<br/><br/>If you require an update on your order, you can email <a href=\"mailto:deliveries@4us-group.com\" title=\"mailto:deliveries@4us-group.com\">deliveries@4us-group.com</a> with your order number for assistance.</p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_pzq6Cn": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I order now and pay later?",
+            "icon": "none",
+            "row_content": "<p>Yes, we offer a variety of flexible payment options to all our customers.<br/><br/>When checking out online, you'll be able to avail of multiple buy now, pay later options with ShopPay, Klarna or PayPal. <br/><br/>The flexible payment options available to you at checkout will be based on the total value of your order.<br/><br/>For B2B customers, you can apply for a 30-day trade credit account, and you'll also unlock:</p><ul><li>Dedicated trade pricing</li><li>Loyalty points and rewards</li><li>A dedicated account manager</li></ul>",
+            "page": ""
+          }
+        },
+        "collapsible_row_PaPLpf": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "I have a large-scale project, can I get a quote?",
+            "icon": "none",
+            "row_content": "<p>Yes, if you are carrying out a construction project that requires a large quantity of materials, email <a href=\"mailto:sales@4us-group.com\" target=\"_blank\" title=\"mailto:sales@4us-group.com\">sales@4us-group.com</a> with the following information and we will get back to you with your very own bespoke price quote:</p><ul><li>Delivery postcode and address</li><li>Mobile number</li><li>Company name</li><li>A list of required materials and their quantities<br/></li></ul>",
+            "page": ""
+          }
+        },
+        "collapsible_row_7YdKhi": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I open a pro contractor account?",
+            "icon": "none",
+            "row_content": "<p>Yes! Pro contractors can open a B2B account to unlock bespoke pricing, B2B discounts, trade credit, loyalty points, and a dedicated personal account manager.<br/><br/>You can learn more here: <a href=\"/pages/i4us-pro-contractor-account\" target=\"_blank\" title=\"/pages/i4us-pro-contractor-account\">Open a pro contractor account</a></p>",
+            "page": ""
+          }
+        },
+        "collapsible_row_Xw8zM6": {
+          "type": "collapsible_row",
+          "settings": {
+            "heading": "Can I cancel or amend my order after placing it?",
+            "icon": "none",
+            "row_content": "<p>Yes, if your order has not yet been processed for dispatch, cancellation/ amendments should be possible.<br/><br/>Our team works quickly to get your order delivered as soon as possible so it is likely that your order will be processed for dispatch within 2-3 hours of purchase.<br/><br/>Contact us immediately via <a href=\"mailto:sales@4us-group.com\" target=\"_blank\" title=\"mailto:sales@4us-group.com\">sales@4us-group.com</a> or call <a href=\"tel:786-224-0029\" title=\"tel:786-224-0029\">786-224-0029</a> during opening hours.<br/><br/>If you wish to amend your order after it has been processed by our team, it will be treated as a return or a separate new order.<br/><br/>Read more: <a href=\"/pages/shipping-returns\" target=\"_blank\" title=\"/pages/shipping-returns\">Returns</a></p>",
+            "page": ""
+          }
+        }
+      },
+      "block_order": [
+        "collapsible_row_dyT3AM",
+        "collapsible_row_NRTHVR",
+        "collapsible_row_pzq6Cn",
+        "collapsible_row_PaPLpf",
+        "collapsible_row_7YdKhi",
+        "collapsible_row_Xw8zM6"
+      ],
+      "name": "t:sections.collapsible_content.presets.name",
+      "settings": {
+        "caption": "",
+        "heading": "Frequently asked questions",
+        "heading_size": "h2",
+        "heading_alignment": "center",
+        "layout": "row",
+        "color_scheme": "scheme-1",
+        "container_color_scheme": "scheme-1",
+        "open_first_collapsible_row": false,
+        "image_ratio": "adapt",
+        "desktop_layout": "image_second",
+        "padding_top": 8,
+        "padding_bottom": 20
+      }
+    },
+    "product_why_buy_from_us_QAFyrW": {
       "type": "product-why-buy-from-us",
+      "name": "Why Buy From Us Table",
       "settings": {}
     },
     "related-products": {
       "type": "related-products",
+      "custom_css": [
+        "h2 {text-align: center;}"
+      ],
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
-        "products_to_show": 4,
+        "products_to_show": 8,
         "columns_desktop": 4,
         "color_scheme": "scheme-1",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": true,
-        "show_vendor": false,
+        "show_vendor": true,
         "show_rating": false,
         "columns_mobile": "2",
-        "padding_top": 36,
+        "padding_top": 16,
         "padding_bottom": 28
       }
     },
-    "product-recently-viewed": {
-      "type": "product-recently-viewed",
+    "custom_liquid_6NndbQ": {
+      "type": "custom-liquid",
       "settings": {
-        "hide_if_empty": true,
-        "title": "Recently viewed",
-        "hide_if_one": true,
-        "products_to_show": 6,
-        "columns_desktop": 6,
-        "columns_mobile": "2",
-        "swipe_on_mobile": true,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "custom_liquid": "<script type=\"application/ld+json\">\n{\n  \"@context\": \"https://schema.org/\",\n  \"@type\": \"Product\",\n  \"name\": {{ product.title | json }},\n  \"url\": {{ shop.url | append: product.url | json }},\n  {%- if product.featured_media -%}\n    \"image\": [\n      {{ product.featured_media | img_url: product.featured_media.preview_image.width | prepend: \"https:\" | json }}\n    ],\n  {%- endif -%}\n  \"description\": {{ product.description | strip_html | json }},\n  {%- if current_variant.sku != blank -%}\n    \"sku\": {{ current_variant.sku | json }},\n  {%- endif -%}\n  \"brand\": {\n    \"@type\": \"Brand\",\n    \"name\": {{ product.vendor | json }}\n  },\n  {%- if product.metafields.global.gtin or current_variant.barcode != blank -%}\n    \"gtin\": {{ product.metafields.global.gtin | default: current_variant.barcode | json }},\n  {%- endif -%}\n  {%- if current_variant.sku != blank -%}\n    \"mpn\": {{ current_variant.sku | json }},\n  {%- endif -%}\n  \n  \"offers\": [\n    {%- for variant in product.variants -%}\n      {\n        \"@type\": \"Offer\",\n        \"price\": {{ variant.price | divided_by: 100.00 | json }},\n        \"priceCurrency\": {{ cart.currency.iso_code | json }},\n        \"availability\": \"https://schema.org/{% if variant.available %}InStock{% else %}OutOfStock{% endif %}\",\n        \"url\": {{ shop.url | append: variant.url | json }},\n        \"sku\": {{ variant.sku | json }}\n      }{% unless forloop.last %},{% endunless %}\n    {%- endfor -%}\n  ]\n}\n</script>",
+        "color_scheme": "",
+        "padding_top": 0,
+        "padding_bottom": 0
       }
     }
   },
   "order": [
     "main",
-    "product-why-buy-from-us",
+    "174239827428cb2159",
+    "collapsible_content_YtGc7C",
+    "product_why_buy_from_us_QAFyrW",
     "related-products",
-    "product-recently-viewed"
+    "custom_liquid_6NndbQ"
   ]
 }
