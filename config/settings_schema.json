@@ -1465,20 +1465,5 @@
         "default": "scheme-1"
       }
     ]
-  },
-  {
-    "name": "Clerk settings",
-    "settings": [
-      {
-        "type": "header",
-        "content": "Clerk"
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_clerk",
-        "label": "Enable Clerk",
-        "default": true
-      }
-    ]
   }
 ]
